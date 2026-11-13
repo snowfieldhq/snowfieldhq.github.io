@@ -1,0 +1,6 @@
+/* Focus ring for the one pink cell: a hexagon drawn in the lattice gutter just outside the cell, in the text colour. The non-colour cue for the pink.
+   It sits on the gutter (circumradius 58 units, the lattice envelope), so it hides nothing the cell draws. The page sets --fx and --fy (the cell centre as a
+   share of the art box) and --R (half the cell height, in any length unit). The ring is hidden while the 3D view is turned, because it is a flat outline. */
+.cue { position: absolute; left: var(--fx); top: var(--fy); width: calc(var(--R) * 1.794); height: calc(var(--R) * 2.0714); transform: translate(-50%, -50%); pointer-events: none; overflow: visible; }
+.cue polygon { fill: none; stroke: var(--text); stroke-width: var(--rule-rule); vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.turned .cue { visibility: hidden; }

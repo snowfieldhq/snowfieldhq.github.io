@@ -1,0 +1,31 @@
+/* Shared MO (sn[R1301]wfield) integrated wordmark header, monochrome footer, theme toggle, and one-pink-per-view alignment for Snowfield subpages. Uses tokens from assets/snowfield.css only. */
+.bar { flex-wrap: wrap; padding-block: var(--space-3); gap: var(--space-2) var(--gap-group); }
+.brand { display: inline-flex; align-items: center; min-height: var(--density-comfortable-control); text-decoration: none; flex: 0 0 auto; }
+.brand img, .foot-brand img { display: block; width: auto; height: auto; max-width: none; }
+.brand .ink, .foot-brand .ink { display: none; }
+[data-theme=dark] .brand .ink, [data-theme=dark] .foot-brand .ink { display: block; }
+[data-theme=dark] .brand .snow, [data-theme=dark] .foot-brand .snow { display: none; }
+@media (min-width: 720px) { .brand .m-only { display: none !important; } }
+@media (max-width: 719px) { .brand .d-only { display: none !important; } }
+
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-4); }
+.nav a { font-size: 0.9375rem; font-weight: 600; padding-inline: var(--space-1); white-space: nowrap; }
+.nav a:hover { text-decoration: underline; text-underline-offset: 0.3em; }
+
+.theme.seg { display: inline-flex; flex: 0 0 auto; }
+.theme.seg button { min-height: var(--density-comfortable-control); padding-inline: var(--space-3); background: none; border: var(--rule-rule) solid var(--text); color: var(--text); font: 600 0.9375rem/1.25rem var(--font-sans); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 0; margin-left: calc(var(--rule-rule) * -1); }
+.theme.seg button:first-child { margin-left: 0; }
+.theme.seg button[aria-pressed=true], [data-theme=light] .theme.seg [data-t=light], [data-theme=dark] .theme.seg [data-t=dark] { background: var(--text); color: var(--bg); }
+.theme.seg button:hover { text-decoration: underline; text-underline-offset: 0.25em; }
+.theme.seg button:focus-visible { position: relative; z-index: 1; }
+
+@media (max-width: 719px) {
+  .nav { order: 4; flex-basis: 100%; gap: 0 var(--space-3); }
+}
+
+.foot-bar { border-top: var(--rule-hairline) solid var(--rule); padding-block: var(--space-8); }
+.foot-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4) var(--space-6); }
+.foot-brand { display: inline-flex; align-items: center; min-height: var(--density-comfortable-control); }
+.foot-meta { margin: 0; font-size: 0.9375rem; line-height: 1.5; color: var(--muted); flex: 1 1 18rem; }
+.foot-links { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); }
+.foot-links a { color: var(--text); font-weight: 600; font-size: 0.9375rem; min-height: var(--density-comfortable-control); display: inline-flex; align-items: center; }

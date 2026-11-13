@@ -1,0 +1,168 @@
+/* Snowfield flagship. Colour roles, grid, spacing and type sizes come from kit/seeds/tokens.css and kit/type/typography.css.
+   Literal numbers here are structural: ratios, fixed control sizes, measures. No brand colour is typed in this file.
+
+   Type roles (token, use)
+   display   clamp(), Serif 600            hero headline
+   h2        clamp(), Serif 600            section headings
+   card      26.5/36 (--web-h2), Serif 600  card titles (h3)
+   lede      clamp(18px to 22px), Sans     introductory paragraph
+   body      --web-body 17/24, Sans        running text
+   ui        --app-body 15/20, Sans 600    navigation, buttons, hints, status
+   caption   --web-caption 13.5/20, Sans 600  focus label, figure notes
+
+   Control states (one pattern for buttons, the segmented control and the theme control)
+   rest: ink outline. hover: underline. pressed (aria-pressed): ink fill. focus: ink outline, offset. A button that works always looks like it works. */
+:root { --m: var(--grid-compact-margin); --bar: 72px; --soft: var(--muted); --fs-ui: .9375rem; --lh-ui: 1.25rem; --fs-body: 1.0625rem; --lh-body: 1.5rem; --fs-h3: 1.65625rem; --lh-h3: 2.25rem; }
+/* Text sizes are the token values (--app-body 15/20, --web-body 17/24, --web-h2 26.5/36) written in rem, so a larger browser text size scales them. */
+[data-theme=dark], :root:not([data-theme]) { --soft: color-mix(in srgb, var(--text) 88%, var(--bg)); } /* secondary text on the ink ground, raised to the body-text lightness contrast floor */
+@media (prefers-color-scheme: light) { :root:not([data-theme]) { --soft: var(--muted); } }
+@media (min-width: 600px) { :root { --m: var(--grid-medium-margin); } }
+@media (min-width: 1040px) { :root { --m: var(--grid-expanded-margin); } }
+@media (min-width: 1440px) { :root { --m: var(--grid-wide-margin); } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: var(--space-6); }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 var(--fs-body)/var(--lh-body) var(--font-text); min-width: 320px; }
+[data-theme=dark] body { letter-spacing: .003em; line-height: 1.5; } /* light type on a dark ground: a little more air */
+h1, h2, h3, p { margin: 0; }
+img, svg, canvas { display: block; max-width: 100%; }
+a { color: var(--link); text-underline-offset: .18em; }
+button, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: var(--rule-rule) solid var(--text); outline-offset: var(--space-1); } /* neutral: every view carries one pink cell */
+.skip { position: absolute; left: -9999px; top: var(--space-2); z-index: 9; background: var(--bg); color: var(--text); padding: var(--space-3) var(--space-4); border: var(--rule-rule) solid var(--text); }
+.skip:focus { left: var(--space-4); }
+.cut { clip-path: polygon(0 0, calc(100% - var(--radius-hex-cut)) 0, 100% calc(var(--radius-hex-cut) * .57735), 100% 100%, 0 100%); }
+
+.wrap { max-width: calc(var(--grid-max-content) + 2 * var(--grid-wide-margin)); margin-inline: auto; padding-inline: var(--m); }
+.section > .wrap { container-type: inline-size; } /* css/reserve.css keys its reserved lines on this width, which a scrollbar does not change */
+.cols { display: grid; grid-template-columns: repeat(var(--grid-compact-columns), 1fr); column-gap: var(--grid-compact-gutter); }
+@media (min-width: 600px) { .cols { grid-template-columns: repeat(var(--grid-medium-columns), 1fr); column-gap: var(--grid-medium-gutter); } }
+@media (min-width: 1040px) { .cols { grid-template-columns: repeat(var(--grid-expanded-columns), 1fr); column-gap: var(--grid-expanded-gutter); } }
+.cols > * { grid-column: 1 / -1; min-width: 0; }
+
+/* Header: word artwork, four anchors, theme control. Widths are fixed multiples of the text size (em), never of the label's glyphs,
+   so the label font arriving cannot move a control or its neighbour; the row wraps by itself when text is enlarged. */
+.bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; min-height: var(--bar); column-gap: var(--gap-group); row-gap: var(--space-1); }
+.brand { order: 1; display: inline-flex; align-items: center; min-height: var(--density-comfortable-control); flex: 0 0 auto; }
+.brand img { height: 26px; width: auto; }
+.ink { display: none; } [data-theme=dark] .ink { display: block; } [data-theme=dark] .snow { display: none; }
+.nav { order: 2; flex: 1 1 0; min-width: 22em; display: grid; grid-template-columns: repeat(auto-fit, 5.5em); justify-content: center; font-size: var(--fs-ui); }
+.nav a { display: inline-flex; align-items: center; justify-content: flex-start; padding-left: var(--space-3); min-height: var(--density-comfortable-control); color: var(--text); text-decoration: none; font-weight: 600; font-size: 1em; } /* labels start at a fixed edge: centred text would move half the width difference when the font arrives */
+.nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .4em; }
+.theme { order: 3; flex: 0 0 auto; }
+.theme button { width: 4.5em; padding-inline: 1.2em 0; justify-content: flex-start; }
+@media (max-width: 719px) {
+  .bar { padding-top: var(--space-2); }
+  .nav { order: 4; flex-basis: 100%; justify-content: start; margin-inline: calc(var(--space-3) * -1); min-width: 0; }
+}
+
+/* Controls: one pattern */
+.button, .seg button { min-height: var(--density-comfortable-control); padding-inline: var(--space-4); background: none; border: var(--rule-rule) solid var(--text); border-radius: var(--radius-control); color: var(--text); font-weight: 600; font-size: var(--fs-ui); line-height: var(--lh-ui); text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.button.primary, .seg button[aria-pressed=true], [data-theme=light] .theme [data-t=light], [data-theme=dark] .theme [data-t=dark] { background: var(--text); color: var(--bg); } /* the theme control's pressed look follows the page theme in CSS, so it never waits for a script */
+.button:hover, .seg button:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .3em; }
+.seg { display: inline-flex; }
+.seg button { border-radius: 0; margin-left: calc(var(--rule-rule) * -1); }
+.seg button:first-child { margin-left: 0; }
+.seg button:focus-visible { position: relative; z-index: 1; }
+.button.large { min-height: calc(var(--density-comfortable-control) + var(--space-3)); padding-inline: var(--space-6); font-size: var(--fs-body); }
+
+/* Hero: type on columns 1 to 6, the field on 7 to 12 bleeding to the edge, dissolving toward the type by omitting cells */
+.hero { padding-block: var(--space-6) var(--gap-section); row-gap: var(--gap-block); align-items: center; }
+.display { font-family: var(--font-display); font-weight: 600; font-size: min(3.25rem, 13.4vw); line-height: 1.02; letter-spacing: -.03em; }
+[data-theme=dark] .display { letter-spacing: -.025em; }
+.display span { display: block; width: max-content; max-width: calc(100% + var(--m) / 2); } /* two lines, broken between phrases on purpose: "Exact" then "at every scale." Each phrase takes its natural width, so ordinary type never wraps inside a phrase (the cap is half the page margin beyond the column, the room the old no-wrap rule also had); only wider letter and word spacing set by the reader's own style sheet reaches the cap, and then the phrase breaks at a space instead of running off the screen. */
+@media (min-width: 600px) { .display { font-size: clamp(3.15rem, 1.2rem + 5.2vw, 5.75rem); } }
+.lede { font-size: clamp(1.125rem, 1.02rem + .45vw, 1.375rem); line-height: 1.5; color: var(--soft); max-width: 31em; margin-top: var(--space-6); min-height: 4.5em; text-wrap: pretty; }
+@media (max-width: 440px) { .lede { min-height: 6em; } } /* the fallback face sets one line more than the web face at about 390 px; reserve the larger */
+.actions { display: flex; flex-wrap: wrap; gap: var(--gap-group); margin-top: var(--space-8); }
+@media (min-width: 600px) { .actions .button:first-child { width: 11em; } } /* side by side, the first button's width is fixed in em (the label measures 10.0 to 10.3 em in the fallback and web faces), so the font arriving cannot move the second button */
+
+/* A viewer: the frame holds only the art and its focus label, so percentages are of the art. Controls sit outside it. */
+.frame { position: relative; aspect-ratio: 1 / 1; container-type: size; margin-left: auto; }
+.viz { position: absolute; inset: 0; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+.viz.grabbing { cursor: grabbing; }
+.viz:focus-visible { outline-offset: calc(var(--space-1) * -1); }
+.pic { position: absolute; inset: 0; background-size: 100% 100%; background-repeat: no-repeat; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%); }
+[data-theme=light] .pic { background-image: var(--l); }
+[data-theme=dark] .pic { background-image: var(--d); }
+@media (prefers-color-scheme: light) { html:not([data-theme]) .pic { background-image: var(--l); } }
+@media (prefers-color-scheme: dark) { html:not([data-theme]) .pic { background-image: var(--d); } }
+.pic canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
+.viz.ready .pic { background-image: none !important; }
+.viz.ready canvas { opacity: 1; }
+/* Box shapes per size class; the numbers match build/art.mjs and are checked against the live boxes. */
+.hero-art { width: min(100%, 28rem); }
+.crystal-art { aspect-ratio: 4 / 5; width: min(100%, 30rem); }
+@media (min-width: 600px) { .hero-art { width: min(100%, 40rem); } .crystal-art { aspect-ratio: 4 / 3; width: min(100%, 46rem); } }
+@media (min-width: 1040px) { .hero-art { width: 100%; } .crystal-art { aspect-ratio: 2 / 1; width: 100%; } .crystal-art .pic { -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to right, #000 0, #000 94%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to right, #000 0, #000 94%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; } }
+@media (min-width: 1441px) { .hero-art .pic { -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to right, #000 0, #000 94%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to right, #000 0, #000 94%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; } }
+
+/* The focus label (css/cue.css) is anchored to the pink cell's own corner: R is the cell's half height, in the box's own units. */
+.cue { --R: calc(56 / var(--S) * 100cqh); }
+
+.tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); margin-top: var(--space-3); }
+@media (min-width: 1040px) { .hero .tools { padding-right: var(--m); } }
+.hint, .status { font-size: var(--fs-ui); line-height: var(--lh-ui); color: var(--soft); }
+.hint { flex-basis: 100%; max-width: 40em; }
+.hint .touch { display: none; }
+@media (hover: none) { .hint .mouse { display: none; } .hint .touch { display: inline; } }
+.status { flex-basis: 100%; min-height: calc(var(--lh-ui) * 2); }
+@media (max-width: 499px) { .hint { min-height: calc(var(--lh-ui) * 2); } }
+
+/* Sections */
+.section { padding-block: var(--space-12); border-top: var(--rule-hairline) solid var(--rule); }
+@media (min-width: 1040px) { .section { padding-block: var(--gap-part); } }
+.h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2rem, 1.35rem + 2.4vw, 3.5rem); line-height: 1.08; letter-spacing: -.022em; }
+/* The last two words of a heading are joined by a no-break space, so a narrow screen breaks between phrases, never before a lone word. text-wrap: balance is not used. */
+[data-theme=dark] .h2 { letter-spacing: -.017em; }
+.copy p { color: var(--soft); max-width: 34em; margin-top: var(--space-6); font-size: 1.125rem; text-wrap: pretty; }
+.copy .h2 + p { margin-top: var(--space-6); }
+.crystal-view { margin-top: var(--space-12); }
+
+/* Surfaces */
+.kinds { row-gap: var(--gap-group); margin-top: var(--space-12); }
+.card { background: var(--panel); padding: var(--inset-card) var(--inset-card) var(--space-8); }
+.card h3 { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: -.011em; }
+.card p { color: var(--soft); margin-top: var(--space-3); }
+.shows { row-gap: var(--space-12); margin-top: var(--space-16); align-items: start; }
+.show figure { margin: 0; }
+.show-doc img { max-width: 36rem; }
+.show img { width: 100%; height: auto; border: var(--rule-hairline) solid var(--rule); background: var(--panel); }
+.show figcaption { margin-top: var(--space-3); display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); align-items: baseline; font-size: var(--fs-ui); }
+.show figcaption b { font-weight: 600; }
+.show figcaption a { color: var(--text); }
+.show .sw-d { display: none; } [data-theme=dark] .show .sw-l { display: none; } [data-theme=dark] .show .sw-d { display: block; }
+
+/* Brief */
+.brief { background: var(--panel); padding: var(--inset-panel); display: grid; gap: var(--space-6); }
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+legend, .lab { font-weight: 600; padding: 0; margin-bottom: var(--space-2); display: block; }
+.checks { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+.checks label { display: inline-flex; align-items: center; gap: var(--space-2); min-height: var(--density-comfortable-control); cursor: pointer; }
+.checks input { width: 22px; height: 22px; margin: 0; accent-color: var(--text); }
+textarea { width: 100%; background: var(--bg); border: var(--rule-rule) solid var(--text); border-radius: var(--radius-control); padding: var(--space-3); resize: vertical; line-height: 1.5; }
+#note { height: 7.5rem; } #out { height: 11rem; color: var(--soft); font-size: var(--fs-ui); }
+.row { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-4); align-items: center; }
+#saved { color: var(--soft); font-size: var(--fs-ui); }
+.foot { border-top: var(--rule-hairline) solid var(--rule); padding-block: var(--space-8); }
+.foot .wrap { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-8); align-items: center; justify-content: space-between; }
+.foot img { height: 22px; width: auto; }
+.foot a { color: var(--text); font-weight: 600; }
+
+@media (min-width: 1040px) {
+  .hero .copy { grid-column: 1 / span 6; }
+  .hero .stage { grid-column: 7 / -1; margin-right: calc(var(--m) * -1); }
+  .crystal-head { grid-column: 1 / span 7; }
+  .kinds .card { grid-column: span 4; }
+  .show-doc { grid-column: 1 / span 5; } .show-soc { grid-column: 6 / -1; }
+  .brief-copy { grid-column: 1 / span 5; } .brief-form { grid-column: 7 / -1; }
+}
+@media (min-width: 600px) and (max-width: 1039px) { .kinds .card { grid-column: span 4; } .kinds .card:last-child { grid-column: 1 / -1; } }
+@media (max-width: 599px) { .actions { flex-direction: column; align-items: stretch; gap: var(--space-3); margin-top: var(--space-6); } .actions .button { padding-inline: var(--space-4); font-size: 1rem; } } /* stacked at every phone width, so a font swap cannot re-wrap the pair */
+@media print { .bar .nav, .theme, .tools, .skip { display: none; } }
+
+.process-strip + p, .checks + p, .h2 + p, .lead-in + p { margin-top: 1rem; }
+.wrap > p + p, .checks + p + p { margin-top: .75rem; }
+main p a { color: inherit; text-decoration: underline; }
+main .field.struck { color: var(--text); opacity: 1; }
+.ba h3 { margin: 0; font: 600 .8125rem/1.3 var(--font-text); letter-spacing: .04em; text-transform: uppercase; color: var(--soft); }
