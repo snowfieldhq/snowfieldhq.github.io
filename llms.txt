@@ -22,7 +22,7 @@ Hands-on with language models since GPT-3 in July 2020. Alongside Snowfield, ope
 
 - **Regulated Lending AI Assistant:** Built a 15-version loan-officer assistant across Claude and Gemini that refuses rather than guessing on underwriting rules or state guidelines, with a setup guide and rollout proposal corporate IT adapted company-wide.
 - **High-Volume B2B Sales Enablement:** Shipped a multi-model discovery and objection copilot on a high-volume B2B sales floor alongside a repeatable live-transfer process the team adopted.
-- **Enterprise Restaurant POS Support & KCS:** Led a 24/7 enterprise restaurant POS support floor of fifty agents across more than a thousand concepts, audited over half the knowledge base, and built a Dynamics 365 and Jira dispatch workflow that cut first-reply times by 40% and callbacks by 30%.
+- **Enterprise Restaurant POS Support & KCS:** Served as a team lead on a 24/7 enterprise restaurant POS support floor of fifty agents across more than a thousand concepts, audited over half the knowledge base, and built a Dynamics 365 and Jira dispatch workflow that cut first-reply times by 40% and callbacks by 30%.
 - **E-Commerce Storefront Diagnostics:** Built an end-to-end catalog, search-compliance, pricing, and shipping-margin audit workflow for an established physical-goods storefront.
 
 ## Technical Stack
@@ -39,6 +39,7 @@ Claude, Gemini, OpenAI, Python, JavaScript, React, SQL, HTML/CSS, Dynamics 365, 
 - [Official Profiles & Contact](https://snowfieldhq.github.io/social.html): Verified links for Jordan Masopust and Snowfield.
 - [Extended Machine-Readable Profile](https://snowfieldhq.github.io/llms-full.txt): Complete factual reference on Snowfield and Jordan Masopust.
 - [LinkedIn: Jordan Masopust](https://www.linkedin.com/in/jordan-masopust/)
+- [LinkedIn: Snowfield](https://www.linkedin.com/company/snowfieldhq/)
 - [GitHub: Snowfield](https://github.com/snowfieldhq)
 
 ## Contact
