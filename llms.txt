@@ -1,43 +1,48 @@
-# Jordan Masopust | Snowfield
+# Snowfield & Jordan Masopust
 
-> Founder of Snowfield (Remote, Nationwide; based in Indianapolis, Indiana). Specialist in AI Implementation, Solutions Engineering, Technical Onboarding, and Workflow Automation, turning production language-model workflows, knowledge operations, and B2B lead-to-booking systems into reliable daily practice.
+> Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.
 
-## Core Focus & Target Roles
+## Studio Overview
 
-- **AI Implementation & Workflow Architecture:** Designing multi-model AI assistants, strict non-hallucination retrieval guardrails, and cross-model QA pipelines across Claude, Google Gemini, and OpenAI.
-- **Technical Onboarding & Forward Deployed Engineering:** Translating high-volume operational bottlenecks in regulated lending, enterprise software support, and home-service trades into working tools that non-technical teams adopt on day one.
-- **Solutions Engineering & Technical Discovery:** Live technical demonstrations, consultative discovery, unit-economics ROI modeling, and prospect-branded workflow previews.
-- **Workflow Automation & B2B Sales Enablement:** High-volume outbound cadences, live-transfer closing processes, speed-to-lead automation, and CRM/ticketing routing.
+Snowfield is an applied AI implementation studio in Indianapolis founded by Jordan Masopust, serving established US businesses and remote product or operations teams. Before writing a single prompt, Snowfield audits what actually breaks on the floor: contradicting playbooks, tribal escalation rules, and messy catalog data. Once the reference layer holds up, we build custom workflows across Claude, Gemini, and OpenAI with Python, React, and SQL tooling, lean context budgets, and blind-review QA checks so tools flag gaps when they do not know instead of fabricating an answer.
 
-## Quantified Systems Builds & Track Record
+Every prompt, GitHub repo, and guide deploys straight inside accounts the client already owns, paired with live team onboarding so staff do not have to call an agency every time a rule changes.
 
-- **Founder, Snowfield (2026–Present):** National, remote B2B AI implementation and lead-to-booking studio for owner-operated high-ticket trades (residential roofing and heating-and-cooling contractors) and small businesses. Builds missed-call and web-inquiry quote-booking systems inside customer-owned accounts ($1,150 setup + $297/month ongoing support after written go-live acceptance, plus customer-paid software, usage, and registration). Built Snowfield's local memory and multi-model verification pipeline across Claude, Google Gemini, and OpenAI; engineered an offline-capable JavaScript and Python live-call sales closing console with trade discovery, six-step price-objection workflows, and live unit-economics calculators; built an eight-iteration, multi-role interactive restaurant training web prototype; and completed a B2B client engagement for Artis Designs (custom wood-sign manufacturer) covering marketplace demand research and an audit of 550+ legacy design and template files for VCarve Pro.
-- **Loan Advisor, Royal United Mortgage LLC (2025–2026):** Architected and iterated a 15-version AI loan-officer workflow assistant across Claude and Google Gemini, authoring the system prompt, strict non-hallucination property-search guardrails, implementation guide, and executive rollout proposal that corporate Information Technology adapted for its company-wide rollout. Originated conventional, Federal Housing Administration, and Veterans Affairs loans across six state licenses after scoring 95% on the federal licensing exam on the first attempt.
-- **Inside Sales Consultant, Angi (2023–2025):** Generated ~$650K in annual subscription revenue from 150+ outbound B2B calls per day to home-service business owners. Earned Team MVP honors, placed in the Top 50 companywide, and finished in the Top 10% companywide in outbound activity and call volume. Architected a 100,000-character AI sales copilot across 100+ hours of prompt engineering in Claude and Google Gemini for trade-specific discovery and objection handling. Managed 750+ accounts on tiered, data-driven contact cadences; closed the team's first live-transfer sale and authored the repeatable live-transfer closing workflow adopted at the Director level.
-- **Senior Technical Support Specialist, Team Lead, PAR Technology (2021–2023):** Led a 24/7 enterprise restaurant point-of-sale support floor of 50+ agents serving 1,000+ restaurant concepts. Cut first-reply time by 40% and reduced ticket callbacks and reassignments by 30% by designing and implementing a structured case-dispatching system across Microsoft Dynamics 365 and Jira. Recovered at-risk enterprise franchise relationships covering 1,000+ locations and served as technical liaison to Engineering, Sales, Customer Success, and DevOps. Lead Knowledge-Centered Service (KCS) Publisher; audited over 50% of the enterprise knowledge base.
-- **General Manager, Key & Napier Inc., Dairy Queen (2017–2020):** Directed full P&L for a $2M+ annual operation with 50–55 crew and 5–8 managers, delivering 10% yearly sales growth, 6% client growth, and a 125% increase in customer satisfaction survey scores. Rolled out DoorDash, Uber Eats, and Postmates integrations (40% digital revenue growth); managed $6M+ in vendor accounts and cut waste 20% with automated reorder workflows; interviewed 1,000+ candidates and trained 200+ employees; built executive Excel operating dashboards; configured PAR Brink, Maitre'D, and POSitouch POS pilots and delivered live POS demonstrations to prospective franchisees at corporate events.
+## Current Capabilities
 
-## Education & Technical Stack
+- **Internal Workflow Assistants:** Multi-model assistants routed across Claude, Gemini, and OpenAI with lean context design, strict retrieval guardrails, and refusal gates.
+- **Structured Knowledge Systems:** Playbook audits, Knowledge-Centered Service (KCS) architecture, and clean operational reference layers.
+- **Role-Based Onboarding Web Apps:** Interactive onboarding, training, and live-call operator web apps in React, JavaScript, HTML/CSS, and Python for non-technical staff under live floor pressure.
+- **Multi-Model Blind-QA Pipelines:** Routing and independent cross-model verification pipelines with local state, audit trails, and strict grounding gates.
+- **E-Commerce Catalog & Margin Diagnostics:** End-to-end catalog, search-compliance, pricing, and shipping-margin audit workflows turning raw storefront data into ready-to-run fixes.
 
-- **Education:** Bachelor of Science in Psychology (Minor in Biology), Purdue University through IUPUI (2020). Former Research Assistant across two IUPUI neuroscience laboratories (2011–2013); Geographic Researcher at HERE Technologies (2013–2016).
-- **Languages & Web:** Python, JavaScript, React, SQL, HTML/CSS.
-- **AI & Operations Stack:** Claude (Anthropic), Google Gemini, OpenAI, prompt engineering, non-hallucination guardrails, multi-model verification, Knowledge-Centered Service (KCS), Microsoft Dynamics 365, Jira, Five9, PAR Brink, Maitre'D, POSitouch, Excel financial and operating dashboards, VCarve Pro.
+## Founder Track Record (Jordan Masopust)
+
+Hands-on with language models since GPT-3 in July 2020. Alongside Snowfield, open to full-time roles in AI implementation, solutions engineering, workflow deployment, and technical onboarding.
+
+- **Regulated Lending AI Assistant:** Built a 15-version loan-officer assistant across Claude and Gemini that refuses rather than guessing on underwriting rules or state guidelines, with a setup guide and rollout proposal corporate IT adapted company-wide.
+- **High-Volume B2B Sales Enablement:** Shipped a multi-model discovery and objection copilot on a high-volume B2B sales floor alongside a repeatable live-transfer process the team adopted.
+- **Enterprise Restaurant POS Support & KCS:** Led a 24/7 enterprise restaurant POS support floor of fifty agents across more than a thousand concepts, audited over half the knowledge base, and built a Dynamics 365 and Jira dispatch workflow that cut first-reply times by 40% and callbacks by 30%.
+- **E-Commerce Storefront Diagnostics:** Built an end-to-end catalog, search-compliance, pricing, and shipping-margin audit workflow for an established physical-goods storefront.
+
+## Technical Stack
+
+Claude, Gemini, OpenAI, Python, JavaScript, React, SQL, HTML/CSS, Dynamics 365, Jira, and Knowledge-Centered Service (KCS).
 
 ## Key Pages & Official Profiles
 
-- [Founder Profile & Credentials: Jordan Masopust](https://snowfieldhq.github.io/jordan-masopust.html): Structured career record, systems architecture builds, education, and technical capabilities.
-- [Snowfield Home](https://snowfieldhq.github.io/): Missed-call text-back and quote-booking systems for owner-operated roofing and HVAC companies.
-- [Speed-to-Lead & Booking Systems](https://snowfieldhq.github.io/lead-booking-systems.html): Service details, pricing ($1,150 setup + $297/month), and unit-economics examples.
-- [Standard Scope & Terms](https://snowfieldhq.github.io/scope.html): Written scope, customer account ownership, go-live acceptance, cancellation, and refund terms.
-- [Knowledge-Assistant Examples](https://snowfieldhq.github.io/ai-evaluation.html): Source-cited knowledge assistant patterns and escalation rules.
-- [Quote-Request Form Design Example](https://snowfieldhq.github.io/website-repair.html): Mobile-first three-step quote request design example.
+- [Snowfield Home](https://snowfieldhq.github.io/): Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.
+- [Founder Profile: Jordan Masopust](https://snowfieldhq.github.io/jordan-masopust.html): Background, operational builds, stack, and target roles.
+- [Grounded Knowledge Assistants](https://snowfieldhq.github.io/ai-evaluation.html): Source-cited knowledge assistant patterns and escalation rules.
+- [Ownership-First Engagement Terms](https://snowfieldhq.github.io/scope.html): How Snowfield scopes, builds inside client-owned accounts, verifies, and hands over work.
+- [One-Page Studio Summary](https://snowfieldhq.github.io/print.html): Concise printable overview of Snowfield.
 - [Official Profiles & Contact](https://snowfieldhq.github.io/social.html): Verified links for Jordan Masopust and Snowfield.
-- [Extended Machine-Readable Profile](https://snowfieldhq.github.io/llms-full.txt): Complete factual dossier on Jordan Masopust and Snowfield.
-- [LinkedIn: Jordan Masopust](https://www.linkedin.com/in/jordan-masopust/): Verified professional profile.
-- [GitHub: Snowfield](https://github.com/snowfieldhq): Snowfield organization repositories.
+- [Extended Machine-Readable Profile](https://snowfieldhq.github.io/llms-full.txt): Complete factual reference on Snowfield and Jordan Masopust.
+- [LinkedIn: Jordan Masopust](https://www.linkedin.com/in/jordan-masopust/)
+- [GitHub: Snowfield](https://github.com/snowfieldhq)
 
 ## Contact
 
-- **Location:** Indianapolis, Indiana, United States (Remote, nationwide)
+- **Location:** Indianapolis, Indiana, United States (Remote, US)
 - **Email:** jordan.masopust@gmail.com
 - **Website:** https://snowfieldhq.github.io/
