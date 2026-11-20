@@ -4,7 +4,7 @@
 
 ## Studio Overview
 
-Snowfield is an applied AI implementation studio in Indianapolis founded by Jordan Masopust, serving established US businesses and remote product or operations teams. Before writing a single prompt, Snowfield audits what actually breaks in the operation: contradicting playbooks, tribal escalation rules, and messy catalog data. Once the reference layer holds up, we build custom workflows across Claude, Gemini, and OpenAI with Python, React, and SQL tooling, lean context budgets, and blind-review QA checks so tools flag gaps when they do not know instead of fabricating an answer.
+Snowfield is an applied AI implementation studio in Indianapolis founded by Jordan Masopust, serving established US businesses and remote product or operations teams. Before writing a single prompt, Snowfield audits what actually breaks in the operation: contradicting playbooks, tribal escalation rules, and messy source data. Once the reference layer holds up, we build custom workflows across Claude, Gemini, and OpenAI with Python, React, and SQL tooling, lean context budgets, and blind-review QA checks so tools flag gaps when they do not know instead of fabricating an answer.
 
 Every prompt, GitHub repo, and guide deploys straight inside accounts the client already owns, paired with live team onboarding so staff do not have to call an agency every time a rule changes.
 
@@ -14,7 +14,6 @@ Every prompt, GitHub repo, and guide deploys straight inside accounts the client
 - **Structured Knowledge Systems:** Playbook audits, Knowledge-Centered Service (KCS) architecture, and clean operational reference layers.
 - **Role-Based Onboarding Web Apps:** Interactive onboarding, training, and live-call operator web apps in React, JavaScript, HTML/CSS, and Python for non-technical staff under live production pressure.
 - **Multi-Model Blind-QA Pipelines:** Routing and independent cross-model verification pipelines with local state, audit trails, and strict grounding gates.
-- **E-Commerce Catalog & Margin Diagnostics:** End-to-end catalog, search-compliance, pricing, and shipping-margin audit workflows turning raw storefront data into ready-to-run fixes.
 
 ## Founder Track Record (Jordan Masopust)
 
@@ -23,7 +22,6 @@ Hands-on with language models since GPT-3 in July 2020. Alongside Snowfield, ope
 - **Regulated Lending AI Assistant:** Built a 15-version loan-officer assistant across Claude and Gemini that refuses rather than guessing on underwriting rules or state guidelines, with a setup guide and rollout proposal corporate IT adapted company-wide.
 - **High-Volume B2B Sales Enablement:** Shipped a multi-model discovery and objection copilot on a high-volume B2B sales team alongside a repeatable live-transfer process the team adopted.
 - **Enterprise Restaurant POS Support & KCS:** Served as a team lead on a 24/7 enterprise restaurant POS support operation of fifty agents across more than a thousand concepts, audited over half the knowledge base, and built a Dynamics 365 and Jira dispatch workflow that cut first-reply times by 40% and callbacks by 30%.
-- **E-Commerce Storefront Diagnostics:** Built an end-to-end catalog, search-compliance, pricing, and shipping-margin audit workflow for an established physical-goods storefront.
 
 ## Technical Stack
 
