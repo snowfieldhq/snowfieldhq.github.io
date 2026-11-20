@@ -25,7 +25,7 @@ Most internal AI rollouts fail before the model ever gets a fair test because re
 
 - **Custom Operational Assistants:** Multi-model assistants across Claude, Gemini, and OpenAI with strict source-grounding rules and explicit refusal or escalation paths.
 - **Structured Knowledge Systems:** Knowledge-base audits, Knowledge-Centered Service (KCS) publishing workflows, and clean operational reference layers.
-- **Role-Based Onboarding Web Apps:** Interactive onboarding, training, and live-call web applications in React, JavaScript, HTML/CSS, and Python designed for non-technical staff under live floor pressure.
+- **Role-Based Onboarding Web Apps:** Interactive onboarding, training, and live-call web applications in React, JavaScript, HTML/CSS, and Python designed for non-technical staff under live production pressure.
 - **Multi-Model Orchestration & Blind QA:** Routing and independent cross-model verification pipelines with local state, audit trails, and strict grounding gates.
 - **E-Commerce Catalog & Margin Diagnostics:** End-to-end catalog, search-compliance, pricing, and shipping-margin audit workflows for established physical-goods storefronts, turning raw shop data into ready-to-run fixes.
 
@@ -33,12 +33,12 @@ Most internal AI rollouts fail before the model ever gets a fair test because re
 
 ## 3. Founder: Jordan Masopust
 
-Jordan Masopust is the Founder of Snowfield in Indianapolis. He has worked hands-on with language models since GPT-3 in July 2020. Across every operational floor he has worked on since, the engineering problem has stayed consistent: clean up the operational signal first, then ship tools non-technical staff actually reach for when a live call or escalation goes sideways.
+Jordan Masopust is the Founder of Snowfield in Indianapolis. He has worked hands-on with language models since GPT-3 in July 2020. Across every operation he has worked in since, the engineering problem has stayed consistent: clean up the operational signal first, then ship tools non-technical staff actually reach for when a live call or escalation goes sideways.
 
 ### Representative Operational Builds
 - **Loan-Officer Workflow Assistant (15 Versions):** Built a 15-version loan-officer assistant across Claude and Gemini that refuses rather than guessing on underwriting rules or state guidelines, paired with a setup guide and rollout proposal corporate IT adapted company-wide.
-- **High-Volume B2B Sales Copilot & Live-Transfer Process:** Shipped a multi-model discovery and objection copilot on a high-volume B2B sales floor alongside a repeatable live-transfer process the team adopted.
-- **Enterprise Restaurant POS Support Floor & Dispatch Workflow:** Served as a team lead on a 24/7 enterprise restaurant POS support floor of fifty agents across more than a thousand concepts, audited over half the knowledge base, and built a Dynamics 365 and Jira dispatch workflow that cut first-reply times by 40% and callbacks by 30%.
+- **High-Volume B2B Sales Copilot & Live-Transfer Process:** Shipped a multi-model discovery and objection copilot on a high-volume B2B sales team alongside a repeatable live-transfer process the team adopted.
+- **Enterprise Restaurant POS Support & Dispatch Workflow:** Served as a team lead on a 24/7 enterprise restaurant POS support operation of fifty agents across more than a thousand concepts, audited over half the knowledge base, and built a Dynamics 365 and Jira dispatch workflow that cut first-reply times by 40% and callbacks by 30%.
 - **E-Commerce Storefront Catalog & Margin Diagnostics:** Built an end-to-end catalog, search-compliance, pricing, and shipping-margin audit workflow for an established physical-goods storefront.
 - **Role-Based Operator Tools & Multi-Model Blind QA:** Built interactive onboarding, training, and live-call web apps in React, JavaScript, HTML/CSS, and Python, alongside cross-model verification pipelines across Claude, Gemini, and OpenAI.
 
