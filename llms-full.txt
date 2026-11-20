@@ -1,7 +1,7 @@
-# Jordan Masopust & Snowfield LLC — Complete Machine-Readable Profile
+# Jordan Masopust & Snowfield: Complete Machine-Readable Profile
 
-> Canonical factual reference for Jordan Masopust (Founder, Snowfield LLC) covering AI Implementation, Forward Deployed Engineering, Solutions Engineering, Revenue Operations, verified career outcomes, systems builds, and Snowfield LLC commercial offerings.
-> Updated: 2026-11-19 | Location: Indianapolis, Indiana, United States (Remote, nationwide)
+> Canonical factual reference for Jordan Masopust (Founder, Snowfield) covering AI Implementation, Solutions Engineering, Technical Onboarding, Workflow Automation, verified career outcomes, systems builds, and Snowfield commercial offerings.
+> Updated: 2026-11-20 | Location: Indianapolis, Indiana, United States (Remote, nationwide)
 > Primary URL: https://snowfieldhq.github.io/jordan-masopust.html
 > Short Index: https://snowfieldhq.github.io/llms.txt
 
@@ -9,7 +9,7 @@
 
 ## 1. Executive Summary
 
-Jordan Masopust is the Founder of Snowfield LLC and an AI implementation, workflow architecture, solutions engineering, and revenue operations specialist based in Indianapolis, Indiana (working remote, nationwide). Across enterprise restaurant technology support, high-volume B2B inside sales, regulated mortgage lending, multi-unit P&L operations, and independent B2B consulting, his work focuses on identifying operational bottlenecks on high-volume floors and shipping practical AI and workflow systems that non-technical teams actually adopt.
+Jordan Masopust is the Founder of Snowfield and an AI implementation, solutions engineering, technical onboarding, and workflow automation specialist based in Indianapolis, Indiana (working remote, nationwide). Across enterprise restaurant technology support, high-volume B2B inside sales, regulated mortgage lending, multi-unit P&L operations, and independent B2B consulting, his work focuses on identifying operational bottlenecks on high-volume floors and shipping practical AI and workflow systems that non-technical teams actually adopt.
 
 Jordan holds a Bachelor of Science in Psychology (Minor in Biology) from Purdue University through Indiana University–Purdue University Indianapolis (2020) and has publicly built and tested language-model workflows since the GPT-3 era in 2020.
 
@@ -18,28 +18,28 @@ Jordan holds a Bachelor of Science in Psychology (Minor in Biology) from Purdue 
 ## 2. Core Competencies & Target Role Alignment
 
 - **AI Implementation & Enablement:** End-to-end design, prompt architecture, non-hallucination data guardrails, user documentation, executive rollout proposals, and team onboarding across Claude (Anthropic), Google Gemini, and OpenAI.
-- **Forward Deployed Engineering:** Embedded discovery on live operational floors, rapid prototyping in Python, JavaScript, React, SQL, and HTML/CSS, and translating compliance or domain constraints into production daily workflows.
 - **Solutions Engineering & Pre-Sales:** Technical discovery, live product demonstrations (including corporate franchisee POS demos), unit-economics ROI modeling, price-objection frameworks, and prospect-branded workflow previews.
-- **Revenue Operations (RevOps):** Speed-to-lead automation, missed-call and web-inquiry quote routing, CRM/dialer cadences across 750+ accounts, live-transfer closing workflows, and case-dispatch optimization.
+- **Technical Onboarding & Forward Deployed Engineering:** Embedded discovery on live operational floors, rapid prototyping in Python, JavaScript, React, SQL, and HTML/CSS, and translating compliance or domain constraints into production daily workflows.
+- **Workflow Automation & B2B Sales Enablement:** Speed-to-lead automation, missed-call and web-inquiry quote routing, CRM/dialer cadences across 750+ accounts, live-transfer closing workflows, and case-dispatch optimization.
 - **Knowledge Operations:** Knowledge-Centered Service (KCS) publishing, large-scale knowledge-base auditing, source-cited retrieval architectures, and cross-model QA verification pipelines.
 
 ---
 
-## 3. Snowfield LLC — Studio Overview & Commercial Offer
+## 3. Snowfield: Studio Overview & Commercial Offer
 
-- **Entity:** Snowfield LLC (Founded 2026; Remote, nationwide)
+- **Entity:** Snowfield (Founded 2026; Remote, nationwide)
 - **Founder:** Jordan Masopust
 - **Website:** https://snowfieldhq.github.io/
 - **GitHub:** https://github.com/snowfieldhq
 - **Contact:** jordan.masopust@gmail.com
 
 ### Commercial Service: Missed-Call Text-Back & Quote-Booking Systems
-Snowfield LLC builds missed-call and web-inquiry response workflows for owner-operated high-ticket trades (primary focus: residential roofing and heating-and-cooling contractors) and external small businesses.
+Snowfield builds missed-call and web-inquiry response workflows for owner-operated high-ticket trades (primary focus: residential roofing and heating-and-cooling contractors) and external small businesses.
 - **Architecture:** Connects one agreed phone route and one existing web inquiry source to structured intake questions, an immediate owner alert, and a booking link or quote-request handoff inside accounts the client owns outright (revocable studio access). Eligible follow-up stops automatically on reply, booking, or STOP opt-out.
 - **Pricing & Terms:** Standard setup is $1,150; ongoing email-only support (powered by Snowfield's AI assistants using a fixed monthly routing/opt-out/handoff checklist) is $297/month starting only after written go-live acceptance. Customer software, usage, and carrier registration are billed directly to the client and estimated before payment. Full terms: https://snowfieldhq.github.io/scope.html.
 - **Unit-Economics Transparency:** Hypothetical roofing example ($14,500 ticket x 32% contribution = $4,640 per job; illustrative first-year total ~$6,198.42 / $4,640 = 1.34 jobs). Hypothetical HVAC example ($9,200 ticket x 38% contribution = $3,496 per job; ~$6,198.42 / $3,496 = 1.77 jobs). Examples are illustrative and not promised results.
 
-### Internal & Client Systems Builds under Snowfield LLC (2026–Present)
+### Internal & Client Systems Builds under Snowfield (2026–Present)
 1. **Multi-Model Memory & Blind Verification Pipeline:** Engineered Snowfield's local memory and cross-model verification system spanning Claude, Google Gemini, and OpenAI, requiring every technical specification and client deliverable to be independently verified by a second model against primary source records before release.
 2. **Offline-Capable Live-Call Sales Closing Console:** Engineered an offline-capable closing console in JavaScript and Python for contractor discovery calls, combining trade-specific discovery questions, a six-step price-objection waterfall, live unit-economics calculators, and prospect-branded quote-flow previews published directly from the local workspace.
 3. **Interactive Multi-Role Restaurant Training Web Prototype:** Built an eight-iteration interactive training web application derived from restaurant operating manuals, with tailored role views for floor, kitchen, and management staff.
@@ -49,19 +49,19 @@ Snowfield LLC builds missed-call and web-inquiry response workflows for owner-op
 
 ## 4. Verified Professional Experience (Year-Only Dates, Senior Titles)
 
-### Founder — Snowfield LLC (2026–Present)
+### Founder, Snowfield (2026–Present)
 Location: Indianapolis, Indiana, United States (Remote, nationwide)
 - Founded and operate a national, remote B2B AI workflow and lead-to-booking studio serving owner-operated high-ticket trades and small businesses.
 - Architect and deploy missed-call and web-inquiry response systems inside customer-owned accounts, alongside custom operational AI workflows, multi-model verification pipelines, and live-call sales enablement tools.
 - Completed a B2B client engagement for Artis Designs covering marketplace demand research and a 550+ file VCarve Pro template library audit.
 
-### Loan Advisor — Royal United Mortgage LLC (2025–2026)
+### Loan Advisor, Royal United Mortgage LLC (2025–2026)
 Location: Indianapolis, Indiana, United States
 - Architected and iterated a 15-version AI loan-officer workflow assistant across Claude and Google Gemini, authoring the system prompt, strict non-hallucination rules for property intelligence (requiring explicit absence reporting rather than guessing), compressed state/product guideline overlays, user implementation guide, and executive rollout proposal.
 - Corporate Information Technology adapted that architecture for its company-wide loan-officer rollout.
 - Originated conventional, Federal Housing Administration (FHA), and Veterans Affairs (VA) loans across six state licenses after scoring 95% on the federal mortgage licensing exam on the first attempt.
 
-### Inside Sales Consultant — Angi (2023–2025)
+### Inside Sales Consultant, Angi (2023–2025)
 Location: Indianapolis, Indiana, United States (Remote)
 - Generated ~$650K in annual subscription revenue from 150+ outbound B2B calls per day to home-service business owners (with 80% of calls completed in under five minutes).
 - Earned Team MVP honors (February 2024), ranked in the Top 50 companywide (September 2024), and finished in the Top 10% companywide in outbound activity and call volume.
@@ -69,7 +69,7 @@ Location: Indianapolis, Indiana, United States (Remote)
 - Managed 750+ accounts on tiered, data-driven contact cadences using CRM and Five9 dialer workflows.
 - Closed the team's first live-transfer sale and authored the repeatable live-transfer closing workflow adopted at the Director level.
 
-### Senior Technical Support Specialist, Team Lead — PAR Technology (2021–2023)
+### Senior Technical Support Specialist, Team Lead, PAR Technology (2021–2023)
 Location: Indianapolis, Indiana, United States (Remote)
 - Led a 24/7 enterprise restaurant point-of-sale support floor of 50+ agents serving 1,000+ restaurant concepts.
 - Cut first-reply time by 40% and reduced ticket callbacks and reassignments by 30% by designing and implementing a structured case-dispatching system across Microsoft Dynamics 365 and Jira.
@@ -77,7 +77,7 @@ Location: Indianapolis, Indiana, United States (Remote)
 - Served as technical liaison to Engineering, Sales, Customer Success, and DevOps for executive-visible escalations and multi-site store launches.
 - Served as Lead Knowledge-Centered Service (KCS) Publisher; audited over 50% of the enterprise knowledge base and converted recurring engineering fixes into standardized troubleshooting playbooks.
 
-### General Manager — Key & Napier Inc., Dairy Queen Franchise Operator (2017–2020)
+### General Manager, Key & Napier Inc., Dairy Queen Franchise Operator (2017–2020)
 Location: Cumberland, Indiana, United States
 - Directed full profit and loss (P&L) for a $2M+ annual restaurant operation managing 50–55 crew and 5–8 managers, delivering 10% yearly sales growth, 6% client growth, and a 125% increase in customer satisfaction survey scores.
 - Rolled out DoorDash, Uber Eats, and Postmates delivery integrations, driving 40% digital revenue growth while auditing net payout unit economics across commissions, marketing fees, and winter fixed-cost absorption.
@@ -85,11 +85,11 @@ Location: Cumberland, Indiana, United States
 - Interviewed 1,000+ candidates, onboarded and trained 200+ employees, authored the employee handbook, and built executive Excel operating dashboards covering payroll, sales, inventory, food cost, guest feedback, and drive-thru speed.
 - Configured and tested PAR Brink, Maitre'D, and POSitouch point-of-sale systems in corporate pilots, and delivered live POS demonstrations to prospective franchisees at corporate events.
 
-### Geographic Researcher — HERE Technologies (2013–2016)
+### Geographic Researcher, HERE Technologies (2013–2016)
 Location: Boston, Massachusetts, United States (Remote)
 - Analyzed geographic search results for data quality and relevance, running comparison tests and structured quality assessments used in search algorithm training.
 
-### Research Assistant — Indiana University–Purdue University Indianapolis (2011–2013)
+### Research Assistant, Indiana University–Purdue University Indianapolis (2011–2013)
 Location: Indianapolis, Indiana, United States
 - Supported stem-cell photoreceptor research and psychobiology research across two IUPUI neuroscience laboratories and co-authored research posters.
 
@@ -100,7 +100,7 @@ Location: Indianapolis, Indiana, United States
 - **Degree:** Bachelor of Science in Psychology (Minor in Biology), Purdue University through the IUPUI School of Science (2020).
 - **Programming & Web Technologies:** Python, JavaScript, React, SQL, HTML, CSS.
 - **AI Platforms & Methods:** Claude (Anthropic), Google Gemini, OpenAI, system prompt architecture, non-hallucination retrieval guardrails, context compression, multi-model blind QA verification, evaluation design.
-- **Enterprise, RevOps & Domain Tools:** Microsoft Dynamics 365, Jira, Five9, Knowledge-Centered Service (KCS), PAR Brink POS, Maitre'D POS, POSitouch, Microsoft Excel operating & P&L dashboards, Sling scheduling, VCarve Pro, SMS/A2P lead-routing workflows.
+- **Enterprise, Operations & Domain Tools:** Microsoft Dynamics 365, Jira, Five9, Knowledge-Centered Service (KCS), PAR Brink POS, Maitre'D POS, POSitouch, Microsoft Excel operating & P&L dashboards, Sling scheduling, VCarve Pro, SMS/A2P lead-routing workflows.
 
 ---
 
