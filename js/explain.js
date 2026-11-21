@@ -1,4 +1,4 @@
-// Snowfield explainer pictures (Row405). Cells from js/sf-cells.js: the shipped R1301 cell on the
+// Snowfield explainer pictures. Cells from js/sf-cells.js: the shipped R1301 cell on the
 // shipped lattice. Motion: GSAP 3.12.5 from cdnjs, fetched only when a picture nears the screen.
 // Each picture is drawn at its rest frame first; reduced motion keeps that frame.
 (() => {
@@ -19,7 +19,7 @@
   }
   function label(svg, x, y, lines, cls = 'ex-l', anchor = 'middle') {
     const t = el('text', { x, y, class: cls, 'text-anchor': anchor });
-    [].concat(lines).forEach((s, i) => { const sp = el('tspan', { x, dy: i ? '1.3em' : 0 }); sp.textContent = s; t.append(sp); });
+    [].concat(lines).forEach((s, i) => { const sp = el('tspan', { x, dy: i ? '1.52em' : 0 }); sp.textContent = s; t.append(sp); });
     svg.append(t); return t;
   }
   // a fixed lattice seat holding one moving group with all three cell forms
@@ -41,12 +41,12 @@
   function knowledge(fig, wide) {
     const k = wide ? .75 : .65, ax = lat(k), kb = wide ? .44 : .4;
     const L = wide
-      ? { w: 1200, h: 480, c: [700, 222], n: 2, q: [425, 222], qLab: [425, 194], out: [[985, 132], [985, 322]], outLab: 'side',
-          before: [[52, 62], [160, 40], [270, 80], [100, 150], [212, 170], [48, 252], [160, 262], [282, 240], [96, 350], [212, 356], [300, 330]],
-          beforeLab: [180, 432], afterLab: [700, 432], hit: [1, -1], p1: [[-2, 0], [-1, 0], [0, -1], [1, -1], [2, -1]], p2: [[-2, 1], [-1, 1], [0, 1], [1, 1], [2, 0]] }
-      : { w: 360, h: 580, c: [190, 330], n: 1, q: [40, 330], qLab: [40, 304], out: [[318, 490], [36, 490]], outLab: 'below',
-          before: [[40, 88], [118, 74], [200, 94], [282, 78], [80, 154], [162, 162], [244, 150], [320, 142]],
-          beforeLab: [180, 24], afterLab: [190, 484], hit: [1, 0], p1: [[-1, 0], [0, 0], [1, 0]], p2: [[-1, 0], [-1, 1]] };
+      ? { w: 1220, h: 500, c: [700, 212], n: 2, q: [425, 212], qLab: [425, 180], out: [[985, 126], [985, 314]], outLab: 'side',
+          before: [[62, 62], [168, 42], [276, 80], [108, 150], [218, 170], [56, 250], [168, 260], [286, 238], [104, 344], [218, 350], [304, 326]],
+          beforeLab: [180, 428], afterLab: [700, 428], hit: [1, -1], p1: [[-2, 0], [-1, 0], [0, -1], [1, -1], [2, -1]], p2: [[-2, 1], [-1, 1], [0, 1], [1, 1], [2, 0]] }
+      : { w: 360, h: 616, c: [194, 372], n: 1, q: [42, 372], qLab: [42, 342], out: [[304, 514], [56, 514]], outLab: 'below',
+          before: [[44, 104], [122, 92], [202, 110], [284, 96], [82, 168], [164, 176], [246, 164], [318, 156]],
+          beforeLab: [180, 22], afterLab: [180, 240], hit: [1, 0], p1: [[-1, 0], [0, 0], [1, 0]], p2: [[-1, 0], [-1, 1]] };
     const svg = canvas(fig, L.w, L.h, wide ? 'ex-w' : '');
     const before = el('g', { class: 'ex-before' });
     L.before.forEach(([x, y], i) => SF.cell(before, x, y, kb, 4 + i % 4, 'outline'));
@@ -68,8 +68,8 @@
     const oa = el('g', { transform: `translate(${L.out[0][0]} ${L.out[0][1]})` }); SF.cell(oa, 0, 0, .42, 3, 'tile'); svg.append(oa);
     const ob = el('g'); ob.append(el('polygon', { points: hexPts(...L.out[1], 23), class: 'ex-ring ex-flag ex-out' })); svg.append(ob);
     const side = L.outLab === 'side';
-    const la = side ? label(svg, L.out[0][0] + 36, L.out[0][1] + 5, ['Answer, with', 'its source'], 'ex-l', 'start') : label(svg, 352, L.out[0][1] + 46, ['Answer, with', 'its source'], 'ex-l', 'end');
-    const lb = side ? label(svg, L.out[1][0] + 36, L.out[1][1] + 5, ['Not in the rules:', 'sent to a person'], 'ex-l', 'start') : label(svg, 8, L.out[1][1] + 46, ['Not in the rules:', 'sent to a person'], 'ex-l', 'start');
+    const la = side ? label(svg, L.out[0][0] + 38, L.out[0][1] - 6, ['Answer, with', 'its source'], 'ex-l', 'start') : label(svg, 352, L.out[0][1] + 52, ['Answer, with', 'its source'], 'ex-l', 'end');
+    const lb = side ? label(svg, L.out[1][0] + 38, L.out[1][1] - 6, ['Not in the rules:', 'sent to a person'], 'ex-l', 'start') : label(svg, 8, L.out[1][1] + 52, ['Not in the rules:', 'sent to a person'], 'ex-l', 'start');
     const d1 = dot(svg), d2 = dot(svg);
     const shown = [hitRing, aLab, qLab, qDot, oa, ob, la, lb, tr1, tr2];
     const rest = () => {
@@ -83,7 +83,7 @@
       cells.forEach((s, i) => { const [bx, by] = L.before[i % L.before.length]; setForm(t, s, 'outline', 0); t.set(s.g, { x: bx - s.x, y: by - s.y, scale: kb / k, opacity: 0, transformOrigin: '50% 50%' }, 0); });
       t.to(cells.map(s => s.g), { opacity: 1, duration: .3, stagger: { each: .03, from: 'random' } }, .3);
       t.to(cells.map(s => s.g), { x: 0, y: 0, scale: 1, duration: 1.2, ease: 'power2.inOut', stagger: { each: .04, from: 'random' } }, .6);
-            const ord = cells.slice().sort((a, b) => dist(a) - dist(b));
+      const ord = cells.slice().sort((a, b) => dist(a) - dist(b));
       ord.forEach((s, i) => { morph(t, s, 'o', 't', 2.6 + i * .03); morph(t, s, 't', 'm', 3.2 + i * .03); });
       t.to(aLab, { opacity: 1, duration: .4 }, 3.5);
       // a question the layer covers: it finds its source and leaves as an answer
@@ -111,10 +111,10 @@
   // Three panels: the field mapped (outlines, conflicts ringed), built inside your accounts (tiles in a frame),
   // run by your team (full cells, cubes turning) with Snowfield outside. Side by side from 900 px; stacked below.
   const ENG = {
-    row: { w: 1000, h: 382, cls: 'ex-w', P: [{ c: [160, 165], k: .75 }, { c: [480, 165], k: .75, R: 150 }, { c: [800, 165], k: .75, R: 150 }],
-      lab: [[160, 368, 'Gaps and conflicts mapped'], [480, 368, 'Your accounts'], [775, 368, 'Your team runs it']], pk: .75, pinkAt: [922, 298], exit: [[950, 64], [952, 215]], pLab: [958, 368, 'end'], start: [10, 40] },
-    stack: { w: 360, h: 640, cls: '', P: [{ c: [90, 108], k: .42 }, { c: [270, 108], k: .42, R: 88 }, { c: [180, 412], k: .65, R: 150 }],
-      lab: [[90, 224, ['Gaps and conflicts', 'mapped']], [270, 224, 'Your accounts'], [150, 614, 'Your team runs it']], pk: .65, pinkAt: [318, 552], exit: [[322, 300]], pLab: [318, 614, 'middle'], start: [-30, 30] }
+    row: { w: 1020, h: 400, cls: 'ex-w', P: [{ c: [162, 168], k: .75 }, { c: [484, 168], k: .75, R: 150 }, { c: [798, 168], k: .75, R: 150 }],
+      lab: [[162, 376, 'Gaps and conflicts mapped'], [484, 376, 'Your accounts'], [774, 376, 'Your team runs it']], pk: .75, pinkAt: [942, 294], exit: [[962, 64], [964, 215]], pLab: [942, 376, 'middle'], start: [36, 42] },
+    stack: { w: 360, h: 660, cls: '', P: [{ c: [90, 106], k: .42 }, { c: [270, 106], k: .42, R: 88 }, { c: [180, 426], k: .65, R: 150 }],
+      lab: [[90, 224, ['Gaps and conflicts', 'mapped']], [270, 224, 'Your accounts'], [160, 632, 'Your team runs it']], pk: .65, pinkAt: [312, 562], exit: [[316, 304]], pLab: [312, 632, 'middle'], start: [28, 34] }
   };
   function engagement(fig, L) {
     const svg = canvas(fig, L.w, L.h, L.cls), gaps = ['1,-1'], conf = ['-1,0', '1,0'];
@@ -140,7 +140,8 @@
       const t = gsap.timeline({ paused: true, onComplete: () => step(-1) });
       const bounds = frames.filter(Boolean), lens = L.P.filter(p => p.R).map(p => 6 * p.R + 2);
       t.set([...labs, pLab, ...flags, ...P[1].map(s => s.g), ...P[2].map(s => s.g)], { opacity: 0 }, 0)
-        .set(pg, { x: L.start[0], y: L.start[1] }, 0);
+        .set(pg, { x: L.start[0], y: L.start[1], opacity: 0 }, 0)
+        .to(pg, { opacity: 1, duration: .25 }, .05);
       if (pt) t.set(pt, { opacity: 1 }, 0).set(pm, { opacity: 0 }, 0);
       bounds.forEach((f, i) => t.set(f, { attr: { 'stroke-dasharray': lens[i], 'stroke-dashoffset': lens[i] } }, 0));
       P[0].forEach(s => { setForm(t, s, 'outline', 0); t.set(s.g, { opacity: gaps.includes(s.key) ? 0 : .35 }, 0); });
