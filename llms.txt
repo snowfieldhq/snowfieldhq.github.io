@@ -4,44 +4,44 @@
 
 ## Studio Overview
 
-Snowfield is an applied AI implementation studio in Indianapolis founded by Jordan Masopust, serving established US businesses and remote product or operations teams. Before writing a single prompt, Snowfield audits what actually breaks in the operation: contradicting playbooks, tribal escalation rules, and messy source data. Once the reference layer holds up, we build custom workflows across Claude, Gemini, and OpenAI with Python, React, and SQL tooling, lean context budgets, and blind-review QA checks so tools flag gaps when they do not know instead of fabricating an answer.
+Snowfield is a remote, nationwide applied AI implementation studio founded by Jordan Masopust, serving established US businesses and remote product or operations teams. Before writing a single prompt, Snowfield audits what breaks in the operation: contradicting playbooks, tribal escalation rules, and messy source data. Once the reference layer holds up, we build custom workflows across Claude, Gemini, and OpenAI with Python and React tooling, lean context budgets, and independent cross-model review checks so tools flag gaps when they do not know instead of inventing an answer.
 
-Every prompt, GitHub repo, and guide deploys straight inside accounts the client already owns, paired with live team onboarding so staff do not have to call an agency every time a rule changes.
+Every prompt, GitHub repository, and guide deploys straight inside accounts the client already owns, paired with live team onboarding so staff can update rules without calling an agency.
 
 ## Current Capabilities
 
 - **Internal Workflow Assistants:** Multi-model assistants routed across Claude, Gemini, and OpenAI with lean context design, strict retrieval guardrails, and refusal gates.
 - **Structured Knowledge Systems:** Playbook audits, Knowledge-Centered Service (KCS) architecture, and clean operational reference layers.
-- **Role-Based Onboarding Web Apps:** Interactive onboarding, training, and live-call operator web apps in React, JavaScript, HTML/CSS, and Python for non-technical staff under live production pressure.
-- **Multi-Model Blind-QA Pipelines:** Routing and independent cross-model verification pipelines with local state, audit trails, and strict grounding gates.
+- **Role-Based Onboarding Web Apps:** Interactive onboarding, training, and live-call operator web apps built in React and Python for non-technical staff under live production pressure.
+- **Cross-Model Verification Pipelines:** Routing and independent cross-model review checks with local state, audit trails, and strict grounding gates.
 
 ## Founder Track Record (Jordan Masopust)
 
-Hands-on with language models since GPT-3 in July 2020. Alongside Snowfield, open to full-time roles in AI implementation, solutions engineering, workflow deployment, and technical onboarding.
+Firsthand operational builds. Hands-on with language models since GPT-3 in July 2020.
 
-- **Regulated Lending AI Assistant:** Built a 15-version loan-officer assistant across Claude and Gemini that refuses rather than guessing on underwriting rules or state guidelines, with a setup guide and rollout proposal corporate IT adapted company-wide.
-- **High-Volume B2B Sales Enablement:** Shipped a multi-model discovery and objection copilot on a high-volume B2B sales team alongside a repeatable live-transfer process the team adopted.
-- **Enterprise Restaurant POS Support & KCS:** Served as a team lead on a 24/7 enterprise restaurant POS support operation of fifty agents across more than a thousand concepts, audited over half the knowledge base, and built a Dynamics 365 and Jira dispatch workflow that cut first-reply times by 40% and callbacks by 30%.
+- **Regulated Lending AI Assistant:** Built a 15-version loan-officer assistant across Claude and Gemini with rules that make it refuse rather than guess when a rule is missing, paired with a setup guide and rollout proposal corporate IT adapted company-wide.
+- **High-Volume B2B Sales Enablement:** Built a multi-model discovery and objection copilot while on a high-volume business-to-business sales team, alongside a repeatable live-transfer process adopted at the director level.
+- **Enterprise Restaurant Point-of-Sale Support & Knowledge-Centered Service:** Team lead on a 24/7 enterprise restaurant point-of-sale support team of more than fifty agents serving over a thousand restaurant concepts. Audited more than half of the knowledge base and turned recurring engineering fixes into standard troubleshooting playbooks. Built a structured case-dispatching workflow alongside Dynamics 365 and Jira to speed first replies and cut repeat callbacks.
 
 ## Technical Stack
 
-Claude, Gemini, OpenAI, Python, JavaScript, React, SQL, HTML/CSS, Dynamics 365, Jira, and Knowledge-Centered Service (KCS).
+Claude, Gemini, OpenAI, AI-assisted Python and React web apps, Dynamics 365, Jira, and Knowledge-Centered Service (KCS).
 
 ## Key Pages & Official Profiles
 
 - [Snowfield Home](https://snowfieldhq.github.io/): Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.
-- [Founder Profile: Jordan Masopust](https://snowfieldhq.github.io/jordan-masopust.html): Background, operational builds, stack, and target roles.
+- [Founder Profile](https://snowfieldhq.github.io/jordan-masopust.html): Background, operational builds, and stack.
 - [Grounded Knowledge Assistants](https://snowfieldhq.github.io/ai-evaluation.html): Source-cited knowledge assistant patterns and escalation rules.
 - [Ownership-First Engagement Terms](https://snowfieldhq.github.io/scope.html): How Snowfield scopes, builds inside client-owned accounts, verifies, and hands over work.
 - [One-Page Studio Summary](https://snowfieldhq.github.io/print.html): Concise printable overview of Snowfield.
-- [Official Profiles & Contact](https://snowfieldhq.github.io/social.html): Verified links for Jordan Masopust and Snowfield.
-- [Extended Machine-Readable Profile](https://snowfieldhq.github.io/llms-full.txt): Complete factual reference on Snowfield and Jordan Masopust.
-- [LinkedIn: Jordan Masopust](https://www.linkedin.com/in/jordan-masopust/)
-- [LinkedIn: Snowfield](https://www.linkedin.com/company/snowfieldhq/)
-- [GitHub: Snowfield](https://github.com/snowfieldhq)
+- [Official Profiles & Contact](https://snowfieldhq.github.io/social.html): Verified links for Snowfield and its founder.
+- [Extended Machine-Readable Profile](https://snowfieldhq.github.io/llms-full.txt): Complete factual reference on Snowfield.
+- [LinkedIn](https://www.linkedin.com/in/jordan-masopust/)
+- [LinkedIn (Snowfield)](https://www.linkedin.com/company/snowfieldhq/)
+- [GitHub (Snowfield)](https://github.com/snowfieldhq)
 
 ## Contact
 
-- **Location:** Indianapolis, Indiana, United States (Remote, US)
+- **Location:** Remote, nationwide (United States)
 - **Email:** jordan.masopust@gmail.com
 - **Website:** https://snowfieldhq.github.io/

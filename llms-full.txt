@@ -2,7 +2,7 @@
 
 > Canonical factual reference for Snowfield and founder Jordan Masopust.
 > Tagline: Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.
-> Updated: 2026-11-20 | Location: Indianapolis, Indiana, United States (Remote, US)
+> Updated: 2026-11-21 | Location: Remote, nationwide (United States)
 > Home: https://snowfieldhq.github.io/
 > Founder Profile: https://snowfieldhq.github.io/jordan-masopust.html
 > Short Index: https://snowfieldhq.github.io/llms.txt
@@ -11,13 +11,13 @@
 
 ## 1. Studio Overview
 
-Snowfield is an applied AI implementation studio in Indianapolis founded by Jordan Masopust, serving established US businesses and remote product or operations teams.
+Snowfield is a remote, nationwide applied AI implementation studio founded by Jordan Masopust, serving established US businesses and remote product or operations teams.
 
-Most internal AI rollouts fail before the model ever gets a fair test because real operating rules sit buried across stale wikis, ticket threads, and tribal knowledge. Buying a generic AI wrapper and locking prompts behind an agency retainer leads frontline staff to stop using it within weeks. Snowfield builds the other way around:
+Real operating rules are often scattered across stale wikis, ticket threads, and tribal knowledge. Snowfield cleans up that reference layer before building anything on top of it:
 
 1. **Audit the operational signal first:** Identify contradicting playbooks, undocumented escalation rules, and messy source or ticket data before writing prompts.
-2. **Build multi-model workflows with verification:** Route across Claude, Gemini, and OpenAI based on where each model holds up, pairing Python, React, and SQL tooling with lean context budgets and blind-review QA checks so tools flag gaps when they do not know instead of fabricating an answer.
-3. **Deploy inside accounts the client owns:** Every prompt, GitHub repository, and guide deploys directly inside accounts the client already owns and controls, paired with live team onboarding so internal staff can maintain and update rules without vendor lock-in.
+2. **Build multi-model workflows with verification:** Route across Claude, Gemini, and OpenAI based on where each model holds up, pairing Python and React tooling with lean context budgets and independent cross-model review checks so tools flag gaps when they do not know instead of inventing an answer.
+3. **Deploy inside accounts the client owns:** Every prompt, GitHub repository, and guide deploys directly inside accounts the client already owns and controls, paired with live team onboarding so internal staff can maintain and update rules themselves.
 
 ---
 
@@ -25,36 +25,29 @@ Most internal AI rollouts fail before the model ever gets a fair test because re
 
 - **Custom Operational Assistants:** Multi-model assistants across Claude, Gemini, and OpenAI with strict source-grounding rules and explicit refusal or escalation paths.
 - **Structured Knowledge Systems:** Knowledge-base audits, Knowledge-Centered Service (KCS) publishing workflows, and clean operational reference layers.
-- **Role-Based Onboarding Web Apps:** Interactive onboarding, training, and live-call web applications in React, JavaScript, HTML/CSS, and Python designed for non-technical staff under live production pressure.
-- **Multi-Model Orchestration & Blind QA:** Routing and independent cross-model verification pipelines with local state, audit trails, and strict grounding gates.
+- **Role-Based Onboarding Web Apps:** Interactive onboarding, training, and live-call web applications built in React and Python designed for non-technical staff under live production pressure.
+- **Multi-Model Orchestration & Verification:** Routing and independent cross-model review checks with local state, audit trails, and strict grounding gates.
 
 ---
 
 ## 3. Founder: Jordan Masopust
 
-Jordan Masopust is the Founder of Snowfield in Indianapolis. He has worked hands-on with language models since GPT-3 in July 2020. Across every operation he has worked in since, the engineering problem has stayed consistent: clean up the operational signal first, then ship tools non-technical staff actually reach for when a live call or escalation goes sideways.
+Jordan Masopust is the Founder of Snowfield (remote, nationwide). He has worked hands-on with language models since GPT-3 in July 2020. Across every operation he has worked in since, the engineering problem has stayed consistent: clean up the operational signal first, then ship tools non-technical staff reach for when a live call or escalation goes sideways.
 
-### Representative Operational Builds
-- **Loan-Officer Workflow Assistant (15 Versions):** Built a 15-version loan-officer assistant across Claude and Gemini that refuses rather than guessing on underwriting rules or state guidelines, paired with a setup guide and rollout proposal corporate IT adapted company-wide.
-- **High-Volume B2B Sales Copilot & Live-Transfer Process:** Shipped a multi-model discovery and objection copilot on a high-volume B2B sales team alongside a repeatable live-transfer process the team adopted.
-- **Enterprise Restaurant POS Support & Dispatch Workflow:** Served as a team lead on a 24/7 enterprise restaurant POS support operation of fifty agents across more than a thousand concepts, audited over half the knowledge base, and built a Dynamics 365 and Jira dispatch workflow that cut first-reply times by 40% and callbacks by 30%.
-- **Role-Based Operator Tools & Multi-Model Blind QA:** Built interactive onboarding, training, and live-call web apps in React, JavaScript, HTML/CSS, and Python, alongside cross-model verification pipelines across Claude, Gemini, and OpenAI.
-
-### Full-Time Role Alignment
-Alongside Snowfield, Jordan is open to full-time roles in:
-- AI Implementation
-- Solutions Engineering
-- Workflow Deployment
-- Technical Onboarding
+### Representative Firsthand Operational Builds
+- **Loan-Officer Workflow Assistant (15 Versions):** Built a 15-version loan-officer assistant across Claude and Gemini with rules that make it refuse rather than guess when a rule is missing, paired with a setup guide and rollout proposal corporate IT adapted company-wide.
+- **High-Volume B2B Sales Copilot & Live-Transfer Process:** Built a multi-model discovery and objection copilot while on a high-volume business-to-business sales team, alongside a repeatable live-transfer process adopted at the director level.
+- **Enterprise Restaurant Point-of-Sale Support & Dispatch Workflow:** Team lead on a 24/7 enterprise restaurant point-of-sale support team of more than fifty agents serving over a thousand restaurant concepts. Audited more than half of the knowledge base and turned recurring engineering fixes into standard troubleshooting playbooks. Built a structured case-dispatching workflow alongside Dynamics 365 and Jira to speed first replies and cut repeat callbacks.
+- **Role-Based Operator Tools & Cross-Model Verification:** Built interactive onboarding, training, and live-call web apps using AI-assisted React and Python, alongside independent cross-model review checks across Claude, Gemini, and OpenAI.
 
 ---
 
 ## 4. Technical Stack & Specialties
 
-- **AI Platforms & Methods:** Claude, Gemini, OpenAI, custom multi-model workflows, lean context design, strict grounding guardrails, blind-QA verification gates, evaluation design.
-- **Languages & Web:** Python, JavaScript, React, SQL, HTML/CSS.
+- **AI Platforms & Methods:** Claude, Gemini, OpenAI, custom multi-model workflows, lean context design, strict grounding guardrails, cross-model verification gates, evaluation design.
+- **Built with:** AI-assisted Python and React web apps.
 - **Operations & Knowledge Systems:** Dynamics 365, Jira, Knowledge-Centered Service (KCS).
-- **Specialties:** AI Implementation, Custom AI Workflows, Multi-Model Systems, Knowledge Architecture, Technical Onboarding, Workflow Automation, AI Enablement, Solutions Engineering.
+- **Specialties:** AI Implementation, Custom AI Workflows, Multi-Model Systems, Knowledge Architecture, Technical Onboarding, Workflow Automation, AI Enablement.
 
 ---
 
