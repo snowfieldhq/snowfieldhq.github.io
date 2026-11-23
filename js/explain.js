@@ -161,10 +161,10 @@
         hitRing.classList.add('on');
         inputPanel.className = 'kn-panel lit';
         chamber.className = 'kn-chamber lit-ice';
-        statusText.textContent = 'Verified reference lattice · 19 rule nodes';
-        statusTag.textContent = '§4.2 MATCHED';
+        statusText.textContent = '19 approved sections';
+        statusTag.textContent = 'Section 4.2';
         cardAnswer.className = 'kn-out-card active-answer';
-        cardEscalate.className = 'kn-out-card';
+        cardEscalate.className = 'kn-out-card dim';
         setClasses(trIn, 'active-ice', true);
         setClasses(trIn, 'active-esc', false);
         setClasses(ptIn, 'active-ice', true);
@@ -178,7 +178,7 @@
       }
 
       // 3 narrative chapters across [0 .. 1]:
-      // Stage 0 [0.00 .. 0.34]: Scattered inputs -> crystallized unified reference lattice
+      // Stage 0 [0.00 .. 0.34]: Scattered inputs -> crystallized unified policy lattice
       // Stage 1 [0.34 .. 0.68]: Covered question -> waveguide A->B -> lattice scan -> matched rule -> cited answer
       // Stage 2 [0.68 .. 1.00]: Out-of-policy question -> waveguide A->B -> lattice check -> refusal -> supervisor escalation
       if (p < 0.34) {
@@ -210,8 +210,8 @@
         });
 
         hitRing.classList.remove('on');
-        statusText.textContent = toMark > 0.7 ? 'Reference lattice locked · Contradictions resolved' : 'Normalizing playbooks & escalation rules...';
-        statusTag.textContent = toMark > 0.7 ? 'LOCKED' : 'SYNCING';
+        statusText.textContent = toMark > 0.7 ? 'Documents now agree' : 'Comparing your documents...';
+        statusTag.textContent = toMark > 0.7 ? '1 policy' : '3 documents';
 
         setClasses(trIn, 'active-ice', gather > 0.1);
         setClasses(trIn, 'active-esc', false);
@@ -263,9 +263,9 @@
         }
 
         statusText.textContent = matched
-          ? 'Rule verified · Operations Playbook §4.2'
-          : 'Checking question against approved rules...';
-        statusTag.textContent = matched ? '§4.2 MATCHED' : 'GRADING';
+          ? 'Found in Service Policy'
+          : 'Looking up the policy...';
+        statusTag.textContent = matched ? 'Section 4.2' : '19 sections';
 
         cardAnswer.className = answerLit ? 'kn-out-card active-answer' : 'kn-out-card dim';
         cardEscalate.className = 'kn-out-card dim';
@@ -315,9 +315,9 @@
 
         hitRing.classList.remove('on');
         statusText.textContent = refused
-          ? 'No matching rule · Routed without guessing'
-          : 'Checking exception against reference lattice...';
-        statusTag.textContent = refused ? 'ESCALATED' : 'CHECKING';
+          ? 'Not in the policy'
+          : 'Looking up the policy...';
+        statusTag.textContent = refused ? 'No match' : '19 sections';
 
         cardAnswer.className = 'kn-out-card dim';
         cardEscalate.className = escLit ? 'kn-out-card active-escalate' : 'kn-out-card dim';
@@ -616,7 +616,7 @@
 
         p3Cells.forEach(s => { setFormBlend(s, 0, 1, 0); s.at.style.opacity = '0.35'; });
         p3Pink.style.opacity = '0';
-        p3PinkLabel.style.opacity = '0.35';
+        p3PinkLabel.style.opacity = '0';
       } else if (p < 0.67) {
         cubesTurned = false;
         const u = seg(p, 0.34, 0.67);
@@ -647,7 +647,7 @@
 
         p3Cells.forEach(s => { setFormBlend(s, 0, 1, 0); s.at.style.opacity = '0.45'; });
         p3Pink.style.opacity = '0';
-        p3PinkLabel.style.opacity = '0.4';
+        p3PinkLabel.style.opacity = '0';
       } else {
         const u = seg(p, 0.67, 1.0);
         setActiveStep(2);

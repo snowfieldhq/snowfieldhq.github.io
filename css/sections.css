@@ -335,7 +335,11 @@
 @media (min-width: 1040px) {
   .compact-hero { padding-block: 64px 56px; }
 }
-.compact-hero .display {
+/* Secondary page headings follow the home rule: two balanced lines, size from the column width. */
+.compact-hero, .product-hero-copy { container-type: inline-size; }
+.compact-hero .display,
+.product-hero .display {
+  font-size: clamp(1.75rem, 9.2cqw, 3.4rem);
   max-width: 22ch;
 }
 .compact-hero .lede {
@@ -364,10 +368,6 @@
   display: grid;
   gap: 18px;
   align-content: start;
-}
-.product-hero .display {
-  font-size: clamp(2.15rem, 4vw, 3.55rem);
-  max-width: 16ch;
 }
 .product-hero .lede { margin-top: 0; }
 .product-hero .actions { margin-top: 6px; }

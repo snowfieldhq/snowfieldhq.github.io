@@ -1,22 +1,23 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Grounded knowledge assistants &amp; verification | Snowfield</title>
-<meta name="description" content="How Snowfield builds source-cited operational assistants and independent cross-model verification checks that refuse rather than guess.">
+<title>Assistants that cite their sources | Snowfield</title>
+<meta name="description" content="How Snowfield builds assistants that answer from your documents, cite the exact section, and pass the question to a person when the documents are silent.">
 <meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://snowfieldhq.github.io/ai-evaluation.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Snowfield">
-<meta property="og:title" content="Grounded knowledge assistants &amp; verification | Snowfield">
-<meta property="og:description" content="Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.">
+<meta property="og:title" content="Assistants that cite their sources | Snowfield">
+<meta property="og:description" content="How Snowfield builds assistants that answer from your documents, cite the exact section, and pass the question to a person when the documents are silent.">
 <meta property="og:url" content="https://snowfieldhq.github.io/ai-evaluation.html">
 <meta property="og:image" content="https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261120">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
 <meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Snowfield: applied AI implementation, built inside accounts you own.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Grounded knowledge assistants &amp; verification | Snowfield">
-<meta name="twitter:description" content="Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.">
+<meta name="twitter:title" content="Assistants that cite their sources | Snowfield">
+<meta name="twitter:description" content="How Snowfield builds assistants that answer from your documents, cite the exact section, and pass the question to a person when the documents are silent.">
 <meta name="twitter:image" content="https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261120">
 <link rel="icon" href="kit/slot/mark-32-light.svg" type="image/svg+xml">
 <script>(function(d,q,s){try{s=localStorage.getItem('sf-theme')}catch(e){}q=new URLSearchParams(location.search).get('theme');q=q=='light'||q=='dark'?q:s=='light'||s=='dark'?s:matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.dataset.theme=q;if(location.protocol!='file:')['serif','sans','mono'].forEach(function(n){var f=document.createElement('link');f.rel='preload';f.as='font';f.type='font/woff2';f.crossOrigin='';f.href='kit/type/fonts/snowfield-'+n+'-latin.woff2';document.head.append(f)});})(document.documentElement)</script>
@@ -48,7 +49,7 @@
     </nav>
 
     <div class="header-actions">
-      <div class="theme-seg" role="group" aria-label="Colour theme">
+      <div class="theme-seg" role="group" aria-label="Color theme">
         <button type="button" data-t="light" aria-pressed="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           <span>Light</span>
@@ -59,7 +60,7 @@
         </button>
       </div>
 
-      <button type="button" class="theme-compact" aria-label="Switch colour theme">
+      <button type="button" class="theme-compact" aria-label="Switch color theme">
         <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
       </button>
@@ -76,8 +77,9 @@
       <a href="index.html">Overview</a>
       <a href="index.html#work">What we build</a>
       <a href="index.html#process">How it works</a>
+      <a href="index.html#proof">Track record</a>
       <a href="jordan-masopust.html">Founder</a>
-      <a href="ai-evaluation.html" aria-current="page">Grounded assistants</a>
+      <a href="ai-evaluation.html" aria-current="page">How assistants answer</a>
       <a href="scope.html">Engagement terms</a>
       <a class="button primary large mobile-cta" href="#contact">Start a conversation</a>
     </nav>
@@ -87,9 +89,9 @@
 <main id="main">
   <section class="wrap product-hero" aria-labelledby="h1">
     <div class="product-hero-copy">
-      <p class="studio-tag"><span class="hex-pip" aria-hidden="true"></span>Grounded assistants &amp; verification</p>
+      <p class="studio-tag"><span class="hex-pip" aria-hidden="true"></span>Assistants that cite sources</p>
       <h1 class="display" id="h1">Your playbook, with sources to check.</h1>
-      <p class="lede">Before writing a single prompt, we clean the operational reference layer. Assistants answer only from approved documents, cite the exact section, and refuse rather than guessing when a rule is missing.</p>
+      <p class="lede">Before building anything, we settle what your documents say. Assistants answer only from approved documents, cite the exact section, and pass the question to a person when a rule is missing.</p>
       <div class="actions">
         <a class="button primary large" href="#contact">Start a conversation</a>
         <a class="button large" href="index.html">Back to overview</a>
@@ -100,46 +102,44 @@
       <div class="assistant-shell">
         <div class="ui-card">
           <div class="ui-head">
-            <span class="ui-title"><span class="ui-hex" aria-hidden="true"></span>Team Assistant</span>
-            <div class="ui-mode-tabs" role="tablist" aria-label="Grounded assistant scenarios">
-              <button type="button" role="tab" id="tab-eval-exc" aria-controls="panel-eval-exc" aria-selected="true">Escalation check</button>
-              <button type="button" role="tab" id="tab-eval-cov" aria-controls="panel-eval-cov" aria-selected="false" tabindex="-1">Covered rule</button>
+            <span class="ui-title"><span class="ui-hex" aria-hidden="true"></span>Staff assistant</span>
+            <div class="ui-mode-tabs" role="tablist" aria-label="Assistant answers">
+              <button type="button" role="tab" id="tab-eval-exc" aria-controls="panel-eval-exc" aria-selected="true">Not covered</button>
+              <button type="button" role="tab" id="tab-eval-cov" aria-controls="panel-eval-cov" aria-selected="false" tabindex="-1">Covered</button>
             </div>
           </div>
 
           <div class="ui-panel" role="tabpanel" id="panel-eval-exc" aria-labelledby="tab-eval-exc">
             <div class="ui-query-box">
-              <span class="ui-field-label">Frontline query</span>
-              <p class="ask">Can frontline staff approve a return exception after 45 days?</p>
+              <span class="ui-field-label">Staff question</span>
+              <p class="ask">Can I approve a return 45 days after delivery?</p>
             </div>
             <div class="ui-response-box" data-outcome="escalate" style="margin-top:12px;">
-              <p class="answer">Standard returns close at 30 days. Exceptions past 30 days are outside frontline authority and require supervisor approval.</p>
+              <p class="answer">Not on your own. Standard returns close at 30 days, and anything later needs a manager&rsquo;s approval.</p>
               <div class="ui-meta-row">
-                <span class="chip">Source: Operations Policy, section 3</span>
-                <span class="chip chip-muted">Refusal gate active</span>
+                <span class="chip">Source: Returns Policy, section 3</span>
               </div>
             </div>
             <div class="rule" style="margin-top:12px;">
-              <span>Outside 30-day window</span>
-              <strong>Routed to supervisor</strong>
+              <span>Outside the 30-day window</span>
+              <strong>Passed to a manager</strong>
             </div>
           </div>
 
           <div class="ui-panel" role="tabpanel" id="panel-eval-cov" aria-labelledby="tab-eval-cov" hidden>
             <div class="ui-query-box">
-              <span class="ui-field-label">Frontline query</span>
-              <p class="ask">Can frontline staff approve a standard return within 30 days?</p>
+              <span class="ui-field-label">Staff question</span>
+              <p class="ask">Can I approve a return 12 days after delivery?</p>
             </div>
             <div class="ui-response-box" style="margin-top:12px;">
-              <p class="answer">Yes. Returns requested within 30 days of delivery fall inside frontline approval authority once the order ID is logged.</p>
+              <p class="answer">Yes. Returns requested within 30 days of delivery are yours to approve once the order number is logged.</p>
               <div class="ui-meta-row">
-                <span class="chip">Source: Operations Policy, section 3</span>
-                <span class="chip chip-muted">Grounded match</span>
+                <span class="chip">Source: Returns Policy, section 3</span>
               </div>
             </div>
             <div class="rule" style="margin-top:12px;">
-              <span>Inside 30-day window</span>
-              <strong>Returned with direct citation</strong>
+              <span>Inside the 30-day window</span>
+              <strong>Answered with its source</strong>
             </div>
           </div>
         </div>
@@ -150,37 +150,37 @@
   <section class="section" id="workflows">
     <div class="wrap">
       <div class="section-head">
-        <h2 class="h2">How the verification layer works.</h2>
-        <p class="lead-in">Three concrete gates prevent assistants from inventing policies or drifting out of date as operations change.</p>
+        <h2 class="h2">How we keep assistants honest.</h2>
+        <p class="lead-in">Three checks stop assistants from inventing policies or drifting out of date as your operation changes.</p>
       </div>
 
       <div class="track-grid three-col">
         <div class="sf-card-wrap">
           <article class="sf-card">
-            <span class="card-meta">Gate 01</span>
-            <h3>Ground</h3>
-            <p>Clean contradicting playbooks first so answers come only from approved documents with the exact section cited.</p>
+            <span class="card-meta">Step 01</span>
+            <h3>Settle the rules</h3>
+            <p>We clean up conflicting playbooks first so answers come only from approved documents with the exact section cited.</p>
           </article>
         </div>
 
         <div class="sf-card-wrap">
           <article class="sf-card">
-            <span class="card-meta">Gate 02</span>
-            <h3>Verify</h3>
-            <p>Run independent cross-model review checks across Claude, Gemini, and OpenAI before changes ship to staff.</p>
+            <span class="card-meta">Step 02</span>
+            <h3>Check every change</h3>
+            <p>A second model from a different company, whether Claude, Gemini, or OpenAI, reviews every change before it reaches your staff.</p>
           </article>
         </div>
 
         <div class="sf-card-wrap">
           <article class="sf-card">
-            <span class="card-meta">Gate 03</span>
-            <h3>Escalate</h3>
-            <p>Anything outside documented rules flags the gap and routes to a named owner rather than inventing an answer.</p>
+            <span class="card-meta">Step 03</span>
+            <h3>Hand off to a person</h3>
+            <p>Anything outside the documented rules is flagged and sent to a named person instead of getting an invented answer.</p>
           </article>
         </div>
       </div>
 
-      <p class="section-foot-note">Every prompt, verification harness, and guide deploys inside accounts your team owns and controls.</p>
+      <p class="section-foot-note">Every prompt, review check, and guide lives in accounts your team owns.</p>
     </div>
   </section>
 
@@ -196,7 +196,7 @@
           <article class="sf-card">
             <span class="card-meta">Regulated lending</span>
             <h3>Loan-officer workflow assistant</h3>
-            <p>Architected across Claude and Gemini with rules that make it refuse rather than guess when guidance is missing, paired with a setup guide and rollout proposal corporate IT adapted company-wide.</p>
+            <p>Built across Claude and Gemini to refuse rather than guess when guidance is missing, with a setup guide and a rollout proposal that corporate IT adapted company-wide.</p>
             <div class="card-foot">Claude &middot; Gemini &middot; Company-wide IT adaptation</div>
           </article>
         </div>
@@ -219,9 +219,9 @@
         <div class="contact-short">
           <div>
             <h2 class="h2">Need an assistant your team can trust?</h2>
-            <p>Share the playbooks, tickets, or workflows causing friction and we will map a grounded implementation inside your own accounts.</p>
+            <p>Send us the playbooks, support threads, or workflows causing friction, and we will map how an assistant would work inside your own accounts.</p>
           </div>
-          <a class="button primary large" href="mailto:jordan.masopust@gmail.com?subject=Snowfield%20Grounded%20Assistant%20Inquiry">Start a conversation</a>
+          <a class="button primary large" href="mailto:jordan.masopust@gmail.com?subject=Snowfield%20Assistant%20Inquiry">Start a conversation</a>
         </div>
       </div>
     </div>
@@ -243,7 +243,7 @@
     </nav>
     <div class="foot-social">
       <nav aria-label="Personal profiles"><span>Personal</span><a href="https://www.linkedin.com/in/jordan-masopust/">LinkedIn</a></nav>
-      <nav aria-label="Snowfield profiles"><span>Snowfield</span><a href="https://github.com/snowfieldhq">GitHub</a><a href="llms.txt">llms.txt</a></nav>
+      <nav aria-label="Snowfield profiles"><span>Snowfield</span><a href="https://www.linkedin.com/company/snowfieldhq/">LinkedIn</a><a href="https://github.com/snowfieldhq">GitHub</a><a href="llms.txt">llms.txt</a></nav>
     </div>
   </div>
 </footer>

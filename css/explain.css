@@ -52,30 +52,6 @@
   gap: 7px;
   transition: background-color 160ms var(--ease-std), color 160ms var(--ease-std), border-color 160ms var(--ease-std);
 }
-@media (max-width: 639px) {
-  .ex-bar { padding: 12px 14px; gap: 10px; }
-  .ex-tabs {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    width: 100%;
-    gap: 5px;
-  }
-  .ex-tab {
-    min-height: 44px;
-    padding: 6px 5px;
-    font-size: 0.74rem;
-    gap: 4px;
-    flex-direction: column;
-    line-height: 1.15;
-    text-align: center;
-  }
-  .ex-controls {
-    width: 100%;
-    margin-left: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-}
 .ex-tab:hover {
   color: var(--text);
   border-color: var(--border-strong);
@@ -120,10 +96,36 @@
 }
 .ex-ctrl-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
 
+/* Phone layout: declared AFTER the base .ex-controls rule so it wins the cascade. */
+@media (max-width: 639px) {
+  .ex-bar { padding: 12px 14px; gap: 10px; }
+  .ex-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 5px;
+  }
+  .ex-tab {
+    min-height: 44px;
+    padding: 6px 5px;
+    font-size: 0.74rem;
+    gap: 4px;
+    flex-direction: column;
+    line-height: 1.15;
+    text-align: center;
+  }
+  .ex-controls {
+    width: 100%;
+    margin-left: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* ==========================================================================
    EXPLAINER 1: Question -> Reference Lattice -> Cited Answer vs Escalation
    Dedicated corridor columns ensure waveguides NEVER cross or cover cells.
-   sf-fix-390-clip: 2026-11-23
+   phone layout fixes
    ========================================================================== */
 .kn-grid {
   padding: 24px 20px;
@@ -187,6 +189,7 @@
   font-weight: 600;
   line-height: 1.25;
   color: var(--text);
+  margin-bottom: 10px;
 }
 .kn-source-list {
   list-style: none;
@@ -213,6 +216,7 @@
   font-size: 0.71rem;
   color: var(--soft);
   opacity: 0.85;
+  white-space: nowrap;
 }
 .kn-query-text {
   font-size: 0.94rem;
@@ -412,8 +416,11 @@
   }
 }
 .kn-out-card.dim {
-  opacity: 0.74;
+  /* Inactive outcome: quieter frame, full-strength text so contrast always passes. */
+  background: transparent;
+  border-color: var(--border-subtle);
 }
+.kn-out-card.dim .kn-out-glyph { opacity: 0.55; }
 .kn-out-card.active-answer {
   border-color: var(--ice-border);
   background: color-mix(in srgb, var(--ice-soft) 80%, var(--bg));
@@ -621,6 +628,7 @@
   text-rendering: geometricPrecision;
 }
 .sf-conflict-bracket {
+  display: none;
   fill: none;
   stroke: var(--text);
   stroke-width: 1.6;

@@ -107,7 +107,7 @@ body {
   color: var(--text);
 }
 
-h1, h2, h3, h4, p { margin: 0; }
+h1, h2, h3, h4, p, figure { margin: 0; }
 img, svg, canvas { display: block; max-width: 100%; }
 a {
   color: var(--link);
@@ -366,7 +366,7 @@ button, input, textarea { font: inherit; color: inherit; }
   border-top: 1px solid var(--border-subtle);
   background: var(--surface-1);
   box-shadow: var(--shadow-float);
-  padding: 16px 16px 24px;
+  padding: 12px 0 24px;
 }
 .mobile-nav.open {
   display: block;
@@ -387,6 +387,7 @@ button, input, textarea { font: inherit; color: inherit; }
   font-size: 1rem;
   border-radius: 4px;
 }
+.mobile-nav a:not(.button) { margin-inline: calc(var(--space-3) * -1); }
 .mobile-nav a:hover {
   background: var(--surface-2);
 }
@@ -533,30 +534,26 @@ button, input, textarea { font: inherit; color: inherit; }
   background: var(--ice-accent);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
+@media (max-width: 399px) {
+  .studio-tag { font-size: 0.72rem; letter-spacing: 0.02em; }
+}
 
+.hero .copy { container-type: inline-size; }
+/* Two balanced lines at every width: one gap between lines, so descender and ascender
+   collisions cannot make the leading look uneven. Size follows the column width. */
 .display {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(2.15rem, 8.8vw, 2.75rem);
-  line-height: 1.06;
-  letter-spacing: -0.028em;
+  font-size: clamp(1.5rem, 7.6vw, 2rem);
+  font-size: clamp(1.5rem, 8.3cqw, 3.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.024em;
   text-wrap: balance;
-  max-width: 100%;
+  max-width: none;
 }
-[data-theme=dark] .display { letter-spacing: -0.024em; }
-
-@media (min-width: 600px) {
-  .display {
-    font-size: clamp(2.85rem, 4.8vw, 4.25rem);
-    line-height: 1.04;
-    max-width: 16ch;
-  }
-}
-@media (min-width: 1040px) {
-  .display {
-    font-size: clamp(3.35rem, 4.1vw, 4.55rem);
-    max-width: 15.5ch;
-  }
+[data-theme=dark] .display { letter-spacing: -0.02em; }
+@media (min-width: 600px) and (max-width: 1039px) {
+  .hero .display { font-size: min(8.3cqw, 2.9rem); }
 }
 
 .lede {
@@ -595,9 +592,8 @@ button, input, textarea { font: inherit; color: inherit; }
 
 /* Subtle architectural proof bar inside hero */
 .hero-pillars {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
+  display: grid;
+  gap: 8px;
   margin-top: 28px;
   padding-top: 18px;
   border-top: 1px solid var(--border-subtle);
@@ -621,13 +617,16 @@ button, input, textarea { font: inherit; color: inherit; }
   background: var(--border-strong);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
+@media (min-width: 600px) {
+  .hero-pillars { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+}
 @media (max-width: 599px) {
   .hero-pillars {
-    margin-top: 18px;
-    padding-top: 14px;
-    gap: 6px 14px;
+    margin-top: 16px;
+    padding-top: 12px;
+    gap: 4px;
   }
-  .hero-pillars li { font-size: 0.73rem; }
+  .hero-pillars li { font-size: 0.78rem; }
 }
 
 /* Hero Crystal Art Stage — Smooth 4-edge feathered dissolve (zero harsh box crop) */
@@ -669,17 +668,22 @@ button, input, textarea { font: inherit; color: inherit; }
 .pic {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: 60% 36%;
+  /* Phone and tablet crop into the full interior of the lattice, so the stepped
+     outer silhouette of the artwork sits outside the frame instead of reading as a cut-out corner. */
+  background-size: 150% auto;
+  background-position: 100% 25%;
   background-repeat: no-repeat;
   -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 14%, #000 88%, transparent 100%);
+    linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 10%, #000 92%, transparent 100%);
   mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 14%, #000 88%, transparent 100%);
+    linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 10%, #000 92%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
+}
+@media (min-width: 600px) {
+  .pic { background-position: 100% 35%; }
 }
 @media (min-width: 1040px) {
   .pic {
@@ -854,3 +858,6 @@ main p a:hover {
   .site-header { position: static; border-bottom: 1px solid #000; background: none; }
   body { background: #fff; color: #000; }
 }
+
+/* Footer group labels read as labels, not as stray text. */
+.foot-social nav > span::after { content: ":"; }
