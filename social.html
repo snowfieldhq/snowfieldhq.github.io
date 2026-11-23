@@ -21,8 +21,12 @@
 <meta name="twitter:description" content="Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.">
 <meta name="twitter:image" content="https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261120">
 <link rel="icon" href="kit/slot/mark-32-light.svg" type="image/svg+xml">
-<script>(function(d,q,s){try{s=localStorage.getItem('sf-theme')}catch(e){}q=new URLSearchParams(location.search).get('theme');q=q=='light'||q=='dark'?q:s=='light'||s=='dark'?s:matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.dataset.theme=q;if(location.protocol!='file:')['serif','sans'].forEach(function(n){var f=document.createElement('link');f.rel='preload';f.as='font';f.type='font/woff2';f.crossOrigin='';f.href='kit/type/fonts/snowfield-'+n+'-latin.woff2';document.head.append(f)});})(document.documentElement)</script>
-<link rel="stylesheet" href="kit/type/typography.css"><link rel="stylesheet" href="kit/seeds/tokens.css"><link rel="stylesheet" href="css/cue.css"><link rel="stylesheet" href="css/site.css"><link rel="stylesheet" href="css/art.css"><link rel="stylesheet" href="css/assembly.css">
+<script>(function(d,q,s){try{s=localStorage.getItem('sf-theme')}catch(e){}q=new URLSearchParams(location.search).get('theme');q=q=='light'||q=='dark'?q:s=='light'||s=='dark'?s:matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.dataset.theme=q;if(location.protocol!='file:')['serif','sans','mono'].forEach(function(n){var f=document.createElement('link');f.rel='preload';f.as='font';f.type='font/woff2';f.crossOrigin='';f.href='kit/type/fonts/snowfield-'+n+'-latin.woff2';document.head.append(f)});})(document.documentElement)</script>
+<link rel="stylesheet" href="kit/type/typography.css">
+<link rel="stylesheet" href="kit/seeds/tokens.css">
+<link rel="stylesheet" href="css/cue.css">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/sections.css">
 <script src="js/site.js" defer></script>
 <script type="application/ld+json">
 {
@@ -41,7 +45,7 @@
       "@id": "https://snowfieldhq.github.io/social.html#profilepage",
       "url": "https://snowfieldhq.github.io/social.html",
       "name": "Official Profiles: Jordan Masopust and Snowfield",
-      "dateModified": "2026-11-21",
+      "dateModified": "2026-11-23",
       "isPartOf": { "@id": "https://snowfieldhq.github.io/#website" },
       "mainEntity": { "@id": "https://snowfieldhq.github.io/jordan-masopust.html#person" }
     },
@@ -80,15 +84,132 @@
     }
   ]
 }
-</script></head><body id="top"><a class="skip" href="#main">Skip to content</a>
-<header class="wrap"><div class="bar">
-<a class="brand" href="index.html" aria-label="Snowfield home"><img class="snow m-only" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt=""><img class="ink m-only" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt=""><img class="snow d-only" src="art/lockup-mo-47-optical-color-light.svg" width="192" height="35" alt=""><img class="ink d-only" src="art/lockup-mo-47-optical-color-dark.svg" width="192" height="35" alt=""></a>
-<nav class="nav" aria-label="Primary"><a href="index.html#work">What we build</a><a href="index.html#process">How it works</a><a href="index.html#proof">Track record</a><a href="jordan-masopust.html">Founder</a><a href="#contact">Contact</a></nav>
-<div class="theme seg" role="group" aria-label="Colour theme"><button type="button" data-t="light" aria-pressed="false">Light</button><button type="button" data-t="dark" aria-pressed="false">Dark</button></div>
-</div></header><main id="main"><section class="wrap page-hero compact-hero"><h1 class="display">Find Snowfield online.</h1></section>
-<section class="section profiles-compact"><div class="wrap profile-groups"><div><h2>Personal</h2><nav class="profile-links" aria-label="Personal profile directory"><a href="jordan-masopust.html">Founder profile</a><a href="https://www.linkedin.com/in/jordan-masopust/">LinkedIn</a></nav></div><div><h2>Snowfield</h2><nav class="profile-links" aria-label="Snowfield profile directory"><a href="https://www.linkedin.com/company/snowfieldhq/">LinkedIn</a><a href="https://github.com/snowfieldhq">GitHub</a><a href="llms.txt">llms.txt</a><a href="llms-full.txt">llms-full.txt</a></nav></div></div></section><section class="section" id="contact"><div class="wrap contact-short"><div><h2 class="h2">Build tools your team owns.</h2><p>Tell us what breaks in your operation and we will reply directly.</p></div><a class="button primary large" href="mailto:jordan.masopust@gmail.com?subject=Snowfield%20Applied%20AI%20Inquiry">Start a conversation</a></div></section></main><footer class="foot"><div class="wrap">
-<a class="foot-brand" href="index.html" aria-label="Snowfield home"><img class="snow" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt=""><img class="ink" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt=""></a>
-<p class="foot-meta">Jordan Masopust &middot; Remote, nationwide<br class="foot-break"> <span class="foot-separator">&middot; </span><a href="mailto:jordan.masopust@gmail.com">jordan.masopust@gmail.com</a></p>
-<nav class="foot-nav" aria-label="Footer"><a href="jordan-masopust.html">Founder</a><a href="social.html">Profiles</a><a href="scope.html">Terms</a><a href="#top">Back to top</a></nav>
-<div class="foot-social"><nav aria-label="Personal profiles"><span>Personal</span><a href="https://www.linkedin.com/in/jordan-masopust/">LinkedIn</a></nav><nav aria-label="Snowfield profiles"><span>Snowfield</span><a href="https://github.com/snowfieldhq">GitHub</a><a href="llms.txt">llms.txt</a></nav></div>
-</div></footer></body></html>
+</script>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="Snowfield home">
+      <img class="snow m-only" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="">
+      <img class="ink m-only" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="">
+      <img class="snow d-only" src="art/lockup-mo-47-optical-color-light.svg" width="192" height="35" alt="">
+      <img class="ink d-only" src="art/lockup-mo-47-optical-color-dark.svg" width="192" height="35" alt="">
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html#work">What we build</a>
+      <a href="index.html#process">How it works</a>
+      <a href="index.html#proof">Track record</a>
+      <a href="jordan-masopust.html">Founder</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="theme-seg" role="group" aria-label="Colour theme">
+        <button type="button" data-t="light" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <span>Light</span>
+        </button>
+        <button type="button" data-t="dark" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+          <span>Dark</span>
+        </button>
+      </div>
+
+      <button type="button" class="theme-compact" aria-label="Switch colour theme">
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      </button>
+
+      <button type="button" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="ico-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 17h16"/></svg>
+        <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" hidden>
+    <nav class="wrap mobile-nav-inner" aria-label="Mobile navigation">
+      <a href="index.html">Overview</a>
+      <a href="index.html#work">What we build</a>
+      <a href="index.html#process">How it works</a>
+      <a href="jordan-masopust.html">Founder</a>
+      <a href="ai-evaluation.html">Grounded assistants</a>
+      <a href="scope.html">Engagement terms</a>
+      <a class="button primary large mobile-cta" href="#contact">Start a conversation</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="wrap compact-hero" aria-labelledby="h1">
+    <p class="studio-tag"><span class="hex-pip" aria-hidden="true"></span>Verified directory</p>
+    <h1 class="display" id="h1">Find Snowfield online.</h1>
+    <p class="lede">Official profiles, repositories, and machine-readable references for Snowfield and its founder.</p>
+  </section>
+
+  <section class="section">
+    <div class="wrap profile-groups">
+      <div class="sf-card-wrap">
+        <div class="sf-card">
+          <span class="card-meta">Founder</span>
+          <h2>Personal</h2>
+          <nav class="profile-links" aria-label="Personal profile directory">
+            <a href="jordan-masopust.html"><span>Founder profile</span><span aria-hidden="true">&rarr;</span></a>
+            <a href="https://www.linkedin.com/in/jordan-masopust/"><span>LinkedIn</span><span aria-hidden="true">&rarr;</span></a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sf-card-wrap">
+        <div class="sf-card">
+          <span class="card-meta">Studio</span>
+          <h2>Snowfield</h2>
+          <nav class="profile-links" aria-label="Snowfield profile directory">
+            <a href="https://www.linkedin.com/company/snowfieldhq/"><span>LinkedIn</span><span aria-hidden="true">&rarr;</span></a>
+            <a href="https://github.com/snowfieldhq"><span>GitHub</span><span aria-hidden="true">&rarr;</span></a>
+            <a href="llms.txt"><span>llms.txt</span><span aria-hidden="true">&rarr;</span></a>
+            <a href="llms-full.txt"><span>llms-full.txt</span><span aria-hidden="true">&rarr;</span></a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact-band">
+        <div class="contact-short">
+          <div>
+            <h2 class="h2">Build tools your team owns.</h2>
+            <p>Tell us what breaks in your operation and we will reply directly.</p>
+          </div>
+          <a class="button primary large" href="mailto:jordan.masopust@gmail.com?subject=Snowfield%20Applied%20AI%20Inquiry">Start a conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="foot-brand" href="index.html" aria-label="Snowfield home">
+      <img class="snow" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="">
+      <img class="ink" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="">
+    </a>
+    <p class="foot-meta">Jordan Masopust &middot; Remote, nationwide<br class="foot-break"><span class="foot-separator"> &middot; </span><a href="mailto:jordan.masopust@gmail.com">jordan.masopust@gmail.com</a></p>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="jordan-masopust.html">Founder</a>
+      <a href="social.html">Profiles</a>
+      <a href="scope.html">Terms</a>
+      <a href="#top">Back to top</a>
+    </nav>
+    <div class="foot-social">
+      <nav aria-label="Personal profiles"><span>Personal</span><a href="https://www.linkedin.com/in/jordan-masopust/">LinkedIn</a></nav>
+      <nav aria-label="Snowfield profiles"><span>Snowfield</span><a href="https://github.com/snowfieldhq">GitHub</a><a href="llms.txt">llms.txt</a></nav>
+    </div>
+  </div>
+</footer>
+</body></html>

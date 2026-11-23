@@ -10,7 +10,7 @@ Every prompt, GitHub repository, and guide deploys straight inside accounts the 
 
 ## Current Capabilities
 
-- **Internal Workflow Assistants:** Multi-model assistants routed across Claude, Gemini, and OpenAI with lean context design, strict retrieval guardrails, and refusal gates.
+- **Custom Operational Assistants:** Multi-model assistants routed across Claude, Gemini, and OpenAI with lean context design, strict retrieval guardrails, and refusal gates.
 - **Structured Knowledge Systems:** Playbook audits, Knowledge-Centered Service (KCS) architecture, and clean operational reference layers.
 - **Role-Based Onboarding Web Apps:** Interactive onboarding, training, and live-call operator web apps built in React and Python for non-technical staff under live production pressure.
 - **Cross-Model Verification Pipelines:** Routing and independent cross-model review checks with local state, audit trails, and strict grounding gates.
@@ -19,7 +19,7 @@ Every prompt, GitHub repository, and guide deploys straight inside accounts the 
 
 Firsthand operational builds. Hands-on with language models since GPT-3 in July 2020.
 
-- **Regulated Lending AI Assistant:** Built a 15-version loan-officer assistant across Claude and Gemini with rules that make it refuse rather than guess when a rule is missing, paired with a setup guide and rollout proposal corporate IT adapted company-wide.
+- **Regulated Lending Workflow Assistant:** Architected a multi-model loan-officer workflow assistant across Claude and Gemini with rules that make it refuse rather than guess when guidance is missing, paired with a setup guide and rollout proposal corporate IT adapted company-wide.
 - **High-Volume B2B Sales Enablement:** Built a multi-model discovery and objection copilot while on a high-volume business-to-business sales team, alongside a repeatable live-transfer process adopted at the director level.
 - **Enterprise Restaurant Point-of-Sale Support & Knowledge-Centered Service:** Team lead on a 24/7 enterprise restaurant point-of-sale support team of more than fifty agents serving over a thousand restaurant concepts. Audited more than half of the knowledge base and turned recurring engineering fixes into standard troubleshooting playbooks. Built a structured case-dispatching workflow alongside Dynamics 365 and Jira to speed first replies and cut repeat callbacks.
 

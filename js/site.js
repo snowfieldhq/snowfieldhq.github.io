@@ -1,19 +1,88 @@
-(()=>{"use strict";const u=document,w=u.documentElement,o=(t,n=u)=>n?n.querySelector(t):null,d=(t,n=u)=>n?[...n.querySelectorAll(t)]:[],S=matchMedia("(prefers-reduced-motion: reduce)");
-const A=()=>w.dataset.theme==="light"?"light":"dark";
-const box=o(".crystal-view"),frame=o(".frame",box),pic=o(".pic",box),btn=o("#play"),st=o("[role=status]",box);
-let f=null,pending=null,playing=false,settle=false,raf=0,t0=0,yaw=0,pitch=0,last=0;
-const say=t=>{if(st)st.textContent=t};
-const load=src=>new Promise((a,b)=>{const e=u.createElement("script");e.src=src;e.onload=a;e.onerror=b;u.head.append(e)});
-const place=()=>{if(!f||!frame)return;const r=f.sheet.focus,N=Snowfield3D,p=N.R.clone().multiplyScalar(r.x-f.sheet.width/2).addScaledVector(N.U,f.sheet.height/2-r.y).project(f.camera);frame.style.setProperty("--fx",p.x*50+50+"%");frame.style.setProperty("--fy",50-p.y*50+"%")};
-const start=()=>pending||(pending=load("kit/engine/crystal-assets.js").then(()=>load("kit/engine/field3d.classic.js")).then(()=>Snowfield3D.makeField(o("canvas",pic),{theme:A(),composition:"crystal",span:+getComputedStyle(frame).getPropertyValue("--S"),onResize:()=>f&&place()})).then(x=>{f=x;place();pic.classList.add("ready");pic.parentNode.classList.add("ready");return f}).catch(()=>{pending=null;say("Static view active.")}));
-const finish=()=>{raf=0;yaw=pitch=0;if(f){f.rest();place()}if(frame)frame.classList.remove("turned");settle=false};
-const tick=a=>{raf=0;if(!f)return;const dt=Math.min(.05,(a-last)/1e3||.016);last=a;
- if(playing){const t=(a-t0)/1e3,r=Math.min(1,t/2.5);yaw=.4*r*Math.sin(t*2*Math.PI/16);pitch=.1*r*Math.sin(t*2*Math.PI/23)}
- else if(settle){const k=Math.exp(-4*dt);yaw*=k;pitch*=k;if(Math.abs(yaw)<5e-4&&Math.abs(pitch)<5e-4){finish();return}}
- f.view(yaw,pitch);place();if(frame)frame.classList.toggle("turned",Math.abs(yaw)+Math.abs(pitch)>.02);raf=requestAnimationFrame(tick)};
-const stop=m=>{if(!playing)return;playing=false;if(btn){btn.textContent="Play";btn.setAttribute("aria-pressed","false")}say(m||"");if(S.matches){finish()}else{settle=true;if(!raf){last=performance.now();raf=requestAnimationFrame(tick)}}};
-if(btn&&box)btn.onclick=()=>{if(playing){stop();return}if(S.matches)return;say("Loading.");start().then(x=>{if(!x)return;playing=true;settle=false;btn.textContent="Stop";btn.setAttribute("aria-pressed","true");say("");t0=last=performance.now();if(!raf)raf=requestAnimationFrame(tick)})};
-S.addEventListener("change",()=>{if(S.matches)stop("")});
-u.addEventListener("visibilitychange",()=>{if(u.hidden)stop("")});
-function b(t,n){if(w.dataset.theme!==t&&(w.dataset.theme=t),n)try{localStorage.setItem("sf-theme",t)}catch{}d(".theme button").forEach(s=>s.setAttribute("aria-pressed",s.dataset.t===t)),f&&f.setTheme(t)}d(".theme button").forEach(t=>{t.onclick=()=>b(t.dataset.t,1)}),b(A());
-window.SNOW={setTheme:b}})();
+(() => {
+  'use strict';
+  const D = document;
+  const root = D.documentElement;
+  const qs = (sel, ctx = D) => (ctx ? ctx.querySelector(sel) : null);
+  const qsa = (sel, ctx = D) => (ctx ? [...ctx.querySelectorAll(sel)] : []);
+
+  /* Theme management: syncs desktop segmented toggle, mobile compact toggle, and localStorage */
+  const currentTheme = () => (root.dataset.theme === 'light' ? 'light' : 'dark');
+
+  function setTheme(theme, persist) {
+    const next = theme === 'light' ? 'light' : 'dark';
+    if (root.dataset.theme !== next) root.dataset.theme = next;
+    if (persist) {
+      try { localStorage.setItem('sf-theme', next); } catch (_) {}
+    }
+    qsa('.theme-seg button[data-t]').forEach(btn => {
+      btn.setAttribute('aria-pressed', String(btn.dataset.t === next));
+    });
+    qsa('.theme-compact').forEach(btn => {
+      const target = next === 'dark' ? 'light' : 'dark';
+      btn.setAttribute('aria-label', `Switch to ${target} theme`);
+      btn.setAttribute('title', `Switch to ${target} theme`);
+    });
+  }
+
+  qsa('.theme-seg button[data-t]').forEach(btn => {
+    btn.addEventListener('click', () => setTheme(btn.dataset.t, true));
+  });
+  qsa('.theme-compact').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setTheme(currentTheme() === 'dark' ? 'light' : 'dark', true);
+    });
+  });
+  setTheme(currentTheme(), false);
+  window.SNOW = { setTheme };
+
+  /* Accessible mobile navigation drawer */
+  const menuBtn = qs('.menu-btn');
+  const drawer = qs('#mobile-nav');
+  if (menuBtn && drawer) {
+    const setOpen = open => {
+      menuBtn.setAttribute('aria-expanded', String(open));
+      drawer.classList.toggle('open', open);
+      drawer.hidden = !open;
+    };
+    setOpen(false);
+    menuBtn.addEventListener('click', () => {
+      const open = menuBtn.getAttribute('aria-expanded') !== 'true';
+      setOpen(open);
+    });
+    qsa('a', drawer).forEach(link => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+    D.addEventListener('keydown', ev => {
+      if (ev.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        menuBtn.focus();
+      }
+    });
+    matchMedia('(min-width: 960px)').addEventListener('change', ev => {
+      if (ev.matches) setOpen(false);
+    });
+  }
+
+  /* Interactive Grounded Operational Assistant tabs (covered rule vs. out-of-policy escalation) */
+  qsa('[data-assistant-widget]').forEach(widget => {
+    const tabs = qsa('[role="tab"]', widget);
+    const panels = qsa('[role="tabpanel"]', widget);
+    const activate = idx => {
+      tabs.forEach((tab, i) => {
+        const on = i === idx;
+        tab.setAttribute('aria-selected', String(on));
+        tab.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach((panel, i) => {
+        panel.hidden = i !== idx;
+      });
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => activate(i));
+      tab.addEventListener('keydown', ev => {
+        if (ev.key === 'ArrowRight') { ev.preventDefault(); const n = (i + 1) % tabs.length; activate(n); tabs[n].focus(); }
+        if (ev.key === 'ArrowLeft') { ev.preventDefault(); const n = (i - 1 + tabs.length) % tabs.length; activate(n); tabs[n].focus(); }
+      });
+    });
+  });
+})();

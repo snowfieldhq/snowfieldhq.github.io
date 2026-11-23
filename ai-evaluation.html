@@ -19,19 +19,232 @@
 <meta name="twitter:description" content="Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.">
 <meta name="twitter:image" content="https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261120">
 <link rel="icon" href="kit/slot/mark-32-light.svg" type="image/svg+xml">
-<script>(function(d,q,s){try{s=localStorage.getItem('sf-theme')}catch(e){}q=new URLSearchParams(location.search).get('theme');q=q=='light'||q=='dark'?q:s=='light'||s=='dark'?s:matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.dataset.theme=q;if(location.protocol!='file:')['serif','sans'].forEach(function(n){var f=document.createElement('link');f.rel='preload';f.as='font';f.type='font/woff2';f.crossOrigin='';f.href='kit/type/fonts/snowfield-'+n+'-latin.woff2';document.head.append(f)});})(document.documentElement)</script>
-<link rel="stylesheet" href="kit/type/typography.css"><link rel="stylesheet" href="kit/seeds/tokens.css"><link rel="stylesheet" href="css/cue.css"><link rel="stylesheet" href="css/site.css"><link rel="stylesheet" href="css/art.css"><link rel="stylesheet" href="css/assembly.css"><link rel="stylesheet" href="css/sections.css">
-<script src="js/site.js" defer></script></head><body id="top"><a class="skip" href="#main">Skip to content</a>
-<header class="wrap"><div class="bar">
-<a class="brand" href="index.html" aria-label="Snowfield home"><img class="snow m-only" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt=""><img class="ink m-only" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt=""><img class="snow d-only" src="art/lockup-mo-47-optical-color-light.svg" width="192" height="35" alt=""><img class="ink d-only" src="art/lockup-mo-47-optical-color-dark.svg" width="192" height="35" alt=""></a>
-<nav class="nav" aria-label="Primary"><a href="index.html#work">What we build</a><a href="index.html#process">How it works</a><a href="index.html#proof">Track record</a><a href="jordan-masopust.html">Founder</a><a href="#contact">Contact</a></nav>
-<div class="theme seg" role="group" aria-label="Colour theme"><button type="button" data-t="light" aria-pressed="false">Light</button><button type="button" data-t="dark" aria-pressed="false">Dark</button></div>
-</div></header><main id="main"><section class="wrap product-hero"><div><p class="eyebrow">Grounded assistants &amp; verification</p><h1 class="display">Your playbook,<br>with sources to check.</h1><p class="lede">Before writing a single prompt, we clean the operational reference layer. Assistants answer only from approved documents, cite the exact section, and refuse rather than guessing when a rule is missing.</p><a class="button primary large" href="#contact">Start a conversation</a></div><figure class="ui"><div class="ui-card" role="img" aria-label="Grounded team assistant answer with a cited source and an explicit escalation boundary."><div class="ui-head">Team assistant <span>Grounded check</span></div><p class="ask">Can frontline staff approve a return exception after 45 days?</p><p class="answer">Standard returns close at 30 days. Exceptions past 30 days are outside frontline authority and require supervisor approval.</p><span class="chip">Source: Operations Policy, section 3</span><div class="rule"><span>Outside 30-day window</span><span>Routed to supervisor</span></div></div></figure></section>
-<section class="section" id="workflows"><div class="wrap"><h2 class="h2">How the verification layer works.</h2><ol class="process-strip"><li><strong>Ground</strong><span>Clean contradicting playbooks first so answers come only from approved documents with the section cited.</span></li><li><strong>Verify</strong><span>Run independent cross-model review checks across Claude, Gemini, and OpenAI before changes ship to staff.</span></li><li><strong>Escalate</strong><span>Anything outside documented rules flags the gap and routes to a named owner rather than inventing an answer.</span></li></ol><p class="figure-note">Every prompt, evaluation harness, and guide deploys inside accounts your team owns and controls.</p></div></section>
-<section class="section"><div class="wrap"><h2 class="h2">Firsthand operational builds.</h2><div class="receipts"><article><strong>15 versions</strong><h3>Loan-officer workflow assistant</h3><p>Built across Claude and Gemini with rules that make it refuse rather than guess when a rule is missing, paired with a setup guide and rollout proposal corporate IT adapted company-wide.</p></article><article><strong>Multi-model copilot</strong><h3>High-volume B2B sales team</h3><p>Live discovery and objection guidance built across multiple models alongside a repeatable live-transfer process adopted at the director level.</p></article></div></div></section>
-<section class="section" id="contact"><div class="wrap contact-short"><div><h2 class="h2">Need an assistant your team can trust?</h2><p>Share the playbooks, tickets, or workflows causing friction and we will map a grounded implementation inside your own accounts.</p></div><a class="button primary large" href="mailto:jordan.masopust@gmail.com?subject=Snowfield%20Grounded%20Assistant%20Inquiry">Start a conversation</a></div></section></main><footer class="foot"><div class="wrap">
-<a class="foot-brand" href="index.html" aria-label="Snowfield home"><img class="snow" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt=""><img class="ink" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt=""></a>
-<p class="foot-meta">Jordan Masopust &middot; Remote, nationwide<br class="foot-break"> <span class="foot-separator">&middot; </span><a href="mailto:jordan.masopust@gmail.com">jordan.masopust@gmail.com</a></p>
-<nav class="foot-nav" aria-label="Footer"><a href="jordan-masopust.html">Founder</a><a href="social.html">Profiles</a><a href="scope.html">Terms</a><a href="#top">Back to top</a></nav>
-<div class="foot-social"><nav aria-label="Personal profiles"><span>Personal</span><a href="https://www.linkedin.com/in/jordan-masopust/">LinkedIn</a></nav><nav aria-label="Snowfield profiles"><span>Snowfield</span><a href="https://github.com/snowfieldhq">GitHub</a><a href="llms.txt">llms.txt</a></nav></div>
-</div></footer></body></html>
+<script>(function(d,q,s){try{s=localStorage.getItem('sf-theme')}catch(e){}q=new URLSearchParams(location.search).get('theme');q=q=='light'||q=='dark'?q:s=='light'||s=='dark'?s:matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.dataset.theme=q;if(location.protocol!='file:')['serif','sans','mono'].forEach(function(n){var f=document.createElement('link');f.rel='preload';f.as='font';f.type='font/woff2';f.crossOrigin='';f.href='kit/type/fonts/snowfield-'+n+'-latin.woff2';document.head.append(f)});})(document.documentElement)</script>
+<link rel="stylesheet" href="kit/type/typography.css">
+<link rel="stylesheet" href="kit/seeds/tokens.css">
+<link rel="stylesheet" href="css/cue.css">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/sections.css">
+<script src="js/site.js" defer></script>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="Snowfield home">
+      <img class="snow m-only" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="">
+      <img class="ink m-only" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="">
+      <img class="snow d-only" src="art/lockup-mo-47-optical-color-light.svg" width="192" height="35" alt="">
+      <img class="ink d-only" src="art/lockup-mo-47-optical-color-dark.svg" width="192" height="35" alt="">
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html#work">What we build</a>
+      <a href="index.html#process">How it works</a>
+      <a href="index.html#proof">Track record</a>
+      <a href="jordan-masopust.html">Founder</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="theme-seg" role="group" aria-label="Colour theme">
+        <button type="button" data-t="light" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <span>Light</span>
+        </button>
+        <button type="button" data-t="dark" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+          <span>Dark</span>
+        </button>
+      </div>
+
+      <button type="button" class="theme-compact" aria-label="Switch colour theme">
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      </button>
+
+      <button type="button" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="ico-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 17h16"/></svg>
+        <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" hidden>
+    <nav class="wrap mobile-nav-inner" aria-label="Mobile navigation">
+      <a href="index.html">Overview</a>
+      <a href="index.html#work">What we build</a>
+      <a href="index.html#process">How it works</a>
+      <a href="jordan-masopust.html">Founder</a>
+      <a href="ai-evaluation.html" aria-current="page">Grounded assistants</a>
+      <a href="scope.html">Engagement terms</a>
+      <a class="button primary large mobile-cta" href="#contact">Start a conversation</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="wrap product-hero" aria-labelledby="h1">
+    <div class="product-hero-copy">
+      <p class="studio-tag"><span class="hex-pip" aria-hidden="true"></span>Grounded assistants &amp; verification</p>
+      <h1 class="display" id="h1">Your playbook, with sources to check.</h1>
+      <p class="lede">Before writing a single prompt, we clean the operational reference layer. Assistants answer only from approved documents, cite the exact section, and refuse rather than guessing when a rule is missing.</p>
+      <div class="actions">
+        <a class="button primary large" href="#contact">Start a conversation</a>
+        <a class="button large" href="index.html">Back to overview</a>
+      </div>
+    </div>
+
+    <figure class="ui" data-assistant-widget>
+      <div class="assistant-shell">
+        <div class="ui-card">
+          <div class="ui-head">
+            <span class="ui-title"><span class="ui-hex" aria-hidden="true"></span>Team Assistant</span>
+            <div class="ui-mode-tabs" role="tablist" aria-label="Grounded assistant scenarios">
+              <button type="button" role="tab" id="tab-eval-exc" aria-controls="panel-eval-exc" aria-selected="true">Escalation check</button>
+              <button type="button" role="tab" id="tab-eval-cov" aria-controls="panel-eval-cov" aria-selected="false" tabindex="-1">Covered rule</button>
+            </div>
+          </div>
+
+          <div class="ui-panel" role="tabpanel" id="panel-eval-exc" aria-labelledby="tab-eval-exc">
+            <div class="ui-query-box">
+              <span class="ui-field-label">Frontline query</span>
+              <p class="ask">Can frontline staff approve a return exception after 45 days?</p>
+            </div>
+            <div class="ui-response-box" data-outcome="escalate" style="margin-top:12px;">
+              <p class="answer">Standard returns close at 30 days. Exceptions past 30 days are outside frontline authority and require supervisor approval.</p>
+              <div class="ui-meta-row">
+                <span class="chip">Source: Operations Policy, section 3</span>
+                <span class="chip chip-muted">Refusal gate active</span>
+              </div>
+            </div>
+            <div class="rule" style="margin-top:12px;">
+              <span>Outside 30-day window</span>
+              <strong>Routed to supervisor</strong>
+            </div>
+          </div>
+
+          <div class="ui-panel" role="tabpanel" id="panel-eval-cov" aria-labelledby="tab-eval-cov" hidden>
+            <div class="ui-query-box">
+              <span class="ui-field-label">Frontline query</span>
+              <p class="ask">Can frontline staff approve a standard return within 30 days?</p>
+            </div>
+            <div class="ui-response-box" style="margin-top:12px;">
+              <p class="answer">Yes. Returns requested within 30 days of delivery fall inside frontline approval authority once the order ID is logged.</p>
+              <div class="ui-meta-row">
+                <span class="chip">Source: Operations Policy, section 3</span>
+                <span class="chip chip-muted">Grounded match</span>
+              </div>
+            </div>
+            <div class="rule" style="margin-top:12px;">
+              <span>Inside 30-day window</span>
+              <strong>Returned with direct citation</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </figure>
+  </section>
+
+  <section class="section" id="workflows">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h2">How the verification layer works.</h2>
+        <p class="lead-in">Three concrete gates prevent assistants from inventing policies or drifting out of date as operations change.</p>
+      </div>
+
+      <div class="track-grid three-col">
+        <div class="sf-card-wrap">
+          <article class="sf-card">
+            <span class="card-meta">Gate 01</span>
+            <h3>Ground</h3>
+            <p>Clean contradicting playbooks first so answers come only from approved documents with the exact section cited.</p>
+          </article>
+        </div>
+
+        <div class="sf-card-wrap">
+          <article class="sf-card">
+            <span class="card-meta">Gate 02</span>
+            <h3>Verify</h3>
+            <p>Run independent cross-model review checks across Claude, Gemini, and OpenAI before changes ship to staff.</p>
+          </article>
+        </div>
+
+        <div class="sf-card-wrap">
+          <article class="sf-card">
+            <span class="card-meta">Gate 03</span>
+            <h3>Escalate</h3>
+            <p>Anything outside documented rules flags the gap and routes to a named owner rather than inventing an answer.</p>
+          </article>
+        </div>
+      </div>
+
+      <p class="section-foot-note">Every prompt, verification harness, and guide deploys inside accounts your team owns and controls.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h2">Firsthand operational builds.</h2>
+        <p class="lead-in">Built inside live operations where guessing creates compliance risk or stalls active customer calls.</p>
+      </div>
+
+      <div class="track-grid two-col">
+        <div class="sf-card-wrap">
+          <article class="sf-card">
+            <span class="card-meta">Regulated lending</span>
+            <h3>Loan-officer workflow assistant</h3>
+            <p>Architected across Claude and Gemini with rules that make it refuse rather than guess when guidance is missing, paired with a setup guide and rollout proposal corporate IT adapted company-wide.</p>
+            <div class="card-foot">Claude &middot; Gemini &middot; Company-wide IT adaptation</div>
+          </article>
+        </div>
+
+        <div class="sf-card-wrap">
+          <article class="sf-card">
+            <span class="card-meta">High-volume B2B sales</span>
+            <h3>Multi-model discovery &amp; objection copilot</h3>
+            <p>Live discovery and objection guidance built across multiple models alongside a repeatable live-transfer process adopted at the director level.</p>
+            <div class="card-foot">Multi-model prompting &middot; Director-adopted workflow</div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact-band">
+        <div class="contact-short">
+          <div>
+            <h2 class="h2">Need an assistant your team can trust?</h2>
+            <p>Share the playbooks, tickets, or workflows causing friction and we will map a grounded implementation inside your own accounts.</p>
+          </div>
+          <a class="button primary large" href="mailto:jordan.masopust@gmail.com?subject=Snowfield%20Grounded%20Assistant%20Inquiry">Start a conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="foot-brand" href="index.html" aria-label="Snowfield home">
+      <img class="snow" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="">
+      <img class="ink" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="">
+    </a>
+    <p class="foot-meta">Jordan Masopust &middot; Remote, nationwide<br class="foot-break"><span class="foot-separator"> &middot; </span><a href="mailto:jordan.masopust@gmail.com">jordan.masopust@gmail.com</a></p>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="jordan-masopust.html">Founder</a>
+      <a href="social.html">Profiles</a>
+      <a href="scope.html">Terms</a>
+      <a href="#top">Back to top</a>
+    </nav>
+    <div class="foot-social">
+      <nav aria-label="Personal profiles"><span>Personal</span><a href="https://www.linkedin.com/in/jordan-masopust/">LinkedIn</a></nav>
+      <nav aria-label="Snowfield profiles"><span>Snowfield</span><a href="https://github.com/snowfieldhq">GitHub</a><a href="llms.txt">llms.txt</a></nav>
+    </div>
+  </div>
+</footer>
+</body></html>

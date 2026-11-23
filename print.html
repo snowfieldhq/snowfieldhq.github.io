@@ -19,17 +19,140 @@
 <meta name="twitter:description" content="Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.">
 <meta name="twitter:image" content="https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261120">
 <link rel="icon" href="kit/slot/mark-32-light.svg" type="image/svg+xml">
-<script>(function(d,q,s){try{s=localStorage.getItem('sf-theme')}catch(e){}q=new URLSearchParams(location.search).get('theme');q=q=='light'||q=='dark'?q:s=='light'||s=='dark'?s:matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.dataset.theme=q;if(location.protocol!='file:')['serif','sans'].forEach(function(n){var f=document.createElement('link');f.rel='preload';f.as='font';f.type='font/woff2';f.crossOrigin='';f.href='kit/type/fonts/snowfield-'+n+'-latin.woff2';document.head.append(f)});})(document.documentElement)</script>
-<link rel="stylesheet" href="kit/type/typography.css"><link rel="stylesheet" href="kit/seeds/tokens.css"><link rel="stylesheet" href="css/cue.css"><link rel="stylesheet" href="css/site.css"><link rel="stylesheet" href="css/art.css"><link rel="stylesheet" href="css/assembly.css"><link rel="stylesheet" href="css/sections.css">
-<script src="js/site.js" defer></script></head><body id="top"><a class="skip" href="#main">Skip to content</a>
-<header class="wrap"><div class="bar">
-<a class="brand" href="index.html" aria-label="Snowfield home"><img class="snow m-only" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt=""><img class="ink m-only" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt=""><img class="snow d-only" src="art/lockup-mo-47-optical-color-light.svg" width="192" height="35" alt=""><img class="ink d-only" src="art/lockup-mo-47-optical-color-dark.svg" width="192" height="35" alt=""></a>
-<nav class="nav" aria-label="Primary"><a href="index.html#work">What we build</a><a href="index.html#process">How it works</a><a href="index.html#proof">Track record</a><a href="jordan-masopust.html">Founder</a><a href="#contact">Contact</a></nav>
-<div class="theme seg" role="group" aria-label="Colour theme"><button type="button" data-t="light" aria-pressed="false">Light</button><button type="button" data-t="dark" aria-pressed="false">Dark</button></div>
-</div></header><main id="main"><section class="wrap product-hero"><div><p class="eyebrow">Snowfield on one page</p><h1 class="display">Applied AI implementation &amp; custom workflows.</h1><p class="lede">Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.</p></div></section><section class="section"><div class="wrap"><h2 class="h2">How Snowfield works</h2><p>Snowfield is a remote, nationwide applied AI implementation studio. Before writing a single prompt, we audit contradicting playbooks, tribal escalation rules, and messy source data. Once the operational signal holds up, we build custom workflows across Claude, Gemini, and OpenAI with Python and React tooling, lean context budgets, and independent cross-model review checks so tools flag gaps when they do not know instead of inventing an answer.</p><p>Current work covers internal workflow assistants, structured knowledge systems, role-based onboarding web apps, and multi-model verification pipelines. Every prompt, GitHub repository, and guide deploys straight inside accounts you already own, paired with live team onboarding. Review <a href="scope.html">ownership-first engagement terms</a>.</p></div></section>
-<section class="section" id="contact"><div class="wrap contact-short"><div><h2 class="h2">Start a conversation</h2><p>Remote, nationwide, serving established US businesses and remote product or operations teams.</p></div><a class="button primary large" href="mailto:jordan.masopust@gmail.com?subject=Snowfield%20Applied%20AI%20Inquiry">Email Snowfield</a></div></section></main><footer class="foot"><div class="wrap">
-<a class="foot-brand" href="index.html" aria-label="Snowfield home"><img class="snow" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt=""><img class="ink" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt=""></a>
-<p class="foot-meta">Jordan Masopust &middot; Remote, nationwide<br class="foot-break"> <span class="foot-separator">&middot; </span><a href="mailto:jordan.masopust@gmail.com">jordan.masopust@gmail.com</a></p>
-<nav class="foot-nav" aria-label="Footer"><a href="jordan-masopust.html">Founder</a><a href="social.html">Profiles</a><a href="scope.html">Terms</a><a href="#top">Back to top</a></nav>
-<div class="foot-social"><nav aria-label="Personal profiles"><span>Personal</span><a href="https://www.linkedin.com/in/jordan-masopust/">LinkedIn</a></nav><nav aria-label="Snowfield profiles"><span>Snowfield</span><a href="https://github.com/snowfieldhq">GitHub</a><a href="llms.txt">llms.txt</a></nav></div>
-</div></footer></body></html>
+<script>(function(d,q,s){try{s=localStorage.getItem('sf-theme')}catch(e){}q=new URLSearchParams(location.search).get('theme');q=q=='light'||q=='dark'?q:s=='light'||s=='dark'?s:matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.dataset.theme=q;if(location.protocol!='file:')['serif','sans','mono'].forEach(function(n){var f=document.createElement('link');f.rel='preload';f.as='font';f.type='font/woff2';f.crossOrigin='';f.href='kit/type/fonts/snowfield-'+n+'-latin.woff2';document.head.append(f)});})(document.documentElement)</script>
+<link rel="stylesheet" href="kit/type/typography.css">
+<link rel="stylesheet" href="kit/seeds/tokens.css">
+<link rel="stylesheet" href="css/cue.css">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/sections.css">
+<script src="js/site.js" defer></script>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="Snowfield home">
+      <img class="snow m-only" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="">
+      <img class="ink m-only" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="">
+      <img class="snow d-only" src="art/lockup-mo-47-optical-color-light.svg" width="192" height="35" alt="">
+      <img class="ink d-only" src="art/lockup-mo-47-optical-color-dark.svg" width="192" height="35" alt="">
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html#work">What we build</a>
+      <a href="index.html#process">How it works</a>
+      <a href="index.html#proof">Track record</a>
+      <a href="jordan-masopust.html">Founder</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="theme-seg" role="group" aria-label="Colour theme">
+        <button type="button" data-t="light" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <span>Light</span>
+        </button>
+        <button type="button" data-t="dark" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+          <span>Dark</span>
+        </button>
+      </div>
+
+      <button type="button" class="theme-compact" aria-label="Switch colour theme">
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      </button>
+
+      <button type="button" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg class="ico-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 17h16"/></svg>
+        <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" hidden>
+    <nav class="wrap mobile-nav-inner" aria-label="Mobile navigation">
+      <a href="index.html">Overview</a>
+      <a href="index.html#work">What we build</a>
+      <a href="index.html#process">How it works</a>
+      <a href="jordan-masopust.html">Founder</a>
+      <a href="ai-evaluation.html">Grounded assistants</a>
+      <a href="scope.html">Engagement terms</a>
+      <a class="button primary large mobile-cta" href="#contact">Start a conversation</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="wrap compact-hero" aria-labelledby="h1">
+    <p class="studio-tag"><span class="hex-pip" aria-hidden="true"></span>Snowfield on one page &middot; Remote US</p>
+    <h1 class="display" id="h1">Applied AI implementation &amp; custom workflows.</h1>
+    <p class="lede">Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.</p>
+    <div class="actions">
+      <a class="button large" href="index.html">Back to overview</a>
+      <a class="button large" href="scope.html">Engagement terms</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap detail-grid">
+      <div class="sf-card-wrap">
+        <article class="sf-card">
+          <span class="card-meta">Methodology</span>
+          <h2>How Snowfield works</h2>
+          <p>Snowfield is a remote, nationwide applied AI implementation studio. Before writing a single prompt, we audit contradicting playbooks, tribal escalation rules, and messy source data. Once the operational signal holds up, we build custom workflows across Claude, Gemini, and OpenAI with Python and React tooling, lean context budgets, and independent cross-model review checks so tools flag gaps when they do not know instead of inventing an answer.</p>
+          <p>Every prompt, GitHub repository, and guide deploys straight inside accounts you already own, paired with live team onboarding. Review <a href="scope.html">ownership-first engagement terms</a>.</p>
+        </article>
+      </div>
+
+      <div class="sf-card-wrap">
+        <article class="sf-card">
+          <span class="card-meta">Scope of work</span>
+          <h2>Core delivery lines</h2>
+          <ul class="checks">
+            <li><strong>Internal workflow assistants:</strong> multi-model assistants across Claude, Gemini, and OpenAI with source citations and explicit refusal gates.</li>
+            <li><strong>Structured knowledge systems:</strong> playbook audits, Knowledge-Centered Service (KCS) architecture, and clean reference layers.</li>
+            <li><strong>Role-based onboarding web apps:</strong> interactive training and live-call tools built in React and Python for non-technical staff.</li>
+            <li><strong>Cross-model verification:</strong> independent review gates with local state and audit trails before updates reach staff.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact-band">
+        <div class="contact-short">
+          <div>
+            <h2 class="h2">Start a conversation.</h2>
+            <p>Remote, nationwide, serving established US businesses and remote product or operations teams.</p>
+          </div>
+          <a class="button primary large" href="mailto:jordan.masopust@gmail.com?subject=Snowfield%20Applied%20AI%20Inquiry">Email Snowfield</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="foot-brand" href="index.html" aria-label="Snowfield home">
+      <img class="snow" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="">
+      <img class="ink" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="">
+    </a>
+    <p class="foot-meta">Jordan Masopust &middot; Remote, nationwide<br class="foot-break"><span class="foot-separator"> &middot; </span><a href="mailto:jordan.masopust@gmail.com">jordan.masopust@gmail.com</a></p>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="jordan-masopust.html">Founder</a>
+      <a href="social.html">Profiles</a>
+      <a href="scope.html">Terms</a>
+      <a href="#top">Back to top</a>
+    </nav>
+    <div class="foot-social">
+      <nav aria-label="Personal profiles"><span>Personal</span><a href="https://www.linkedin.com/in/jordan-masopust/">LinkedIn</a></nav>
+      <nav aria-label="Snowfield profiles"><span>Snowfield</span><a href="https://github.com/snowfieldhq">GitHub</a><a href="llms.txt">llms.txt</a></nav>
+    </div>
+  </div>
+</footer>
+</body></html>

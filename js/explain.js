@@ -1,209 +1,829 @@
-// Snowfield explainer pictures. Cells from js/sf-cells.js: the shipped R1301 cell on the
-// shipped lattice. Motion: GSAP 3.12.5 from cdnjs, fetched only when a picture nears the screen.
-// Each picture is drawn at its rest frame first; reduced motion keeps that frame.
+// Snowfield SOTA Interactive Architectural Stages
+// Uses shipped R1301 cell geometry (js/sf-cells.js) on the exact Snowfield lattice.
+// Zero dotted lines covering boxes/cells: optical waveguides live strictly in dedicated corridors.
+// Self-contained zero-CDN animation engine with deterministic seek hook for verification.
 (() => {
   'use strict';
   if (typeof SF === 'undefined') return;
-  const D = document, el = SF.el;
-  const RM = matchMedia('(prefers-reduced-motion: reduce)'), WIDE = matchMedia('(min-width: 1040px)'), ROW = matchMedia('(min-width: 900px)');
-  const css = D.createElement('style'); css.textContent = SF.css(); D.head.append(css);
-  const lat = k => (q, r, cx, cy) => [cx + SF.DX * k * (q + r / 2), cy + SF.DY * k * r];
-  const hexArea = n => { const o = []; for (let r = -n; r <= n; r++) for (let q = -n; q <= n; q++) if (Math.abs(q + r) <= n) o.push([q, r]); return o; };
-  const hexPts = (cx, cy, R) => [0, 1, 2, 3, 4, 5].map(i => { const a = Math.PI / 180 * (60 * i - 90); return (cx + R * Math.cos(a)).toFixed(1) + ',' + (cy + R * Math.sin(a)).toFixed(1); }).join(' ');
-  const tone = r => 4 + r; // lighter at the top, deeper toward the bottom, as in the hero field
-  const dist = s => Math.hypot(s.q + s.r / 2, s.r * .866);
 
-  function canvas(fig, w, h, cls = '') {
-    const svg = el('svg', { viewBox: `0 0 ${w} ${h}`, 'aria-hidden': 'true', focusable: 'false', class: cls });
-    SF.defs(svg); fig.querySelector('.ex-art').replaceChildren(svg); return svg;
-  }
-  function label(svg, x, y, lines, cls = 'ex-l', anchor = 'middle') {
-    const t = el('text', { x, y, class: cls, 'text-anchor': anchor });
-    [].concat(lines).forEach((s, i) => { const sp = el('tspan', { x, dy: i ? '1.52em' : 0 }); sp.textContent = s; t.append(sp); });
-    svg.append(t); return t;
-  }
-  // a fixed lattice seat holding one moving group with all three cell forms
-  function slot(parent, x, y, tn, k) {
-    const at = el('g', { transform: `translate(${x.toFixed(1)} ${y.toFixed(1)})` }), g = el('g');
-    const o = SF.cell(g, 0, 0, k, tn, 'outline'), t = SF.cell(g, 0, 0, k, tn, 'tile'), m = SF.cell(g, 0, 0, k, tn, 'mark');
-    at.append(g); parent.append(at); return { at, g, o, t, m, x, y, cube: m.querySelector('.cube') };
-  }
-  const form = (s, f) => { s.o.style.opacity = +(f === 'outline'); s.t.style.opacity = +(f === 'tile'); s.m.style.opacity = +(f === 'mark'); };
-  const setForm = (t, s, f, at) => t.set(s.o, { opacity: +(f === 'outline') }, at).set(s.t, { opacity: +(f === 'tile') }, at).set(s.m, { opacity: +(f === 'mark') }, at);
-  const morph = (t, s, from, to, at, d = .3) => t.to(s[from], { opacity: 0, duration: d }, at).to(s[to], { opacity: 1, duration: d }, at);
-  const ring = (svg, x, y, R, cls = 'ex-ring') => { const p = el('polygon', { points: hexPts(x, y, R), class: cls }); svg.append(p); return p; };
-  const dot = svg => { const g = el('g', { class: 'ex-dot' }); g.append(el('circle', { r: 14, class: 'ex-halo' }), el('circle', { r: 7, class: 'ex-core' })); svg.append(g); return g; };
-  const turn = c => { if (!c) return; c.classList.remove('turn'); void c.getBoundingClientRect(); c.classList.add('turn'); };
-  const pink = (svg, k) => { const g = el('g'); SF.cell(g, 0, 0, k, 'p', 'mark'); svg.append(g); return g; };
-  const place = (g, x, y) => { if (window.gsap) gsap.set(g, { x, y }); else g.setAttribute('transform', `translate(${x} ${y})`); };
+  const D = document;
+  const el = SF.el;
+  const RM = matchMedia('(prefers-reduced-motion: reduce)');
+  const styleEl = D.createElement('style');
+  styleEl.textContent = SF.css();
+  D.head.append(styleEl);
 
-  /* 1. Knowledge layer: before (scattered) and after (one reference layer that answers or hands off) */
-  function knowledge(fig, wide) {
-    const k = wide ? .75 : .65, ax = lat(k), kb = wide ? .44 : .4;
-    const L = wide
-      ? { w: 1220, h: 500, c: [700, 212], n: 2, q: [425, 212], qLab: [425, 180], out: [[985, 126], [985, 314]], outLab: 'side',
-          before: [[62, 62], [168, 42], [276, 80], [108, 150], [218, 170], [56, 250], [168, 260], [286, 238], [104, 344], [218, 350], [304, 326]],
-          beforeLab: [180, 428], afterLab: [700, 428], hit: [1, -1], p1: [[-2, 0], [-1, 0], [0, -1], [1, -1], [2, -1]], p2: [[-2, 1], [-1, 1], [0, 1], [1, 1], [2, 0]] }
-      : { w: 360, h: 616, c: [194, 372], n: 1, q: [42, 372], qLab: [42, 342], out: [[304, 514], [56, 514]], outLab: 'below',
-          before: [[44, 104], [122, 92], [202, 110], [284, 96], [82, 168], [164, 176], [246, 164], [318, 156]],
-          beforeLab: [180, 22], afterLab: [180, 240], hit: [1, 0], p1: [[-1, 0], [0, 0], [1, 0]], p2: [[-1, 0], [-1, 1]] };
-    const svg = canvas(fig, L.w, L.h, wide ? 'ex-w' : '');
-    const before = el('g', { class: 'ex-before' });
-    L.before.forEach(([x, y], i) => SF.cell(before, x, y, kb, 4 + i % 4, 'outline'));
-    svg.append(before);
-    // the two routes, drawn under the cells so only the stretches outside the layer show
-    const route = pts => pts.map(([q, r]) => ax(q, r, ...L.c));
-    const trail = pts => { const p = el('polyline', { points: pts.map(([x, y]) => x.toFixed(1) + ',' + y.toFixed(1)).join(' '), class: 'ex-trail' }); svg.append(p); return p; };
-    const stop = (from, to, gap = 27) => { const dx = to[0] - from[0], dy = to[1] - from[1], d = Math.hypot(dx, dy); return [to[0] - dx / d * gap, to[1] - dy / d * gap]; };
-    const r1 = route(L.p1), r2 = route(L.p2);
-    const tr1 = trail([L.q, ...r1, stop(r1[r1.length - 1], L.out[0])]), tr2 = trail([L.q, ...r2, stop(r2[r2.length - 1], L.out[1])]);
-    const bLab = label(svg, ...L.beforeLab, ['Before: scattered playbooks,', 'escalation rules and source data']);
-    const cells = hexArea(L.n).map(([q, r]) => { const [x, y] = ax(q, r, ...L.c); return Object.assign(slot(svg, x, y, tone(r), k), { q, r }); });
-    const hit = cells.find(s => s.q === L.hit[0] && s.r === L.hit[1]);
-    const hitRing = ring(svg, hit.x, hit.y, 52 * k);
-    const aLab = label(svg, ...L.afterLab, 'After: one reference layer', 'ex-l ex-strong');
-    const qLab = label(svg, ...L.qLab, 'Question');
-    const qDot = el('circle', { cx: L.q[0], cy: L.q[1], r: 6, class: 'ex-qdot' }); svg.append(qDot);
-    // outcomes: a filled tile for an answer with its source, a dashed outline for a hand-off
-    const oa = el('g', { transform: `translate(${L.out[0][0]} ${L.out[0][1]})` }); SF.cell(oa, 0, 0, .42, 3, 'tile'); svg.append(oa);
-    const ob = el('g'); ob.append(el('polygon', { points: hexPts(...L.out[1], 23), class: 'ex-ring ex-flag ex-out' })); svg.append(ob);
-    const side = L.outLab === 'side';
-    const la = side ? label(svg, L.out[0][0] + 38, L.out[0][1] - 6, ['Answer, with', 'its source'], 'ex-l', 'start') : label(svg, 352, L.out[0][1] + 52, ['Answer, with', 'its source'], 'ex-l', 'end');
-    const lb = side ? label(svg, L.out[1][0] + 38, L.out[1][1] - 6, ['Not in the rules:', 'sent to a person'], 'ex-l', 'start') : label(svg, 8, L.out[1][1] + 52, ['Not in the rules:', 'sent to a person'], 'ex-l', 'start');
-    const d1 = dot(svg), d2 = dot(svg);
-    const shown = [hitRing, aLab, qLab, qDot, oa, ob, la, lb, tr1, tr2];
-    const rest = () => {
-      if (window.gsap) gsap.set([...cells.flatMap(s => [s.g, s.o, s.t, s.m]), ...shown, d1, d2, before, bLab], { clearProps: 'all' });
-      cells.forEach(s => form(s, 'mark'));
-    };
-    rest();
-    const tl = () => {
-      const t = gsap.timeline({ paused: true });
-      t.set(shown, { opacity: 0 }, 0).set(before, { opacity: 1 }, 0);
-      cells.forEach((s, i) => { const [bx, by] = L.before[i % L.before.length]; setForm(t, s, 'outline', 0); t.set(s.g, { x: bx - s.x, y: by - s.y, scale: kb / k, opacity: 0, transformOrigin: '50% 50%' }, 0); });
-      t.to(cells.map(s => s.g), { opacity: 1, duration: .3, stagger: { each: .03, from: 'random' } }, .3);
-      t.to(cells.map(s => s.g), { x: 0, y: 0, scale: 1, duration: 1.2, ease: 'power2.inOut', stagger: { each: .04, from: 'random' } }, .6);
-      const ord = cells.slice().sort((a, b) => dist(a) - dist(b));
-      ord.forEach((s, i) => { morph(t, s, 'o', 't', 2.6 + i * .03); morph(t, s, 't', 'm', 3.2 + i * .03); });
-      t.to(aLab, { opacity: 1, duration: .4 }, 3.5);
-      // a question the layer covers: it finds its source and leaves as an answer
-      const a1 = 4.3, p1 = r1.map(([x, y]) => ({ x, y })), p2 = r2.map(([x, y]) => ({ x, y }));
-      t.to([qLab, qDot], { opacity: 1, duration: .3 }, a1 - .3).set(d1, { x: L.q[0], y: L.q[1], opacity: 1 }, a1);
-      p1.forEach((p, i) => t.to(d1, { x: p.x, y: p.y, duration: .32, ease: 'none' }, a1 + .1 + i * .32));
-      const hT = a1 + .1 + p1.length * .32;
-      t.to(hitRing, { opacity: 1, duration: .25 }, hT).call(() => turn(hit.cube), null, hT);
-      t.to(d1, { x: L.out[0][0], y: L.out[0][1], duration: .7, ease: 'power1.inOut' }, hT + .5).to(d1, { opacity: 0, duration: .2 }, hT + 1.2).to([oa, la, tr1], { opacity: 1, duration: .35 }, hT + 1.1);
-      // a question outside the rules: nothing matches, so it goes to a person
-      const a2 = hT + 1.5;
-      t.set(d2, { x: L.q[0], y: L.q[1], opacity: 1 }, a2);
-      p2.forEach((p, i) => t.to(d2, { x: p.x, y: p.y, duration: .3, ease: 'none' }, a2 + .1 + i * .3));
-      const mT = a2 + .1 + p2.length * .3;
-      t.to(d2, { x: L.out[1][0], y: L.out[1][1], duration: .6, ease: 'power1.inOut' }, mT).to(d2, { opacity: 0, duration: .2 }, mT + .6).to([ob, lb, tr2], { opacity: 1, duration: .35 }, mT + .5);
-      return t;
-    };
-    return { tl, rest };
-  }
-
-  /* 2. The engagement: audit, build inside your accounts, your team runs it, Snowfield steps out */
-  const strip = D.querySelector('#process .process-strip'), steps = strip ? [...strip.children] : [];
-  const step = i => { if (!strip) return; strip.classList.toggle('live', i >= 0); steps.forEach((l, j) => l.classList.toggle('on', j === i)); };
-
-  // Three panels: the field mapped (outlines, conflicts ringed), built inside your accounts (tiles in a frame),
-  // run by your team (full cells, cubes turning) with Snowfield outside. Side by side from 900 px; stacked below.
-  const ENG = {
-    row: { w: 1020, h: 400, cls: 'ex-w', P: [{ c: [162, 168], k: .75 }, { c: [484, 168], k: .75, R: 150 }, { c: [798, 168], k: .75, R: 150 }],
-      lab: [[162, 376, 'Gaps and conflicts mapped'], [484, 376, 'Your accounts'], [774, 376, 'Your team runs it']], pk: .75, pinkAt: [942, 294], exit: [[962, 64], [964, 215]], pLab: [942, 376, 'middle'], start: [36, 42] },
-    stack: { w: 360, h: 660, cls: '', P: [{ c: [90, 106], k: .42 }, { c: [270, 106], k: .42, R: 88 }, { c: [180, 426], k: .65, R: 150 }],
-      lab: [[90, 224, ['Gaps and conflicts', 'mapped']], [270, 224, 'Your accounts'], [160, 632, 'Your team runs it']], pk: .65, pinkAt: [312, 562], exit: [[316, 304]], pLab: [312, 632, 'middle'], start: [28, 34] }
+  const easeOut = t => 1 - Math.pow(1 - Math.max(0, Math.min(1, t)), 3);
+  const easeInOut = t => {
+    const x = Math.max(0, Math.min(1, t));
+    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
   };
-  function engagement(fig, L) {
-    const svg = canvas(fig, L.w, L.h, L.cls), gaps = ['1,-1'], conf = ['-1,0', '1,0'];
-    const frames = L.P.map(p => { if (!p.R) return null; const f = el('polygon', { points: hexPts(...p.c, p.R), class: 'ex-bound' }); svg.append(f); return f; });
-    const P = L.P.map(p => { const ax = lat(p.k); return hexArea(1).map(([q, r]) => { const [x, y] = ax(q, r, ...p.c); return Object.assign(slot(svg, x, y, tone(r), p.k), { q, r, key: q + ',' + r }); }); });
-    const confCells = P[0].filter(s => conf.includes(s.key)), flags = confCells.map(s => ring(svg, s.x, s.y, 50.5 * L.P[0].k, 'ex-ring ex-flag'));
-    const labs = L.lab.map(([x, y, t]) => label(svg, x, y, t, 'ex-l ex-strong'));
-    const pg = pink(svg, L.pk), pm = pg.firstChild, pLab = label(svg, L.pLab[0], L.pLab[1], 'Snowfield', 'ex-l ex-strong', L.pLab[2]);
-    // where the first panels use smaller cells, Snowfield travels there as a flat pink tile of their size and becomes a full cell
-    // at full size in the last panel, so no full cell ever drops below its minimum size
-    const small = L.P[0].k < L.pk, pt = small ? SF.cell(pg, 0, 0, L.P[0].k, 3, 'tile') : null;
-    if (pt) { pt.querySelector('use').style.fill = SF.PINK[1]; pt.style.opacity = 0; }
-    const open = i => P[i].find(s => s.key === gaps[0]);
-    const rest = () => {
-      if (window.gsap) gsap.set([...P.flat().flatMap(s => [s.g, s.o, s.t, s.m]), ...frames.filter(Boolean), ...labs, pLab, ...flags, pg, pm, ...(pt ? [pt] : [])], { clearProps: 'all' });
-      if (pt) pt.style.opacity = 0;
-      P[0].forEach(s => { form(s, 'outline'); s.g.style.opacity = gaps.includes(s.key) ? 0 : 1; });
-      P[1].forEach(s => form(s, 'tile')); P[2].forEach(s => form(s, 'mark'));
-      place(pg, ...L.pinkAt); step(-1);
-    };
-    rest();
-    const tl = () => {
-      const t = gsap.timeline({ paused: true, onComplete: () => step(-1) });
-      const bounds = frames.filter(Boolean), lens = L.P.filter(p => p.R).map(p => 6 * p.R + 2);
-      t.set([...labs, pLab, ...flags, ...P[1].map(s => s.g), ...P[2].map(s => s.g)], { opacity: 0 }, 0)
-        .set(pg, { x: L.start[0], y: L.start[1], opacity: 0 }, 0)
-        .to(pg, { opacity: 1, duration: .25 }, .05);
-      if (pt) t.set(pt, { opacity: 1 }, 0).set(pm, { opacity: 0 }, 0);
-      bounds.forEach((f, i) => t.set(f, { attr: { 'stroke-dasharray': lens[i], 'stroke-dashoffset': lens[i] } }, 0));
-      P[0].forEach(s => { setForm(t, s, 'outline', 0); t.set(s.g, { opacity: gaps.includes(s.key) ? 0 : .35 }, 0); });
-      P[1].forEach(s => setForm(t, s, 'outline', 0)); P[2].forEach(s => setForm(t, s, 'tile', 0));
-      // 1. audit: Snowfield walks the field; each cell it reads comes into focus; conflicts are ringed
-      t.call(() => step(0), null, .05);
-      const walk = P[0].filter(s => !gaps.includes(s.key)).sort((a, b) => a.r - b.r || (a.r % 2 ? b.q - a.q : a.q - b.q)), per = 2.2 / walk.length;
-      walk.forEach((s, i) => { const at = .3 + i * per; t.to(pg, { x: s.x, y: s.y, duration: per, ease: 'sine.inOut' }, at).to(s.g, { opacity: 1, duration: .2 }, at + per * .7); if (conf.includes(s.key)) t.to(flags[confCells.indexOf(s)], { opacity: 1, duration: .25 }, at + per); });
-      const b = .3 + walk.length * per + .3;
-      t.to(labs[0], { opacity: 1, duration: .4 }, b - .3);
-      // 2. build: Snowfield works from the open slot inside your accounts while the frame closes and the cells set
-      t.call(() => step(1), null, b);
-      t.to(pg, { x: open(1).x, y: open(1).y, duration: .8, ease: 'power2.inOut' }, b);
-      t.to(bounds[0], { attr: { 'stroke-dashoffset': 0 }, duration: 1, ease: 'power1.inOut' }, b + .2).to(labs[1], { opacity: 1, duration: .4 }, b + .7);
-      P[1].filter(s => s !== open(1)).sort((a, c) => dist(a) - dist(c)).forEach((s, i) => { t.to(s.g, { opacity: 1, duration: .25 }, b + .5 + i * .05); morph(t, s, 'o', 't', b + 1.1 + i * .05); });
-      setForm(t, open(1), 'tile', b);
-      // 3. your team runs it: cells go live and turn, Snowfield steps outside and its slot fills
-      const o = b + 2.2;
-      t.call(() => step(2), null, o);
-      if (pt) t.to(pt, { opacity: 0, duration: .3 }, o + .5).to(pm, { opacity: 1, duration: .3 }, o + .5);
-      // stacked: pass through the gutter between the two labels so Snowfield never crosses "Your accounts"
-      if (small) t.to(pg, { keyframes: [{ x: 185, y: 224, duration: .4, ease: 'power1.in' }, { x: open(2).x, y: open(2).y, duration: .4, ease: 'power1.out' }] }, o);
-      else t.to(pg, { x: open(2).x, y: open(2).y, duration: .8, ease: 'power2.inOut' }, o);
-      t.to(open(1).g, { opacity: 1, duration: .3 }, o + .5);
-      t.to(bounds[1], { attr: { 'stroke-dashoffset': 0 }, duration: 1, ease: 'power1.inOut' }, o + .2);
-      P[2].filter(s => s !== open(2)).sort((a, c) => dist(a) - dist(c)).forEach((s, i) => { t.to(s.g, { opacity: 1, duration: .25 }, o + .5 + i * .05); morph(t, s, 't', 'm', o + 1.1 + i * .05); t.call(() => turn(s.cube), null, o + 1.5 + i * .08); });
-      t.to(labs[2], { opacity: 1, duration: .4 }, o + 1.6);
-      // leave over the top-right edge, outside the cells, then down to the rest spot, so it never crosses a neighbour
-      t.to(pg, { keyframes: [...L.exit.map(([x, y], i) => ({ x, y, duration: i ? .25 : .45, ease: i ? 'none' : 'power1.in' })), { x: L.pinkAt[0], y: L.pinkAt[1], duration: .5, ease: 'power1.out' }] }, o + 2.1).to(pLab, { opacity: 1, duration: .4 }, o + 2.9);
-      setForm(t, open(2), 'mark', o); t.to(open(2).g, { opacity: 1, duration: .4 }, o + 2.6).call(() => turn(open(2).cube), null, o + 2.8);
-      t.to({}, { duration: .6 });
-      return t;
-    };
-    return { tl, rest };
+  const clamp01 = v => Math.max(0, Math.min(1, v));
+  const seg = (t, a, b) => clamp01((t - a) / (b - a));
+  const lat = k => (q, r, cx, cy) => [cx + SF.DX * k * (q + r / 2), cy + SF.DY * k * r];
+  const hexArea = n => {
+    const out = [];
+    for (let r = -n; r <= n; r++) {
+      for (let q = -n; q <= n; q++) {
+        if (Math.abs(q + r) <= n) out.push([q, r]);
+      }
+    }
+    return out;
+  };
+  const hexPts = (cx, cy, R) =>
+    [0, 1, 2, 3, 4, 5]
+      .map(i => {
+        const a = (Math.PI / 180) * (60 * i - 90);
+        return `${(cx + R * Math.cos(a)).toFixed(1)},${(cy + R * Math.sin(a)).toFixed(1)}`;
+      })
+      .join(' ');
+  const tone = r => Math.max(1, Math.min(8, 4 + r));
+  const cellDist = s => Math.hypot(s.q + s.r / 2, s.r * 0.866);
+
+  function createSlot(parent, x, y, tn, k) {
+    const at = el('g', { transform: `translate(${x.toFixed(2)} ${y.toFixed(2)})`, class: 'sf-cell-slot' });
+    const inner = el('g');
+    const o = SF.cell(inner, 0, 0, k, tn, 'outline');
+    const t = SF.cell(inner, 0, 0, k, tn, 'tile');
+    const m = SF.cell(inner, 0, 0, k, tn, 'mark');
+    at.append(inner);
+    parent.append(at);
+    return { at, inner, o, t, m, x, y, cube: m.querySelector('.cube') };
   }
 
-  /* runner: draw the rest frame, fetch GSAP near the screen, play once in view; Pause and Replay */
-  let gsapP = null;
-  const loadG = () => gsapP || (gsapP = new Promise((ok, no) => { if (window.gsap) return ok(); const s = D.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js'; s.crossOrigin = 'anonymous'; s.onload = ok; s.onerror = () => { gsapP = null; no(); }; D.head.append(s); }));
-  const SCENES = { knowledge: f => knowledge(f, WIDE.matches), engagement: f => engagement(f, ROW.matches ? ENG.row : ENG.stack) };
-  D.querySelectorAll('figure.explain').forEach(fig => {
-    const btn = fig.querySelector('.ex-btn'); let sc, t = null, seen = false, armed = false, layout = '';
-    const setBtn = s => { if (btn) btn.textContent = s; };
-    const fresh = () => { if (t) t.kill(); t = sc.tl(); const c = t.eventCallback('onComplete'); t.eventCallback('onComplete', () => { if (c) c(); setBtn('Replay'); }); };
-    const key = () => WIDE.matches + ',' + ROW.matches;
-    const build = () => { if (t) t.kill(); t = null; armed = false; layout = key(); sc = SCENES[fig.dataset.scene](fig); setBtn('Replay'); };
-    // before the picture scrolls into view, show the opening frame so play starts without a jump
-    const arm = () => { if (armed || seen || RM.matches || !window.gsap) return; armed = true; fresh(); t.seek(0.01, false); };
-    const play = () => loadG().then(() => { if (RM.matches) return; if (!armed) fresh(); armed = false; setBtn('Pause'); t.play(0); })
-      .catch(() => { sc.rest(); setBtn('Replay'); });
-    build();
-    if (btn) btn.addEventListener('click', () => {
-      if (!t || t.progress() === 1) return play();
-      if (t.paused()) { t.play(); setBtn('Pause'); } else { t.pause(); setBtn('Play'); }
+  function setFormBlend(slot, oOp, tOp, mOp) {
+    slot.o.style.opacity = oOp.toFixed(3);
+    slot.t.style.opacity = tOp.toFixed(3);
+    slot.m.style.opacity = mOp.toFixed(3);
+  }
+
+  function animatePulse(pathEl, progress, active) {
+    if (!pathEl) return;
+    if (!active || progress <= 0 || progress >= 1) {
+      pathEl.style.opacity = '0';
+      return;
+    }
+    const len = pathEl.getTotalLength ? pathEl.getTotalLength() : 64;
+    const segLen = Math.max(18, len * 0.36);
+    const offset = len * (1 - easeInOut(progress)) - segLen * 0.3;
+    const fade = Math.min(1, progress * 5, (1 - progress) * 5);
+    pathEl.style.strokeDasharray = `${segLen.toFixed(1)} ${(len * 2).toFixed(1)}`;
+    pathEl.style.strokeDashoffset = `${offset.toFixed(1)}`;
+    pathEl.style.opacity = (0.95 * fade).toFixed(3);
+  }
+
+  const controllers = {};
+
+  /* ========================================================================
+     SCENE 1: Knowledge Layer — Normalize Signal -> Cited Answer -> Escalation
+     ======================================================================== */
+  function initKnowledge(fig) {
+    const svgBox = fig.querySelector('.kn-svg-box');
+    if (!svgBox) return;
+
+    const W = 440, H = 330, CX = 220, CY = 165, K = 0.60;
+    const ax = lat(K);
+    const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, 'aria-hidden': 'true', focusable: 'false' });
+    SF.defs(svg);
+    svgBox.replaceChildren(svg);
+
+    const gridGroup = el('g');
+    svg.append(gridGroup);
+
+    // Radial outward scatter strictly guaranteeing zero hex-over-hex overlap at t=0
+    const cells = hexArea(2).map(([q, r], idx) => {
+      const [x, y] = ax(q, r, CX, CY);
+      const s = createSlot(gridGroup, x, y, tone(r), K);
+      const rx = (x - CX) * 0.24;
+      const ry = (y - CY) * 0.20;
+      return Object.assign(s, { q, r, dx: rx, dy: ry, dist: cellDist({ q, r }), idx });
     });
-    // a real layout change shows the new rest frame (Replay plays it); change events that leave the layout as it was are ignored
-    [WIDE, ROW].forEach(m => m.addEventListener('change', () => { if (key() !== layout) build(); }));
-    RM.addEventListener('change', () => { if (RM.matches) { if (t) t.kill(); t = null; sc.rest(); } setBtn('Replay'); });
-    if (!('IntersectionObserver' in window)) return;
-    const near = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting) && !RM.matches) { near.disconnect(); loadG().then(arm).catch(() => {}); } }, { rootMargin: '1500px 0px' });
-    near.observe(fig);
-    const io = new IntersectionObserver(es => { if (!seen && es.some(e => e.isIntersecting)) { seen = true; io.disconnect(); if (!RM.matches) play(); } }, { threshold: .5 });
-    io.observe(fig.querySelector('.ex-art'));
+
+    const hitCell = cells.find(c => c.q === 1 && c.r === -1) || cells[0];
+    // Single signature Snowfield pink R1301 focal cell layer on the matched rule node
+    const hitPink = SF.cell(hitCell.inner, 0, 0, K, 'p', 'mark');
+    hitPink.style.opacity = '0';
+    hitCell.pinkCube = hitPink.querySelector('.cube');
+    // Precision ring seated strictly in the 3.4641-unit lattice gutter (non-colour cue for pink cell)
+    const hitRing = el('polygon', {
+      points: hexPts(hitCell.x, hitCell.y, 56 * K),
+      class: 'sf-gutter-ring'
+    });
+    svg.append(hitRing);
+
+    // DOM references inside the architectural stage
+    const tabs = [...fig.querySelectorAll('.ex-tab')];
+    const playBtn = fig.querySelector('[data-action="toggle"]');
+    const replayBtn = fig.querySelector('[data-action="replay"]');
+    const inputPanel = fig.querySelector('[data-kn-input]');
+    const inputViews = [...fig.querySelectorAll('.kn-input-view')];
+    const chamber = fig.querySelector('.kn-chamber');
+    const statusText = fig.querySelector('[data-kn-status]');
+    const statusTag = fig.querySelector('[data-kn-tag]');
+    const cardAnswer = fig.querySelector('[data-kn-out="answer"]');
+    const cardEscalate = fig.querySelector('[data-kn-out="escalate"]');
+
+    // Waveguide tracks, ports, and pulse overlays (both desktop H and mobile V)
+    const trIn = [...fig.querySelectorAll('[data-wg="in-track"]')];
+    const ptIn = [...fig.querySelectorAll('[data-wg="in-port"]')];
+    const plIn = [...fig.querySelectorAll('[data-wg="in-pulse"]')];
+    const trAns = [...fig.querySelectorAll('[data-wg="ans-track"]')];
+    const ptAns = [...fig.querySelectorAll('[data-wg="ans-port"]')];
+    const plAns = [...fig.querySelectorAll('[data-wg="ans-pulse"]')];
+    const trEsc = [...fig.querySelectorAll('[data-wg="esc-track"]')];
+    const ptEsc = [...fig.querySelectorAll('[data-wg="esc-port"]')];
+    const plEsc = [...fig.querySelectorAll('[data-wg="esc-pulse"]')];
+
+    let cubeTurnedForPass = false;
+    const DURATION = 10.5; // seconds for complete 3-stage cycle
+
+    function setActiveTab(stepIdx) {
+      tabs.forEach((t, i) => t.setAttribute('aria-selected', String(i === stepIdx)));
+      inputViews.forEach((v, i) => { v.hidden = i !== stepIdx; });
+    }
+
+    function setClasses(list, cls, on) {
+      list.forEach(node => node.classList.toggle(cls, on));
+    }
+
+    function renderAt(tNorm, isStaticRest) {
+      const p = clamp01(tNorm);
+
+      if (isStaticRest) {
+        // Static rest frame: tells the entire story at a glance with one pink focal Snowfield cell
+        setActiveTab(1);
+        cells.forEach(c => {
+          c.inner.setAttribute('transform', 'translate(0 0)');
+          c.at.style.opacity = c === hitCell ? '1' : '0.86';
+          setFormBlend(c, 0, 0, c === hitCell ? 0 : 1);
+        });
+        hitPink.style.opacity = '1';
+        hitRing.classList.add('on');
+        inputPanel.className = 'kn-panel lit';
+        chamber.className = 'kn-chamber lit-ice';
+        statusText.textContent = 'Verified reference lattice · 19 rule nodes';
+        statusTag.textContent = '§4.2 MATCHED';
+        cardAnswer.className = 'kn-out-card active-answer';
+        cardEscalate.className = 'kn-out-card';
+        setClasses(trIn, 'active-ice', true);
+        setClasses(trIn, 'active-esc', false);
+        setClasses(ptIn, 'active-ice', true);
+        setClasses(ptIn, 'active-esc', false);
+        setClasses(trAns, 'active-ice', true);
+        setClasses(ptAns, 'active-ice', true);
+        setClasses(trEsc, 'active-esc', false);
+        setClasses(ptEsc, 'active-esc', false);
+        [...plIn, ...plAns, ...plEsc].forEach(elP => { elP.style.opacity = '0'; });
+        return;
+      }
+
+      // 3 narrative chapters across [0 .. 1]:
+      // Stage 0 [0.00 .. 0.34]: Scattered inputs -> crystallized unified reference lattice
+      // Stage 1 [0.34 .. 0.68]: Covered question -> waveguide A->B -> lattice scan -> matched rule -> cited answer
+      // Stage 2 [0.68 .. 1.00]: Out-of-policy question -> waveguide A->B -> lattice check -> refusal -> supervisor escalation
+      if (p < 0.34) {
+        cubeTurnedForPass = false;
+        if (hitCell.cube) hitCell.cube.classList.remove('turn');
+        if (hitCell.pinkCube) hitCell.pinkCube.classList.remove('turn');
+        hitPink.style.opacity = '0';
+        const u = seg(p, 0.0, 0.34);
+        setActiveTab(0);
+        inputPanel.className = 'kn-panel lit';
+        chamber.className = 'kn-chamber';
+        cardAnswer.className = 'kn-out-card dim';
+        cardEscalate.className = 'kn-out-card dim';
+
+        const gather = easeInOut(seg(u, 0.08, 0.56));
+        const toMark = easeOut(seg(u, 0.68, 0.94));
+
+        cells.forEach(c => {
+          const lag = (c.dist / 2.6) * 0.14;
+          const cg = easeInOut(seg(u, 0.06 + lag, 0.52 + lag));
+          const tx = c.dx * (1 - cg);
+          const ty = c.dy * (1 - cg);
+          const sc = 0.78 + 0.22 * cg;
+          c.inner.setAttribute('transform', `translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${sc.toFixed(3)})`);
+          c.at.style.opacity = (0.50 + 0.50 * cg).toFixed(3);
+          const ct = easeOut(seg(u, 0.46 + lag, 0.68 + lag));
+          const cm = easeOut(seg(u, 0.66 + lag, 0.88 + lag));
+          setFormBlend(c, 1 - ct, ct * (1 - cm), cm);
+        });
+
+        hitRing.classList.remove('on');
+        statusText.textContent = toMark > 0.7 ? 'Reference lattice locked · Contradictions resolved' : 'Normalizing playbooks & escalation rules...';
+        statusTag.textContent = toMark > 0.7 ? 'LOCKED' : 'SYNCING';
+
+        setClasses(trIn, 'active-ice', gather > 0.1);
+        setClasses(trIn, 'active-esc', false);
+        setClasses(ptIn, 'active-ice', gather > 0.1);
+        setClasses(ptIn, 'active-esc', false);
+        setClasses(trAns, 'active-ice', false);
+        setClasses(ptAns, 'active-ice', false);
+        setClasses(trEsc, 'active-esc', false);
+        setClasses(ptEsc, 'active-esc', false);
+
+        plIn.forEach(node => animatePulse(node, seg(u, 0.12, 0.68), true));
+        plAns.forEach(node => animatePulse(node, 0, false));
+        plEsc.forEach(node => animatePulse(node, 0, false));
+      } else if (p < 0.68) {
+        const u = seg(p, 0.34, 0.68);
+        setActiveTab(1);
+        inputPanel.className = 'kn-panel lit';
+        chamber.className = 'kn-chamber lit-ice';
+
+        const inWave = seg(u, 0.02, 0.30);
+        const scanWave = seg(u, 0.24, 0.64);
+        const matched = u >= 0.52;
+        const outWave = seg(u, 0.56, 0.88);
+        const answerLit = u >= 0.76;
+
+        cells.forEach(c => {
+          c.inner.setAttribute('transform', 'translate(0 0)');
+          setFormBlend(c, 0, 0, matched && c === hitCell ? 0 : 1);
+          if (matched) {
+            c.at.style.opacity = c === hitCell ? '1' : '0.48';
+          } else if (scanWave > 0) {
+            // Smooth crystallographic sweep from left to right across the lattice
+            const normX = (c.x - (CX - 130)) / 260;
+            const d = Math.abs(normX - scanWave);
+            const boost = Math.max(0, 1 - d * 3.2);
+            c.at.style.opacity = (0.58 + 0.42 * boost).toFixed(3);
+          } else {
+            c.at.style.opacity = '0.88';
+          }
+        });
+
+        hitPink.style.opacity = matched ? '1' : '0';
+        hitRing.classList.toggle('on', matched);
+        if (matched && !cubeTurnedForPass && hitCell.pinkCube && !RM.matches) {
+          cubeTurnedForPass = true;
+          hitCell.pinkCube.classList.remove('turn');
+          void hitCell.pinkCube.getBoundingClientRect();
+          hitCell.pinkCube.classList.add('turn');
+        }
+
+        statusText.textContent = matched
+          ? 'Rule verified · Operations Playbook §4.2'
+          : 'Checking question against approved rules...';
+        statusTag.textContent = matched ? '§4.2 MATCHED' : 'GRADING';
+
+        cardAnswer.className = answerLit ? 'kn-out-card active-answer' : 'kn-out-card dim';
+        cardEscalate.className = 'kn-out-card dim';
+
+        setClasses(trIn, 'active-ice', true);
+        setClasses(trIn, 'active-esc', false);
+        setClasses(ptIn, 'active-ice', true);
+        setClasses(ptIn, 'active-esc', false);
+        setClasses(trAns, 'active-ice', matched);
+        setClasses(ptAns, 'active-ice', matched);
+        setClasses(trEsc, 'active-esc', false);
+        setClasses(ptEsc, 'active-esc', false);
+
+        plIn.forEach(node => animatePulse(node, inWave, true));
+        plAns.forEach(node => animatePulse(node, outWave, matched));
+        plEsc.forEach(node => animatePulse(node, 0, false));
+      } else {
+        cubeTurnedForPass = false;
+        if (hitCell.cube) hitCell.cube.classList.remove('turn');
+        if (hitCell.pinkCube) hitCell.pinkCube.classList.remove('turn');
+        hitPink.style.opacity = '0';
+        const u = seg(p, 0.68, 1.0);
+        setActiveTab(2);
+        inputPanel.className = 'kn-panel lit-esc';
+        chamber.className = 'kn-chamber lit-esc';
+
+        const inWave = seg(u, 0.02, 0.30);
+        const scanWave = seg(u, 0.24, 0.62);
+        const refused = u >= 0.54;
+        const outWave = seg(u, 0.56, 0.88);
+        const escLit = u >= 0.74;
+
+        cells.forEach(c => {
+          c.inner.setAttribute('transform', 'translate(0 0)');
+          setFormBlend(c, 0, 0, 1);
+          if (refused) {
+            c.at.style.opacity = '0.38';
+          } else if (scanWave > 0) {
+            const normX = (c.x - (CX - 130)) / 260;
+            const d = Math.abs(normX - scanWave);
+            const boost = Math.max(0, 1 - d * 3.0);
+            c.at.style.opacity = (0.48 + 0.44 * boost).toFixed(3);
+          } else {
+            c.at.style.opacity = '0.82';
+          }
+        });
+
+        hitRing.classList.remove('on');
+        statusText.textContent = refused
+          ? 'No matching rule · Routed without guessing'
+          : 'Checking exception against reference lattice...';
+        statusTag.textContent = refused ? 'ESCALATED' : 'CHECKING';
+
+        cardAnswer.className = 'kn-out-card dim';
+        cardEscalate.className = escLit ? 'kn-out-card active-escalate' : 'kn-out-card dim';
+
+        setClasses(trIn, 'active-ice', false);
+        setClasses(trIn, 'active-esc', true);
+        setClasses(ptIn, 'active-ice', false);
+        setClasses(ptIn, 'active-esc', true);
+        setClasses(trAns, 'active-ice', false);
+        setClasses(ptAns, 'active-ice', false);
+        setClasses(trEsc, 'active-esc', refused);
+        setClasses(ptEsc, 'active-esc', refused);
+
+        plIn.forEach(node => animatePulse(node, inWave, true));
+        plAns.forEach(node => animatePulse(node, 0, false));
+        plEsc.forEach(node => animatePulse(node, outWave, refused));
+      }
+    }
+
+    // Playback loop
+    let rafId = 0;
+    let playing = false;
+    let progress = 1;
+    let lastTs = 0;
+    let stopAt = 1;
+    let seen = false;
+
+    function updatePlayBtn() {
+      if (!playBtn) return;
+      playBtn.textContent = playing ? 'Pause' : 'Play';
+      playBtn.setAttribute('aria-pressed', String(playing));
+    }
+
+    function stop() {
+      playing = false;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+      updatePlayBtn();
+    }
+
+    function tick(ts) {
+      if (!playing) return;
+      const dt = Math.min(0.05, (ts - lastTs) / 1000 || 0.016);
+      lastTs = ts;
+      progress += dt / DURATION;
+      if (progress >= stopAt) {
+        progress = stopAt;
+        renderAt(progress, stopAt >= 0.999 ? false : false);
+        stop();
+        return;
+      }
+      renderAt(progress, false);
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function playFrom(startP, endP = 1) {
+      if (RM.matches) {
+        renderAt(endP >= 0.99 ? 0.95 : endP, endP === 1);
+        return;
+      }
+      progress = startP;
+      stopAt = endP;
+      playing = true;
+      lastTs = performance.now();
+      updatePlayBtn();
+      renderAt(progress, false);
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(tick);
+    }
+
+    // Initial rest frame immediately on load (no blank frame, CLS 0.00)
+    renderAt(1, true);
+    updatePlayBtn();
+
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener('click', () => {
+        const ranges = [[0.0, 0.33], [0.34, 0.67], [0.68, 0.99]];
+        const [a, b] = ranges[idx] || [0, 1];
+        if (RM.matches) {
+          stop();
+          const staticPts = [0.31, 0.65, 0.96];
+          renderAt(staticPts[idx], false);
+        } else {
+          playFrom(a, b);
+        }
+      });
+    });
+
+    if (playBtn) {
+      playBtn.addEventListener('click', () => {
+        if (playing) {
+          stop();
+        } else {
+          if (progress >= 0.99 || progress >= stopAt - 0.01) {
+            playFrom(0, 1);
+          } else {
+            playing = true;
+            lastTs = performance.now();
+            updatePlayBtn();
+            rafId = requestAnimationFrame(tick);
+          }
+        }
+      });
+    }
+    if (replayBtn) {
+      replayBtn.addEventListener('click', () => playFrom(0, 1));
+    }
+
+    if ('IntersectionObserver' in window && !RM.matches) {
+      const io = new IntersectionObserver(entries => {
+        if (!seen && entries.some(e => e.isIntersecting)) {
+          seen = true;
+          io.disconnect();
+          playFrom(0, 1);
+        }
+      }, { threshold: 0.35 });
+      io.observe(fig);
+    }
+
+    RM.addEventListener('change', () => {
+      if (RM.matches) { stop(); renderAt(1, true); }
+    });
+
+    controllers.knowledge = {
+      seek(t) {
+        stop();
+        if (t === 'rest') { renderAt(1, true); return; }
+        renderAt(Number(t), false);
+      }
+    };
+  }
+
+  /* ========================================================================
+     SCENE 2: Engagement — Signal Audit -> Client Accounts -> Team Ownership
+     Strictly ONE pink Snowfield R1301 cell visible across all 3 stages.
+     ======================================================================== */
+  function initEngagement(fig) {
+    const chambers = [...fig.querySelectorAll('.eng-chamber')];
+    const cards = [...fig.querySelectorAll('.eng-card')];
+    const tabs = [...fig.querySelectorAll('.ex-tab')];
+    const playBtn = fig.querySelector('[data-action="toggle"]');
+    const replayBtn = fig.querySelector('[data-action="replay"]');
+    if (chambers.length < 3) return;
+
+    const W = 360, H = 260;
+
+    function makeSvg(container) {
+      const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, 'aria-hidden': 'true', focusable: 'false' });
+      SF.defs(svg);
+      container.replaceChildren(svg);
+      return svg;
+    }
+
+    function cornerBrackets(parent, x, y, R) {
+      const g = el('g', { class: 'sf-conflict-bracket' });
+      const b = R * 0.34;
+      const top = y - R, bot = y + R, lft = x - R * 0.92, rgt = x + R * 0.92;
+      g.append(
+        el('path', { d: `M ${(lft + b).toFixed(1)} ${top.toFixed(1)} L ${lft.toFixed(1)} ${top.toFixed(1)} L ${lft.toFixed(1)} ${(top + b).toFixed(1)}` }),
+        el('path', { d: `M ${(rgt - b).toFixed(1)} ${bot.toFixed(1)} L ${rgt.toFixed(1)} ${bot.toFixed(1)} L ${rgt.toFixed(1)} ${(bot - b).toFixed(1)}` })
+      );
+      parent.append(g);
+      return g;
+    }
+
+    function makePink(svg, k) {
+      const g = el('g', { class: 'sf-pink-mover' });
+      SF.cell(g, 0, 0, k, 'p', 'mark');
+      svg.append(g);
+      return g;
+    }
+
+    // Panel 1: Audit — 7-cell outline field, gap at (1,-1), subtle brackets around conflict slots
+    const svg1 = makeSvg(chambers[0]);
+    const k1 = 0.60, ax1 = lat(k1), c1 = [180, 134];
+    const p1Cells = hexArea(1).map(([q, r]) => {
+      const [x, y] = ax1(q, r, ...c1);
+      const s = createSlot(svg1, x, y, tone(r), k1);
+      return Object.assign(s, { q, r, key: `${q},${r}` });
+    });
+    const gapKey = '1,-1';
+    const confKeys = ['-1,0', '1,0'];
+    const p1Open = p1Cells.find(s => s.key === gapKey);
+    const p1Brackets = p1Cells
+      .filter(s => confKeys.includes(s.key))
+      .map(s => cornerBrackets(svg1, s.x, s.y, 58 * k1));
+    // Seated strictly at exact lattice scale k1 inside the empty gap seat (zero cell overlap at any frame)
+    const p1Pink = makePink(svg1, k1);
+
+    // Panel 2: Build inside your accounts — clean vault boundary + solidifying ice tiles
+    const svg2 = makeSvg(chambers[1]);
+    const k2 = 0.56, ax2 = lat(k2), c2 = [180, 142];
+    const vault2 = el('polygon', { points: hexPts(c2[0], c2[1], 100), class: 'sf-vault-frame' });
+    svg2.append(vault2);
+    const lbl2 = el('text', { x: 180, y: 20, class: 'sf-vault-label', 'text-anchor': 'middle' });
+    lbl2.textContent = 'YOUR ACCOUNTS';
+    svg2.append(lbl2);
+    const p2Cells = hexArea(1).map(([q, r]) => {
+      const [x, y] = ax2(q, r, ...c2);
+      const s = createSlot(svg2, x, y, tone(r), k2);
+      return Object.assign(s, { q, r, key: `${q},${r}`, dist: cellDist({ q, r }) });
+    });
+    const p2Open = p2Cells.find(s => s.key === gapKey);
+    const p2Pink = makePink(svg2, k2);
+
+    // Panel 3: Team ownership — full 7-cell live crystal inside vault, Snowfield cell stepped cleanly outside
+    const svg3 = makeSvg(chambers[2]);
+    const k3 = 0.55, ax3 = lat(k3), c3 = [142, 142];
+    const vault3 = el('polygon', { points: hexPts(c3[0], c3[1], 98), class: 'sf-vault-frame' });
+    svg3.append(vault3);
+    const lbl3 = el('text', { x: 142, y: 20, class: 'sf-vault-label', 'text-anchor': 'middle' });
+    lbl3.textContent = 'YOUR ACCOUNTS';
+    svg3.append(lbl3);
+    const p3Cells = hexArea(1).map(([q, r]) => {
+      const [x, y] = ax3(q, r, ...c3);
+      const s = createSlot(svg3, x, y, tone(r), k3);
+      return Object.assign(s, { q, r, key: `${q},${r}`, dist: cellDist({ q, r }) });
+    });
+    const p3Open = p3Cells.find(s => s.key === gapKey);
+    const p3PinkRest = [298, 138];
+    const p3Pink = makePink(svg3, 0.58);
+    const p3PinkLabel = el('text', { x: p3PinkRest[0], y: 198, class: 'sf-pink-label', 'text-anchor': 'middle' });
+    p3PinkLabel.textContent = 'Snowfield';
+    svg3.append(p3PinkLabel);
+
+    const walkOrder = p1Cells
+      .filter(s => s.key !== gapKey)
+      .sort((a, b) => a.r - b.r || a.q - b.q);
+
+    let cubesTurned = false;
+    const DURATION = 9.0;
+
+    function setActiveStep(stepIdx) {
+      tabs.forEach((t, i) => t.setAttribute('aria-selected', String(i === stepIdx)));
+      cards.forEach((c, i) => c.classList.toggle('active', i === stepIdx));
+    }
+
+    function renderAt(tNorm, isStaticRest) {
+      const p = clamp01(tNorm);
+
+      if (isStaticRest) {
+        setActiveStep(2);
+        // Panel 1: clean audited outlines
+        p1Cells.forEach(s => {
+          setFormBlend(s, 1, 0, 0);
+          s.at.style.opacity = s.key === gapKey ? '0.18' : '1';
+        });
+        p1Brackets.forEach(b => { b.style.opacity = '0.85'; });
+        p1Pink.style.opacity = '0';
+
+        // Panel 2: clean solid tiles inside vault
+        p2Cells.forEach(s => {
+          setFormBlend(s, 0, 1, 0);
+          s.at.style.opacity = '1';
+        });
+        p2Pink.style.opacity = '0';
+
+        // Panel 3: full mark cells inside vault + single pink Snowfield cell cleanly outside
+        p3Cells.forEach(s => {
+          setFormBlend(s, 0, 0, 1);
+          s.at.style.opacity = '1';
+        });
+        p3Pink.setAttribute('transform', `translate(${p3PinkRest[0]} ${p3PinkRest[1]})`);
+        p3Pink.style.opacity = '1';
+        p3PinkLabel.style.opacity = '1';
+        return;
+      }
+
+      // Stage 0 [0..0.34]: Audit — pink Snowfield cell seats cleanly inside Panel 1's open audit slot
+      // while illuminating each neighboring cell sequentially (0px shape overlap across all frames)
+      // Stage 1 [0.34..0.67]: Build — pink Snowfield cell seats flush inside Panel 2's empty slot while tiles solidify
+      // Stage 2 [0.67..1.00]: Ownership — Panel 3 cells turn live while pink Snowfield cell steps cleanly outside vault
+      if (p < 0.34) {
+        cubesTurned = false;
+        const u = seg(p, 0, 0.34);
+        setActiveStep(0);
+
+        const scanIdx = u * walkOrder.length;
+        p1Cells.forEach(s => {
+          setFormBlend(s, 1, 0, 0);
+          if (s.key === gapKey) {
+            s.at.style.opacity = '0';
+          } else {
+            const wi = walkOrder.indexOf(s);
+            s.at.style.opacity = wi <= scanIdx ? '1' : '0.35';
+          }
+        });
+        p1Brackets.forEach((b, bi) => {
+          const threshold = bi === 0 ? 0.42 : 0.72;
+          b.style.opacity = u >= threshold ? '0.9' : '0';
+        });
+        p1Pink.setAttribute('transform', `translate(${p1Open.x.toFixed(2)} ${p1Open.y.toFixed(2)})`);
+        p1Pink.style.opacity = '1';
+
+        p2Cells.forEach(s => { setFormBlend(s, 1, 0, 0); s.at.style.opacity = '0.35'; });
+        p2Pink.style.opacity = '0';
+
+        p3Cells.forEach(s => { setFormBlend(s, 0, 1, 0); s.at.style.opacity = '0.35'; });
+        p3Pink.style.opacity = '0';
+        p3PinkLabel.style.opacity = '0.35';
+      } else if (p < 0.67) {
+        cubesTurned = false;
+        const u = seg(p, 0.34, 0.67);
+        setActiveStep(1);
+
+        // Panel 1 completed state
+        p1Cells.forEach(s => {
+          setFormBlend(s, 1, 0, 0);
+          s.at.style.opacity = s.key === gapKey ? '0.18' : '0.82';
+        });
+        p1Brackets.forEach(b => { b.style.opacity = '0.75'; });
+        p1Pink.style.opacity = '0';
+
+        // Panel 2 building inside client accounts (open slot hidden while Snowfield sits flush in it)
+        p2Cells.forEach(s => {
+          if (s === p2Open) {
+            setFormBlend(s, 0, 1, 0);
+            s.at.style.opacity = '0';
+            return;
+          }
+          const lag = (s.dist / 1.5) * 0.22;
+          const m = easeOut(seg(u, 0.14 + lag, 0.68 + lag));
+          setFormBlend(s, 1 - m, m, 0);
+          s.at.style.opacity = (0.45 + 0.55 * m).toFixed(3);
+        });
+        p2Pink.setAttribute('transform', `translate(${p2Open.x.toFixed(2)} ${p2Open.y.toFixed(2)})`);
+        p2Pink.style.opacity = '1';
+
+        p3Cells.forEach(s => { setFormBlend(s, 0, 1, 0); s.at.style.opacity = '0.45'; });
+        p3Pink.style.opacity = '0';
+        p3PinkLabel.style.opacity = '0.4';
+      } else {
+        const u = seg(p, 0.67, 1.0);
+        setActiveStep(2);
+
+        p1Cells.forEach(s => {
+          setFormBlend(s, 1, 0, 0);
+          s.at.style.opacity = s.key === gapKey ? '0.18' : '0.82';
+        });
+        p1Brackets.forEach(b => { b.style.opacity = '0.75'; });
+        p1Pink.style.opacity = '0';
+
+        p2Cells.forEach(s => {
+          setFormBlend(s, 0, 1, 0);
+          s.at.style.opacity = '0.86';
+        });
+        p2Pink.style.opacity = '0';
+
+        // Panel 3: cells upgrade to full mark; Snowfield glides cleanly out above-right (zero overlap with neighbors)
+        // Two-leg path: (p3Open) -> (288, 86) clear above (1,0), then down to rest (298, 138)
+        let px = p3Open.x, py = p3Open.y;
+        const leg1 = easeInOut(seg(u, 0.16, 0.52));
+        const leg2 = easeInOut(seg(u, 0.52, 0.82));
+        const midX = 292, midY = 82;
+        if (u < 0.52) {
+          px = p3Open.x + (midX - p3Open.x) * leg1;
+          py = p3Open.y + (midY - p3Open.y) * leg1;
+        } else {
+          px = midX + (p3PinkRest[0] - midX) * leg2;
+          py = midY + (p3PinkRest[1] - midY) * leg2;
+        }
+
+        p3Cells.forEach(s => {
+          const lag = (s.dist / 1.5) * 0.16;
+          const m = easeOut(seg(u, 0.06 + lag, 0.45 + lag));
+          setFormBlend(s, 0, 1 - m, m);
+          if (s === p3Open) {
+            // Only reveal p3Open after p3Pink has completely cleared its cell seat
+            s.at.style.opacity = u >= 0.48 ? easeOut(seg(u, 0.48, 0.78)).toFixed(3) : '0';
+          } else {
+            s.at.style.opacity = '1';
+          }
+        });
+
+        if (u >= 0.48 && !cubesTurned && !RM.matches) {
+          cubesTurned = true;
+          p3Cells.forEach((s, i) => {
+            if (!s.cube) return;
+            setTimeout(() => {
+              s.cube.classList.remove('turn');
+              void s.cube.getBoundingClientRect();
+              s.cube.classList.add('turn');
+            }, i * 55);
+          });
+        }
+
+        p3Pink.setAttribute('transform', `translate(${px.toFixed(2)} ${py.toFixed(2)})`);
+        p3Pink.style.opacity = '1';
+        p3PinkLabel.style.opacity = easeOut(seg(u, 0.65, 0.92)).toFixed(3);
+      }
+    }
+
+    let rafId = 0;
+    let playing = false;
+    let progress = 1;
+    let lastTs = 0;
+    let stopAt = 1;
+    let seen = false;
+
+    function updatePlayBtn() {
+      if (!playBtn) return;
+      playBtn.textContent = playing ? 'Pause' : 'Play';
+      playBtn.setAttribute('aria-pressed', String(playing));
+    }
+
+    function stop() {
+      playing = false;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+      updatePlayBtn();
+    }
+
+    function tick(ts) {
+      if (!playing) return;
+      const dt = Math.min(0.05, (ts - lastTs) / 1000 || 0.016);
+      lastTs = ts;
+      progress += dt / DURATION;
+      if (progress >= stopAt) {
+        progress = stopAt;
+        renderAt(progress, false);
+        stop();
+        return;
+      }
+      renderAt(progress, false);
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function playFrom(startP, endP = 1) {
+      if (RM.matches) {
+        renderAt(endP, endP === 1);
+        return;
+      }
+      progress = startP;
+      stopAt = endP;
+      playing = true;
+      lastTs = performance.now();
+      updatePlayBtn();
+      renderAt(progress, false);
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(tick);
+    }
+
+    renderAt(1, true);
+    updatePlayBtn();
+
+    const triggerStep = idx => {
+      const ranges = [[0.0, 0.33], [0.34, 0.66], [0.67, 0.99]];
+      const [a, b] = ranges[idx] || [0, 1];
+      if (RM.matches) {
+        stop();
+        const staticPts = [0.28, 0.60, 0.98];
+        renderAt(staticPts[idx], false);
+      } else {
+        playFrom(a, b);
+      }
+    };
+
+    tabs.forEach((tab, idx) => tab.addEventListener('click', () => triggerStep(idx)));
+    cards.forEach((card, idx) => card.addEventListener('click', () => triggerStep(idx)));
+
+    if (playBtn) {
+      playBtn.addEventListener('click', () => {
+        if (playing) {
+          stop();
+        } else if (progress >= 0.99 || progress >= stopAt - 0.01) {
+          playFrom(0, 1);
+        } else {
+          playing = true;
+          lastTs = performance.now();
+          updatePlayBtn();
+          rafId = requestAnimationFrame(tick);
+        }
+      });
+    }
+    if (replayBtn) {
+      replayBtn.addEventListener('click', () => playFrom(0, 1));
+    }
+
+    if ('IntersectionObserver' in window && !RM.matches) {
+      const io = new IntersectionObserver(entries => {
+        if (!seen && entries.some(e => e.isIntersecting)) {
+          seen = true;
+          io.disconnect();
+          playFrom(0, 1);
+        }
+      }, { threshold: 0.35 });
+      io.observe(fig);
+    }
+
+    RM.addEventListener('change', () => {
+      if (RM.matches) { stop(); renderAt(1, true); }
+    });
+
+    controllers.engagement = {
+      seek(t) {
+        stop();
+        if (t === 'rest') { renderAt(1, true); return; }
+        renderAt(Number(t), false);
+      }
+    };
+  }
+
+  D.querySelectorAll('figure.explain').forEach(fig => {
+    if (fig.dataset.scene === 'knowledge') initKnowledge(fig);
+    if (fig.dataset.scene === 'engagement') initEngagement(fig);
   });
+
+  window.__sfExplainSeek = (scene, t) => {
+    if (controllers[scene]) controllers[scene].seek(t);
+  };
 })();
