@@ -189,6 +189,15 @@ button, input, textarea { font: inherit; color: inherit; }
   min-height: var(--bar);
   gap: var(--space-4);
 }
+@media (min-width: 960px) {
+  .bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .bar .brand { justify-self: start; }
+  .bar .nav { justify-self: center; }
+  .bar .header-actions { justify-self: end; }
+}
 
 .brand {
   display: inline-flex;
@@ -411,7 +420,7 @@ button, input, textarea { font: inherit; color: inherit; }
   padding: 0 20px;
   background: transparent;
   border: 1.5px solid var(--border-strong);
-  border-radius: 3px;
+  border-radius: 0;
   color: var(--text);
   font-weight: 600;
   font-size: var(--fs-ui);
@@ -535,7 +544,10 @@ button, input, textarea { font: inherit; color: inherit; }
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 @media (max-width: 399px) {
-  .studio-tag { font-size: 0.72rem; letter-spacing: 0.02em; }
+  .studio-tag { font-size: 0.72rem; letter-spacing: 0.02em; padding: 4px 10px; }
+}
+@media (max-width: 359px) {
+  .studio-tag { font-size: 0.69rem; letter-spacing: 0.015em; padding: 4px 8px; gap: 6px; }
 }
 
 .hero .copy { container-type: inline-size; }
@@ -545,7 +557,7 @@ button, input, textarea { font: inherit; color: inherit; }
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(1.5rem, 7.6vw, 2rem);
-  font-size: clamp(1.5rem, 8.3cqw, 3.6rem);
+  font-size: clamp(1.45rem, 8.3cqw, 3.6rem);
   line-height: 1.12;
   letter-spacing: -0.024em;
   text-wrap: balance;
@@ -553,7 +565,8 @@ button, input, textarea { font: inherit; color: inherit; }
 }
 [data-theme=dark] .display { letter-spacing: -0.02em; }
 @media (min-width: 600px) and (max-width: 1039px) {
-  .hero .display { font-size: min(8.3cqw, 2.9rem); }
+  .hero .display { font-size: min(8.3cqw, 2.85rem); }
+  .hero .lede { max-width: 54ch; }
 }
 
 .lede {
@@ -576,12 +589,13 @@ button, input, textarea { font: inherit; color: inherit; }
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    margin-top: 22px;
+    margin-top: 20px;
   }
   .actions .button.large {
     min-height: 46px;
-    padding-inline: 12px;
-    font-size: 0.91rem;
+    padding-inline: 10px;
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
   .actions .button:only-child {
     grid-column: 1 / -1;
@@ -589,13 +603,23 @@ button, input, textarea { font: inherit; color: inherit; }
     padding-inline: 20px;
   }
 }
+@media (max-width: 369px) {
+  .actions {
+    grid-template-columns: 1fr;
+  }
+  .actions .button.large {
+    width: 100%;
+    padding-inline: 16px;
+  }
+}
 
 /* Subtle architectural proof bar inside hero */
 .hero-pillars {
-  display: grid;
-  gap: 8px;
-  margin-top: 28px;
-  padding-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 26px;
+  padding-top: 16px;
   border-top: 1px solid var(--border-subtle);
   list-style: none;
   padding-left: 0;
@@ -618,44 +642,60 @@ button, input, textarea { font: inherit; color: inherit; }
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 @media (min-width: 600px) {
-  .hero-pillars { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+  .hero-pillars { gap: 8px 22px; }
 }
 @media (max-width: 599px) {
   .hero-pillars {
-    margin-top: 16px;
+    margin-top: 14px;
     padding-top: 12px;
-    gap: 4px;
+    gap: 6px 14px;
   }
-  .hero-pillars li { font-size: 0.78rem; }
+  .hero-pillars li { font-size: 0.73rem; }
 }
 
-/* Hero Crystal Art Stage — Smooth 4-edge feathered dissolve (zero harsh box crop) */
+/* Hero Crystal Art Stage — Crisp interior crop on phones, full-bleed edge on desktop */
 .frame {
   position: relative;
   aspect-ratio: 1 / 1;
   container-type: size;
   margin-inline: auto;
 }
-.hero-art {
+.hero-art-wrap {
   width: 100%;
   max-width: 358px;
-  aspect-ratio: 16 / 11;
+  margin-inline: auto;
+  padding: 1px;
+  background: var(--border-subtle);
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 9.2px, 100% 100%, 0 100%);
+}
+.hero-art {
+  width: 100%;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
-  border-radius: 6px;
+  clip-path: polygon(0 0, calc(100% - 15.5px) 0, 100% 8.9px, 100% 100%, 0 100%);
+  background: var(--surface-1);
 }
 @media (min-width: 600px) {
-  .hero-art {
+  .hero-art-wrap {
     max-width: 100%;
-    aspect-ratio: 16 / 10;
+  }
+  .hero-art {
+    aspect-ratio: 16 / 9;
   }
 }
 @media (min-width: 1040px) {
-  .hero-art {
+  .hero-art-wrap {
     max-width: 660px;
-    aspect-ratio: 1 / 1;
     margin-left: auto;
     margin-right: 0;
-    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    clip-path: none;
+  }
+  .hero-art {
+    aspect-ratio: 1 / 1;
+    clip-path: none;
+    background: transparent;
   }
 }
 
@@ -668,33 +708,27 @@ button, input, textarea { font: inherit; color: inherit; }
 .pic {
   position: absolute;
   inset: 0;
-  /* Phone and tablet crop into the full interior of the lattice, so the stepped
-     outer silhouette of the artwork sits outside the frame instead of reading as a cut-out corner. */
+  /* Phone and tablet crop cleanly into the interior of the lattice inside a chamfered
+     architectural frame so neither stepped corners nor hazy fog edges appear. */
   background-size: 150% auto;
-  background-position: 100% 25%;
+  background-position: 100% 24%;
   background-repeat: no-repeat;
-  -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 10%, #000 92%, transparent 100%);
-  mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 10%, #000 92%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
 }
 @media (min-width: 600px) {
-  .pic { background-position: 100% 35%; }
+  .pic { background-position: 100% 34%; }
 }
 @media (min-width: 1040px) {
   .pic {
     background-size: 100% 100%;
     background-position: center;
     -webkit-mask-image:
-      linear-gradient(to bottom, transparent 0%, #000 12%, #000 86%, transparent 100%),
-      linear-gradient(to right, transparent 0%, #000 16%, #000 94%, transparent 100%);
+      linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 14%, #000 100%);
     mask-image:
-      linear-gradient(to bottom, transparent 0%, #000 12%, #000 86%, transparent 100%),
-      linear-gradient(to right, transparent 0%, #000 16%, #000 94%, transparent 100%);
+      linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 14%, #000 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
   }
 }
 
@@ -814,7 +848,11 @@ main p a:hover {
 .foot-nav a, .foot-social a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-height: 44px;
+  min-width: 44px;
+  padding-inline: 6px;
+  margin-inline: -6px;
   color: var(--soft);
   text-decoration: none;
   font-weight: 600;

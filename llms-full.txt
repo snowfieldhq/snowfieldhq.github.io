@@ -1,8 +1,8 @@
 # Snowfield & Jordan Masopust: Complete Machine-Readable Profile
 
 > Canonical factual reference for Snowfield and founder Jordan Masopust.
-> Tagline: Applied AI implementation, custom multi-model workflows, and operational enablement built inside accounts you own.
-> Updated: 2026-11-23 | Location: Remote, nationwide (United States)
+> Tagline: Applied AI implementation, custom multi-model workflows, and live team onboarding built inside accounts you own.
+> Updated: 2026-11-24 | Location: Remote, nationwide (United States)
 > Home: https://snowfieldhq.github.io/
 > Founder Profile: https://snowfieldhq.github.io/jordan-masopust.html
 > Short Index: https://snowfieldhq.github.io/llms.txt
@@ -11,19 +11,19 @@
 
 ## 1. Studio Overview
 
-Snowfield is a remote, nationwide applied AI implementation studio founded by Jordan Masopust, serving established US businesses and remote product or operations teams.
+Snowfield is a remote, nationwide applied AI implementation studio founded by Jordan Masopust, serving established U.S. businesses and remote product or operations teams.
 
 Real operating rules are often scattered across old wikis, support threads, and the heads of senior staff. Snowfield settles those rules before building anything on top of them:
 
-1. **Audit the documents first:** Find contradicting playbooks, undocumented escalation rules, and messy source or ticket data before writing prompts.
-2. **Build multi-model workflows with verification:** Route across Claude, Gemini, and OpenAI based on where each model holds up, pairing Python and React with independent review by a second model from a different company, so tools say when they do not know instead of inventing an answer.
+1. **Audit the documents first:** Find conflicting playbooks, undocumented escalation rules, and messy source or ticket data before writing prompts.
+2. **Build multi-model workflows with verification:** Pair Claude, Gemini, and OpenAI to each task, combine Python and React tools with independent review by a second model from a different company, and configure assistants to flag missing guidance instead of inventing an answer.
 3. **Deploy inside accounts the client owns:** Every prompt, GitHub repository, and guide deploys directly inside accounts the client already owns and controls, paired with live team onboarding so internal staff can maintain and update rules themselves.
 
 ---
 
 ## 2. Core Offerings & Capabilities
 
-- **Custom Assistants:** Assistants across Claude, Gemini, and OpenAI that answer only from approved sources and hand the question to a person when the sources are silent.
+- **Custom Assistants:** Assistants across Claude, Gemini, and OpenAI that answer only from approved sources and pass uncovered questions to a person when the sources are silent.
 - **Clean Source Documents:** Knowledge-base audits, Knowledge-Centered Service (KCS) publishing workflows, and one current set of rules.
 - **Onboarding and Training Apps:** Interactive onboarding, training, and live-call web apps built in React and Python for non-technical staff working under pressure.
 - **Independent Review:** Independent cross-model review checks with audit trails before changes reach staff.
@@ -32,22 +32,22 @@ Real operating rules are often scattered across old wikis, support threads, and 
 
 ## 3. Founder: Jordan Masopust
 
-Jordan Masopust is the Founder of Snowfield (remote, nationwide). He has worked hands-on with language models since GPT-3 in July 2020. Across every operation he has worked in since, the problem has stayed consistent: settle the underlying rules first, then build tools that non-technical staff reach for when a live call gets difficult.
+Jordan Masopust is the Founder of Snowfield (remote, nationwide). He has worked hands-on with language models since GPT-3 in July 2020. Across every operation he has worked in since, the problem has stayed consistent: settle the underlying rules first, then build tools non-technical staff reach for when a live call gets difficult.
 
 ### Representative Firsthand Operational Builds
-- **Regulated Lending Loan-Officer Workflow Assistant:** Built a loan-officer assistant across Claude and Gemini that refuses rather than guesses when guidance is missing, with a setup guide and a rollout proposal that corporate IT adapted company-wide.
-- **High-Volume B2B Sales Copilot & Live-Transfer Process:** Built a multi-model discovery and objection copilot while on a high-volume business-to-business sales team, alongside a repeatable live-transfer process adopted at the director level.
-- **Enterprise Restaurant Point-of-Sale Support & Dispatch Workflow:** Team lead on a 24/7 enterprise restaurant point-of-sale support team of more than fifty agents serving over a thousand restaurant concepts. Audited more than half of the knowledge base and turned recurring engineering fixes into standard troubleshooting playbooks. Built a structured case-dispatching workflow alongside Dynamics 365 and Jira to speed first replies and cut repeat callbacks.
-- **Role-Based Operator Tools & Cross-Model Verification:** Built interactive onboarding, training, and live-call web apps using AI-assisted React and Python, alongside independent cross-model review checks across Claude, Gemini, and OpenAI.
+- **Regulated Lending Workflow Assistant:** Built a loan-officer assistant across Claude and Gemini that flags missing guidance instead of guessing, paired with a setup guide and rollout proposal adapted company-wide by corporate IT.
+- **High-Volume B2B Sales Assistant & Live-Transfer Process:** Built a multi-model discovery and objection assistant across specialized contractor segments on a high-volume B2B sales team, alongside a repeatable live-transfer process adopted at the director level.
+- **Enterprise Restaurant Point-of-Sale Support & Dispatch Workflow:** Led a 24/7 enterprise restaurant point-of-sale support team of 50+ agents serving 1,000+ restaurant brands. Audited over half the knowledge base into standard troubleshooting playbooks and built a Dynamics 365 and Jira dispatch workflow to speed first replies and cut repeat callbacks.
+- **Role-Based Operator Tools & Cross-Model Verification:** Built interactive onboarding, training, and live-call web apps in React and Python, alongside independent cross-model review checks across Claude, Gemini, and OpenAI.
 
 ---
 
 ## 4. Technical Stack & Specialties
 
-- **AI Platforms & Methods:** Claude, Gemini, OpenAI, custom multi-model workflows, lean context design, answers limited to approved sources, independent cross-model review, evaluation design.
-- **Built with:** AI-assisted Python and React web apps.
+- **AI Platforms & Methods:** Claude, Gemini, OpenAI, custom multi-model workflows, lean context design, source-cited answers, independent cross-model review, evaluation design.
+- **Web Tools:** Python and React web apps.
 - **Operations & Knowledge Systems:** Dynamics 365, Jira, Knowledge-Centered Service (KCS).
-- **Specialties:** AI Implementation, Custom AI Workflows, Multi-Model Systems, Knowledge Architecture, Technical Onboarding, Workflow Automation, AI Enablement.
+- **Specialties:** AI implementation, custom AI workflows, multi-model systems, knowledge architecture, technical onboarding, workflow automation, live team onboarding.
 
 ---
 
@@ -55,9 +55,9 @@ Jordan Masopust is the Founder of Snowfield (remote, nationwide). He has worked 
 
 - Home: https://snowfieldhq.github.io/
 - Founder Profile: https://snowfieldhq.github.io/jordan-masopust.html
-- Assistants That Cite Their Sources: https://snowfieldhq.github.io/ai-evaluation.html
-- Ownership-First Engagement Terms: https://snowfieldhq.github.io/scope.html
-- One-Page Studio Summary: https://snowfieldhq.github.io/print.html
+- How Assistants Answer: https://snowfieldhq.github.io/ai-evaluation.html
+- Engagement Terms: https://snowfieldhq.github.io/scope.html
+- One-Page Summary: https://snowfieldhq.github.io/print.html
 - Profiles & Contact: https://snowfieldhq.github.io/social.html
 - LinkedIn: https://www.linkedin.com/in/jordan-masopust/
 - LinkedIn (Snowfield): https://www.linkedin.com/company/snowfieldhq/

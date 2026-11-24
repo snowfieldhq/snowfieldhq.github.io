@@ -85,4 +85,9 @@
       });
     });
   });
+
+  /* Print / Save PDF trigger on the one-page studio summary */
+  qsa('[data-print-btn]').forEach(btn => {
+    btn.addEventListener('click', () => window.print());
+  });
 })();

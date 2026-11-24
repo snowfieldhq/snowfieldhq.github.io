@@ -41,6 +41,7 @@
 
 .card-meta {
   font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: 0.78rem;
   line-height: 1.35;
   color: var(--ice-accent);
@@ -175,15 +176,15 @@
   padding: 3px;
   background: var(--bg);
   border: 1px solid var(--border-subtle);
-  border-radius: 5px;
+  border-radius: 4px;
 }
 .ui-mode-tabs button {
-  min-height: 32px;
-  padding: 0 10px;
+  min-height: 44px;
+  padding: 0 12px;
   border: 1px solid transparent;
   background: transparent;
   color: var(--soft);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
   border-radius: 3px;
   cursor: pointer;
@@ -328,19 +329,25 @@
    Secondary Page Layouts (ai-evaluation, jordan-masopust, scope, print, social)
    ========================================================================== */
 .compact-hero {
-  padding-block: 44px 48px;
+  padding-block: 40px 44px;
   display: grid;
   gap: 18px;
 }
 @media (min-width: 1040px) {
-  .compact-hero { padding-block: 64px 56px; }
+  .compact-hero { padding-block: 52px 46px; }
 }
 /* Secondary page headings follow the home rule: two balanced lines, size from the column width. */
 .compact-hero, .product-hero-copy { container-type: inline-size; }
 .compact-hero .display,
 .product-hero .display {
-  font-size: clamp(1.75rem, 9.2cqw, 3.4rem);
+  font-size: clamp(1.55rem, 9.2cqw, 3.4rem);
   max-width: 22ch;
+}
+@media (min-width: 600px) and (max-width: 1039px) {
+  .compact-hero .display,
+  .product-hero .display {
+    font-size: min(8.3cqw, 2.85rem);
+  }
 }
 .compact-hero .lede {
   margin-top: 0;
@@ -354,14 +361,17 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 36px;
-  align-items: center;
+  align-items: start;
   padding-block: 44px 56px;
 }
 @media (min-width: 1040px) {
   .product-hero {
     grid-template-columns: 5fr 6fr;
     gap: 56px;
-    padding-block: 64px 72px;
+    padding-block: 60px 68px;
+  }
+  .product-hero .ui {
+    margin-top: 46px;
   }
 }
 .product-hero-copy {

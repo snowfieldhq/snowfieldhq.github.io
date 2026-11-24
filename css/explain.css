@@ -1,6 +1,6 @@
-/* Snowfield SOTA Interactive Architectural Stages
-   Zero dotted lines, zero connector-over-cell overlap, dedicated optical waveguide corridors,
-   shipped R1301 crystal geometry, rock-solid static rest frame & prefers-reduced-motion support. */
+/* Snowfield Interactive Architectural Stages
+   Dedicated optical waveguide corridors, shipped R1301 crystal geometry,
+   single-panel Phases 1-3 ownership stage, static rest frame, and reduced-motion support. */
 
 .arch-stage-wrap {
   margin-top: 32px;
@@ -21,6 +21,7 @@
 
 /* Top Interactive Control Bar (present from first paint -> CLS 0.00) */
 .ex-bar {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -29,6 +30,24 @@
   padding: 14px 20px;
   border-bottom: 1px solid var(--border-subtle);
   background: color-mix(in srgb, var(--bg) 55%, var(--surface-1));
+}
+
+.ex-progress-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: transparent;
+  pointer-events: none;
+}
+.ex-progress-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--ice-accent);
+  transform-origin: left center;
+  transform: scaleX(1);
 }
 
 .ex-tabs {
@@ -41,7 +60,7 @@
   padding: 0 13px;
   background: transparent;
   border: 1px solid var(--border-subtle);
-  border-radius: 4px;
+  border-radius: 3px;
   color: var(--soft);
   font-size: 0.84rem;
   font-weight: 600;
@@ -63,6 +82,7 @@
 }
 .ex-tab-idx {
   font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: 0.74rem;
   color: var(--ice-accent);
 }
@@ -79,7 +99,7 @@
   padding: 0 14px;
   background: var(--bg);
   border: 1px solid var(--border-strong);
-  border-radius: 4px;
+  border-radius: 3px;
   color: var(--text);
   font-size: 0.84rem;
   font-weight: 600;
@@ -96,7 +116,7 @@
 }
 .ex-ctrl-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-/* Phone layout: declared AFTER the base .ex-controls rule so it wins the cascade. */
+/* Phone layout declared after base rules to preserve cascade order */
 @media (max-width: 639px) {
   .ex-bar { padding: 12px 14px; gap: 10px; }
   .ex-tabs {
@@ -107,9 +127,9 @@
   }
   .ex-tab {
     min-height: 44px;
-    padding: 6px 5px;
-    font-size: 0.74rem;
-    gap: 4px;
+    padding: 6px 4px;
+    font-size: 0.73rem;
+    gap: 3px;
     flex-direction: column;
     line-height: 1.15;
     text-align: center;
@@ -123,9 +143,8 @@
 }
 
 /* ==========================================================================
-   EXPLAINER 1: Question -> Reference Lattice -> Cited Answer vs Escalation
-   Dedicated corridor columns ensure waveguides NEVER cross or cover cells.
-   phone layout fixes
+   EXPLAINER 1: Question -> Approved Policy Lattice -> Cited Answer vs Handoff
+   Dedicated corridor columns ensure waveguides never cross or cover cells.
    ========================================================================== */
 .kn-grid {
   padding: 24px 20px;
@@ -146,13 +165,12 @@
   }
 }
 
-/* Stage A: Input / Incoming Query Panel */
 .kn-panel {
   min-width: 0;
   max-width: 100%;
   background: var(--bg);
   border: 1px solid var(--border-subtle);
-  border-radius: 6px;
+  border-radius: 5px;
   padding: 18px;
   display: grid;
   gap: 12px;
@@ -213,9 +231,10 @@
 }
 .kn-source-list li span:last-child {
   font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: 0.71rem;
   color: var(--soft);
-  opacity: 0.85;
+  opacity: 0.88;
   white-space: nowrap;
 }
 .kn-query-text {
@@ -230,7 +249,7 @@
 }
 .kn-input-view[hidden] { display: none; }
 
-/* Dedicated Optical Waveguide Corridors (NEVER overlapping panels or lattice) */
+/* Dedicated Optical Waveguide Corridors */
 .kn-corridor {
   min-width: 0;
   max-width: 100%;
@@ -261,27 +280,16 @@
   stroke-linecap: round;
   transition: stroke 260ms var(--ease-out), opacity 260ms var(--ease-out);
 }
-.wg-track.active-ice {
-  stroke: var(--ice-accent);
-}
-.wg-track.active-esc {
-  stroke: var(--text);
-  opacity: 0.82;
-}
+.wg-track.active-ice { stroke: var(--ice-accent); }
+.wg-track.active-esc { stroke: var(--text); opacity: 0.82; }
 .wg-port {
   fill: var(--surface-1);
   stroke: var(--border-strong);
   stroke-width: 1.5;
   transition: fill 220ms var(--ease-out), stroke 220ms var(--ease-out);
 }
-.wg-port.active-ice {
-  fill: var(--ice-accent);
-  stroke: var(--ice-bright);
-}
-.wg-port.active-esc {
-  fill: var(--text);
-  stroke: var(--text);
-}
+.wg-port.active-ice { fill: var(--ice-accent); stroke: var(--ice-bright); }
+.wg-port.active-esc { fill: var(--text); stroke: var(--text); }
 .wg-pulse {
   fill: none;
   stroke-width: 3;
@@ -297,16 +305,14 @@
   max-width: 100%;
   background: radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--ice-accent) 10%, var(--bg)) 0%, var(--bg) 72%);
   border: 1px solid var(--border-subtle);
-  border-radius: 6px;
+  border-radius: 5px;
   padding: 16px 14px 14px;
   display: grid;
   gap: 10px;
   transition: border-color 260ms var(--ease-out);
 }
 @media (max-width: 639px) {
-  .kn-chamber {
-    padding: 14px 12px 12px;
-  }
+  .kn-chamber { padding: 14px 12px 12px; }
 }
 .kn-chamber.lit-ice { border-color: var(--ice-border); }
 .kn-chamber.lit-esc { border-color: var(--border-strong); }
@@ -324,18 +330,14 @@
   color: var(--soft);
   letter-spacing: 0.03em;
 }
-.kn-chamber-badge {
-  padding: 2px 8px;
-  background: var(--surface-1);
-  border: 1px solid var(--border-subtle);
-  border-radius: 3px;
-  color: var(--text);
+/* Plain non-interactive metadata label (never styled like a button) */
+.kn-chamber-meta {
+  color: var(--ice-accent);
+  font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  max-width: 100%;
 }
 @media (max-width: 479px) {
   .kn-chamber-head { font-size: 0.69rem; }
-  .kn-chamber-badge { padding: 2px 6px; }
 }
 
 .kn-svg-box {
@@ -367,6 +369,7 @@
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
   font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: 0.76rem;
   color: var(--text);
 }
@@ -404,32 +407,37 @@
   max-width: 100%;
   background: var(--bg);
   border: 1px solid var(--border-subtle);
-  border-radius: 6px;
+  border-radius: 5px;
   padding: 16px;
   display: grid;
   gap: 8px;
-  transition: border-color 260ms var(--ease-out), background-color 260ms var(--ease-out), opacity 260ms var(--ease-out), transform 260ms var(--ease-out);
+  transition: border-color 260ms var(--ease-out), background-color 260ms var(--ease-out), box-shadow 260ms var(--ease-out);
 }
 @media (max-width: 639px) {
-  .kn-out-card {
-    padding: 14px;
-  }
+  .kn-out-card { padding: 14px; }
 }
 .kn-out-card.dim {
-  /* Inactive outcome: quieter frame, full-strength text so contrast always passes. */
   background: transparent;
+  border-style: dashed;
   border-color: var(--border-subtle);
 }
-.kn-out-card.dim .kn-out-glyph { opacity: 0.55; }
+.kn-out-card.dim .kn-out-glyph { opacity: 0.45; }
+.kn-out-card.dim .kn-out-chip {
+  background: transparent;
+  border-color: var(--border-subtle);
+  color: var(--soft);
+}
 .kn-out-card.active-answer {
+  border-style: solid;
   border-color: var(--ice-border);
-  background: color-mix(in srgb, var(--ice-soft) 80%, var(--bg));
-  opacity: 1;
+  background: color-mix(in srgb, var(--ice-soft) 84%, var(--bg));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ice-accent) 22%, transparent);
 }
 .kn-out-card.active-escalate {
+  border-style: solid;
   border-color: var(--text);
-  background: color-mix(in srgb, var(--surface-elev) 75%, var(--bg));
-  opacity: 1;
+  background: color-mix(in srgb, var(--surface-elev) 78%, var(--bg));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--text) 18%, transparent);
 }
 .kn-out-head {
   display: flex;
@@ -471,90 +479,148 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--text);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 /* ==========================================================================
-   EXPLAINER 2: Signal Audit -> Build in Your Accounts -> Team Ownership
-   3 synchronized architectural cards with shipped R1301 crystal chambers
+   EXPLAINER 2: Single-Panel Unified Engagement Stage (Audit -> Build -> Onboard)
+   ONE persistent crystal chamber paired with a synchronized 3-phase narrative rail.
    ========================================================================== */
-.eng-grid {
-  padding: 24px 20px;
+.eng-unified {
+  padding: 20px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 18px;
+  align-items: stretch;
 }
 @media (max-width: 639px) {
-  .eng-grid {
-    padding: 18px 14px;
+  .eng-unified {
+    padding: 16px 14px;
+    gap: 14px;
   }
 }
-@media (min-width: 900px) {
-  .eng-grid {
+@media (min-width: 960px) {
+  .eng-unified {
     padding: 28px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
+    grid-template-columns: minmax(0, 1.32fr) minmax(300px, 0.92fr);
+    gap: 24px;
   }
 }
 
-.eng-card {
+.eng-unified-chamber {
   min-width: 0;
   max-width: 100%;
-  background: var(--bg);
+  background: radial-gradient(circle at 38% 50%, color-mix(in srgb, var(--ice-accent) 10%, var(--bg)) 0%, var(--bg) 74%);
   border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  overflow: hidden;
+  border-radius: 5px;
+  padding: 16px 16px 14px;
   display: flex;
   flex-direction: column;
-  transition: border-color 260ms var(--ease-out), box-shadow 260ms var(--ease-out);
-  cursor: pointer;
+  justify-content: space-between;
+  gap: 10px;
+  transition: border-color 260ms var(--ease-out);
 }
-.eng-card:hover {
-  border-color: var(--border-strong);
+@media (max-width: 639px) {
+  .eng-unified-chamber {
+    padding: 12px 12px 10px;
+    gap: 8px;
+  }
 }
-.eng-card.active {
+.eng-unified-chamber.lit-ice {
   border-color: var(--ice-border);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ice-accent) 22%, transparent);
 }
 
-.eng-chamber {
-  position: relative;
-  aspect-ratio: 360 / 260;
-  background: radial-gradient(circle at 50% 48%, color-mix(in srgb, var(--ice-accent) 9%, var(--bg)) 0%, var(--bg) 74%);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 12px;
+.eng-svg-box {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 560 / 356;
+  max-width: 560px;
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.eng-chamber svg {
+.eng-svg-box svg {
   width: 100%;
   height: 100%;
   display: block;
   overflow: visible;
 }
 
-.eng-copy {
-  padding: 18px 20px 20px;
+@media (max-width: 640px) { .eng-svg-box svg text { display: none; } }
+
+/* Synchronized 3-phase narrative rail inside the same unified stage */
+.eng-rail {
+  min-width: 0;
+  max-width: 100%;
   display: grid;
+  gap: 10px;
+  align-content: stretch;
+}
+
+.eng-step {
+  min-width: 0;
+  max-width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  padding: 15px 17px;
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  cursor: pointer;
+  transition: border-color 220ms var(--ease-out), background-color 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+}
+@media (max-width: 639px) {
+  .eng-step {
+    padding: 12px 14px;
+    gap: 4px;
+  }
+}
+.eng-step:hover {
+  border-color: var(--border-strong);
+}
+.eng-step:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+.eng-step.active {
+  border-color: var(--ice-border);
+  background: color-mix(in srgb, var(--ice-soft) 78%, var(--bg));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ice-accent) 22%, transparent);
+}
+.eng-step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
 }
 .eng-step-num {
   font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: 0.74rem;
   color: var(--ice-accent);
   letter-spacing: 0.03em;
 }
-.eng-copy h3 {
+.eng-step-state {
+  font-family: var(--font-mono);
+  font-size: 0.69rem;
+  color: var(--soft);
+  letter-spacing: 0.02em;
+}
+.eng-step.active .eng-step-state {
+  color: var(--ice-accent);
+}
+.eng-step h3 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.2rem;
-  line-height: 1.25;
+  font-size: 1.14rem;
+  line-height: 1.24;
   color: var(--text);
 }
-.eng-copy p {
-  font-size: 0.92rem;
-  line-height: 1.54;
+.eng-step p {
+  font-size: 0.9rem;
+  line-height: 1.52;
   color: var(--soft);
 }
 
@@ -569,17 +635,72 @@
   justify-content: space-between;
   gap: 8px 16px;
 }
+@media (max-width: 639px) {
+  .ex-foot { padding: 12px 14px; }
+}
 .ex-foot figcaption {
   color: var(--soft);
   font-size: 0.875rem;
   line-height: 1.5;
-  max-width: 68ch;
+  max-width: 72ch;
 }
 
-/* SVG Crystal Cell Micro-Mechanics */
-.sf-cell-slot {
-  transition: opacity 280ms var(--ease-out);
+/* Static R1301 crystal cell palette & facet tokens (loaded with CSS so JS never forces a mid-load <head> style recalc) */
+:root {
+  --t0a:#ADDFFE;--t0b:#74B7DF;--t0c:#4B8EB5;--t0o:#4B8EB5;
+  --t1a:#81C5ED;--t1b:#599CC3;--t1c:#307499;--t1o:#307499;
+  --t2a:#71B4DC;--t2b:#488BB2;--t2c:#1E6589;--t2o:#1E6589;
+  --t3a:#60A3CA;--t3b:#377BA0;--t3c:#045578;--t3o:#045578;
+  --t4a:#5498BE;--t4b:#2B7095;--t4c:#004B6B;--t4o:#004B6B;
+  --t5a:#498CB2;--t5b:#1E658A;--t5c:#00405D;--t5o:#00405D;
+  --t6a:#3C7FA5;--t6b:#0C597D;--t6c:#01354C;--t6o:#01354C;
+  --t7a:#2A6F94;--t7b:#024A69;--t7c:#00273A;--t7o:#00273A;
+  --t8a:#06567A;--t8b:#013249;--t8c:#00111E;--t8o:#00111E;
+  --t9a:#015477;--t9b:#002F46;--t9c:#000F1B;--t9o:#000F1B;
+  --cu1:#3D3A43;--cu2:#242229;--cu3:#0D0B12;
 }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --t0a:#CBEAFE;--t0b:#80C4ED;--t0c:#589BC2;--t0o:#CBEAFE;
+    --t1a:#9DDAFF;--t1b:#6BB1DA;--t1c:#4288B0;--t1o:#9DDAFF;
+    --t2a:#89CDF5;--t2b:#60A3CA;--t2c:#387BA1;--t2o:#89CDF5;
+    --t3a:#7FC2EB;--t3b:#5699C0;--t3c:#2D7297;--t3o:#7FC2EB;
+    --t4a:#77BAE3;--t4b:#4F92B8;--t4c:#256B8F;--t4o:#77BAE3;
+    --t5a:#6FB2DA;--t5b:#468AB0;--t5c:#1B6387;--t5o:#6FB2DA;
+    --t6a:#65A8CF;--t6b:#3C80A5;--t6c:#0D5A7D;--t6o:#65A8CF;
+    --t7a:#599CC3;--t7b:#30759A;--t7c:#024F70;--t7o:#599CC3;
+    --t8a:#468AB0;--t8b:#1B6387;--t8c:#003E5A;--t8o:#468AB0;
+    --t9a:#4288B0;--t9b:#156287;--t9c:#003D59;--t9o:#4288B0;
+    --cu1:#FAF9FC;--cu2:#D9D8DB;--cu3:#B9B8BB;
+  }
+}
+:root[data-theme="dark"] {
+  --t0a:#CBEAFE;--t0b:#80C4ED;--t0c:#589BC2;--t0o:#CBEAFE;
+  --t1a:#9DDAFF;--t1b:#6BB1DA;--t1c:#4288B0;--t1o:#9DDAFF;
+  --t2a:#89CDF5;--t2b:#60A3CA;--t2c:#387BA1;--t2o:#89CDF5;
+  --t3a:#7FC2EB;--t3b:#5699C0;--t3c:#2D7297;--t3o:#7FC2EB;
+  --t4a:#77BAE3;--t4b:#4F92B8;--t4c:#256B8F;--t4o:#77BAE3;
+  --t5a:#6FB2DA;--t5b:#468AB0;--t5c:#1B6387;--t5o:#6FB2DA;
+  --t6a:#65A8CF;--t6b:#3C80A5;--t6c:#0D5A7D;--t6o:#65A8CF;
+  --t7a:#599CC3;--t7b:#30759A;--t7c:#024F70;--t7o:#599CC3;
+  --t8a:#468AB0;--t8b:#1B6387;--t8c:#003E5A;--t8o:#468AB0;
+  --t9a:#4288B0;--t9b:#156287;--t9c:#003D59;--t9o:#4288B0;
+  --cu1:#FAF9FC;--cu2:#D9D8DB;--cu3:#B9B8BB;
+}
+.t0 .bt{fill:var(--t0a)}.t0 .bl{fill:var(--t0b)}.t0 .br{fill:var(--t0c)}.t0 .hx{fill:var(--t0b)}.t0 .ho{stroke:var(--t0o)}
+.t1 .bt{fill:var(--t1a)}.t1 .bl{fill:var(--t1b)}.t1 .br{fill:var(--t1c)}.t1 .hx{fill:var(--t1b)}.t1 .ho{stroke:var(--t1o)}
+.t2 .bt{fill:var(--t2a)}.t2 .bl{fill:var(--t2b)}.t2 .br{fill:var(--t2c)}.t2 .hx{fill:var(--t2b)}.t2 .ho{stroke:var(--t2o)}
+.t3 .bt{fill:var(--t3a)}.t3 .bl{fill:var(--t3b)}.t3 .br{fill:var(--t3c)}.t3 .hx{fill:var(--t3b)}.t3 .ho{stroke:var(--t3o)}
+.t4 .bt{fill:var(--t4a)}.t4 .bl{fill:var(--t4b)}.t4 .br{fill:var(--t4c)}.t4 .hx{fill:var(--t4b)}.t4 .ho{stroke:var(--t4o)}
+.t5 .bt{fill:var(--t5a)}.t5 .bl{fill:var(--t5b)}.t5 .br{fill:var(--t5c)}.t5 .hx{fill:var(--t5b)}.t5 .ho{stroke:var(--t5o)}
+.t6 .bt{fill:var(--t6a)}.t6 .bl{fill:var(--t6b)}.t6 .br{fill:var(--t6c)}.t6 .hx{fill:var(--t6b)}.t6 .ho{stroke:var(--t6o)}
+.t7 .bt{fill:var(--t7a)}.t7 .bl{fill:var(--t7b)}.t7 .br{fill:var(--t7c)}.t7 .hx{fill:var(--t7b)}.t7 .ho{stroke:var(--t7o)}
+.t8 .bt{fill:var(--t8a)}.t8 .bl{fill:var(--t8b)}.t8 .br{fill:var(--t8c)}.t8 .hx{fill:var(--t8b)}.t8 .ho{stroke:var(--t8o)}
+.t9 .bt{fill:var(--t9a)}.t9 .bl{fill:var(--t9b)}.t9 .br{fill:var(--t9c)}.t9 .hx{fill:var(--t9b)}.t9 .ho{stroke:var(--t9o)}
+.c1{fill:var(--cu1)}.c2{fill:var(--cu2)}.c3{fill:var(--cu3)}
+.tp .bt{fill:#FF6CAC}.tp .bl{fill:#E40085}.tp .br{fill:#A4005E}
+
+/* SVG Crystal Cell Micro-Mechanics (opacity driven smoothly by rAF engine; no CSS lag on seek/replay) */
 .sf-cell-slot .cube {
   transform-origin: 0 0;
 }
@@ -597,19 +718,44 @@
   stroke-width: 1.75;
   stroke-linejoin: round;
   opacity: 0;
-  transition: opacity 240ms var(--ease-out);
+  transition: opacity 180ms var(--ease-out);
 }
 .sf-gutter-ring.on { opacity: 1; }
 
+.sf-audit-ring {
+  fill: none;
+  stroke: var(--ice-bright);
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+  opacity: 0;
+}
+[data-theme=light] .sf-audit-ring {
+  stroke: var(--ice-accent);
+}
+
+.sf-vault-fill {
+  fill: color-mix(in srgb, var(--ice-accent) 6%, transparent);
+  stroke: none;
+  opacity: 0;
+}
 .sf-vault-frame {
   fill: none;
   stroke: var(--border-strong);
-  stroke-width: 1.5;
+  stroke-width: 1.6;
   stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.sf-vault-gate {
+  stroke: var(--ice-accent);
+}
+.sf-gate-posts circle {
+  fill: var(--surface-1);
+  stroke: var(--ice-accent);
+  stroke-width: 1.6;
 }
 .sf-vault-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.06em;
   fill: var(--soft);
@@ -619,7 +765,7 @@
 }
 .sf-pink-label {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14.5px;
   font-weight: 600;
   letter-spacing: 0.015em;
   fill: var(--text);
@@ -627,18 +773,21 @@
   font-optical-sizing: none;
   text-rendering: geometricPrecision;
 }
-.sf-conflict-bracket {
-  display: none;
-  fill: none;
-  stroke: var(--text);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  opacity: 0.82;
+.sf-pink-sub {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  fill: var(--soft);
+  stroke: none;
+  font-optical-sizing: none;
+  text-rendering: geometricPrecision;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .sf-cell-slot .cube.turn { animation: none; }
   .ex-controls { display: none; }
   .wg-pulse { display: none; }
-  * { transition-duration: 0.01ms !important; }
+  .arch-stage,
+  .arch-stage * { transition-duration: 0.01ms !important; }
 }
