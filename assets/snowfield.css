@@ -196,7 +196,7 @@ small, .caption { font-size: var(--web-caption); line-height: var(--web-caption-
 /* Controls */
 .button { display: inline-flex; align-items: center; justify-content: center; min-height: calc(var(--density-comfortable-control) + var(--space-3)); font-size: var(--web-h2); padding: var(--inset-control-y) var(--inset-control-x);
   border-radius: var(--radius-control); border: var(--rule-rule) solid var(--text); color: var(--text); text-decoration: none; font-weight: 600; }
-.button.primary { background: var(--text); color: var(--bg); } /* neutral action (text on ground, 18.65 : 1): the view's pink is the mark. The colour master's draft pink action role (action-bg) is for a view with no coloured mark; its roles: reply is open */
+.button.primary { background: var(--text); color: var(--bg); } /* neutral action (text on ground, 18.65 : 1): the view's pink is the mark */
 
 /* Cards: square corners; the optional hex cut is the secondary motif (one corner, 30 degrees). */
 .card { background: var(--panel); padding: var(--inset-card); border-radius: var(--radius-none); }

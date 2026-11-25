@@ -496,7 +496,7 @@ button, input, textarea { font: inherit; color: inherit; }
 }
 [data-theme=light] .hero-shell::before {
   background:
-    radial-gradient(ellipse 52% 60% at 78% 42%, color-mix(in srgb, #4288B0 8%, transparent), transparent 72%);
+    radial-gradient(ellipse 58% 64% at 78% 48%, color-mix(in srgb, #7FC2EB 16%, transparent), transparent 72%);
 }
 
 .hero {
@@ -506,12 +506,11 @@ button, input, textarea { font: inherit; color: inherit; }
   align-items: center;
 }
 @media (min-width: 600px) {
-  .hero { padding-block: 48px 56px; row-gap: 36px; }
+  .hero { padding-block: 44px 52px; row-gap: 32px; }
 }
 @media (min-width: 1040px) {
   .hero {
-    padding-block: 56px 64px;
-    min-height: min(720px, calc(100svh - var(--bar)));
+    padding-block: 36px 44px;
   }
   .hero .copy { grid-column: 1 / span 6; z-index: 2; }
   .hero .stage { grid-column: 7 / -1; margin-right: calc(var(--m) * -1); z-index: 1; }
@@ -685,7 +684,7 @@ button, input, textarea { font: inherit; color: inherit; }
 }
 @media (min-width: 1040px) {
   .hero-art-wrap {
-    max-width: 660px;
+    max-width: 540px;
     margin-left: auto;
     margin-right: 0;
     padding: 0;
@@ -709,13 +708,13 @@ button, input, textarea { font: inherit; color: inherit; }
   position: absolute;
   inset: 0;
   /* Phone and tablet crop cleanly into the interior of the lattice inside a chamfered
-     architectural frame so neither stepped corners nor hazy fog edges appear. */
-  background-size: 150% auto;
-  background-position: 100% 24%;
+     architectural frame so a full cluster surrounds the pink focal cube without stepped edges. */
+  background-size: 124% auto;
+  background-position: 100% 27%;
   background-repeat: no-repeat;
 }
 @media (min-width: 600px) {
-  .pic { background-position: 100% 34%; }
+  .pic { background-size: 122% auto; background-position: 100% 34%; }
 }
 @media (min-width: 1040px) {
   .pic {
@@ -729,6 +728,15 @@ button, input, textarea { font: inherit; color: inherit; }
       linear-gradient(to right, transparent 0%, #000 14%, #000 100%);
     -webkit-mask-composite: source-in;
     mask-composite: intersect;
+  }
+  [data-theme=light] .pic {
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 11%, #000 86%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 22%, #000 94%, rgba(0, 0, 0, 0.78) 100%);
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, #000 11%, #000 86%, transparent 100%),
+      linear-gradient(to right, transparent 0%, #000 22%, #000 94%, rgba(0, 0, 0, 0.78) 100%);
+    opacity: 0.9;
   }
 }
 

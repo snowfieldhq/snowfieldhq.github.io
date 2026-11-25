@@ -1,7 +1,7 @@
 // Snowfield Flagship Interactive Architectural Stages
 // Uses shipped R1301 cell geometry (js/sf-cells.js) on the exact Snowfield lattice.
 // Zero dotted lines covering boxes/cells: optical waveguides live strictly in dedicated corridors.
-// Phases 1-3 (Authorship -> Build -> Team Ownership) animate seamlessly inside ONE single unified chamber.
+// Both explainers fit cleanly in one 390x844 phone viewport with compact inline controls and 0px height jump.
 // Self-contained zero-CDN animation engine with deterministic seek hook for verification.
 (() => {
   'use strict';
@@ -68,7 +68,7 @@
       return;
     }
     const len = pathEl.getTotalLength ? pathEl.getTotalLength() : 64;
-    const segLen = Math.max(18, len * 0.36);
+    const segLen = Math.max(12, len * 0.38);
     const offset = len * (1 - easeInOut(progress)) - segLen * 0.3;
     const fade = Math.min(1, progress * 5, (1 - progress) * 5);
     pathEl.style.strokeDasharray = `${segLen.toFixed(1)} ${(len * 2).toFixed(1)}`;
@@ -76,55 +76,91 @@
     pathEl.style.opacity = (0.95 * fade).toFixed(3);
   }
 
+  function syncPlayButton(btn, playing) {
+    if (!btn) return;
+    const label = playing ? 'Pause' : 'Play';
+    const lblSpan = btn.querySelector('.ex-ctrl-lbl');
+    if (lblSpan) lblSpan.textContent = label;
+    btn.setAttribute('aria-pressed', String(playing));
+    btn.setAttribute('aria-label', playing ? 'Pause animation' : 'Play animation');
+    btn.setAttribute('title', label);
+  }
+
   const controllers = {};
 
   /* ========================================================================
      SCENE 1: Knowledge Layer — Reconcile Sources -> Cited Answer -> Handoff
      ======================================================================== */
-  function initKnowledge(fig) {
+  function queueKnowledge(fig, enqueue) {
     const svgBox = fig.querySelector('.kn-svg-box');
     if (!svgBox) return;
 
-    const W = 440, H = 330, CX = 220, CY = 165, K = 0.60;
+    const W = 440, H = 320, CX = 220, CY = 160, K = 0.58;
     const ax = lat(K);
     const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, 'aria-hidden': 'true', focusable: 'false' });
-    SF.defs(svg);
-    svgBox.replaceChildren(svg);
-
     const gridGroup = el('g');
-    svg.append(gridGroup);
+    const coords = hexArea(2);
+    const cells = [];
 
-    // Radial outward scatter strictly guaranteeing zero hex-over-hex overlap at t=0
-    const cells = hexArea(2).map(([q, r], idx) => {
-      const [x, y] = ax(q, r, CX, CY);
-      const s = createSlot(gridGroup, x, y, tone(r), K);
-      const rx = (x - CX) * 0.24;
-      const ry = (y - CY) * 0.20;
-      return Object.assign(s, { q, r, dx: rx, dy: ry, dist: cellDist({ q, r }), idx });
+    // Build all 19 cells off-DOM across 2 short turns, then attach ONCE to contained box -> 0ms reflow
+    enqueue(() => {
+      SF.defs(svg);
+      svg.append(gridGroup);
+      coords.slice(0, 10).forEach(([q, r], idx) => {
+        const [x, y] = ax(q, r, CX, CY);
+        const s = createSlot(gridGroup, x, y, tone(r), K);
+        cells.push(Object.assign(s, { q, r, dx: (x - CX) * 0.24, dy: (y - CY) * 0.20, dist: cellDist({ q, r }), idx }));
+      });
     });
 
-    const hitCell = cells.find(c => c.q === 1 && c.r === -1) || cells[0];
-    // Single signature Snowfield pink R1301 focal cell layer on the matched rule node
-    const hitPink = SF.cell(hitCell.inner, 0, 0, K, 'p', 'mark');
-    hitPink.style.opacity = '0';
-    hitCell.pinkCube = hitPink.querySelector('.cube');
-    // Precision ring seated strictly in the 3.4641-unit lattice gutter (non-color cue for pink cell)
-    const hitRing = el('polygon', {
-      points: hexPts(hitCell.x, hitCell.y, 56 * K),
-      class: 'sf-gutter-ring'
+    enqueue(() => {
+      coords.slice(10).forEach(([q, r], localIdx) => {
+        const idx = 10 + localIdx;
+        const [x, y] = ax(q, r, CX, CY);
+        const s = createSlot(gridGroup, x, y, tone(r), K);
+        cells.push(Object.assign(s, { q, r, dx: (x - CX) * 0.24, dy: (y - CY) * 0.20, dist: cellDist({ q, r }), idx }));
+      });
+      const hitCell = cells.find(c => c.q === 1 && c.r === -1) || cells[0];
+      const hitPink = SF.cell(hitCell.inner, 0, 0, K, 'p', 'mark');
+      hitPink.style.opacity = '0';
+      hitCell.pinkCube = hitPink.querySelector('.cube');
+      const hitRing = el('polygon', {
+        points: hexPts(hitCell.x, hitCell.y, 56 * K),
+        class: 'sf-gutter-ring'
+      });
+      svg.append(hitRing);
+      finishKnowledge(fig, svgBox, svg, cells, hitCell, hitPink, hitRing, CX);
+      svgBox.replaceChildren(svg);
     });
-    svg.append(hitRing);
+  }
+
+  function finishKnowledge(fig, svgBox, svg, cells, hitCell, hitPink, hitRing, CX) {
 
     const tabs = [...fig.querySelectorAll('.ex-tab')];
     const playBtn = fig.querySelector('[data-action="toggle"]');
     const replayBtn = fig.querySelector('[data-action="replay"]');
+    const progressFill = fig.querySelector('[data-kn-progress]');
     const inputPanel = fig.querySelector('[data-kn-input]');
     const inputViews = [...fig.querySelectorAll('.kn-input-view')];
     const chamber = fig.querySelector('.kn-chamber');
     const statusText = fig.querySelector('[data-kn-status]');
     const statusTag = fig.querySelector('[data-kn-tag]');
+
+    const cardReconcile = fig.querySelector('[data-kn-out="reconcile"]');
     const cardAnswer = fig.querySelector('[data-kn-out="answer"]');
     const cardEscalate = fig.querySelector('[data-kn-out="escalate"]');
+
+    const recState = fig.querySelector('[data-kn-out-state="reconcile"]');
+    const recBody = fig.querySelector('[data-kn-out-body="reconcile"]');
+    const recChip = fig.querySelector('[data-kn-out-chip="reconcile"]');
+
+    const ansState = fig.querySelector('[data-kn-out-state="answer"]');
+    const ansBody = fig.querySelector('[data-kn-out-body="answer"]');
+    const ansChip = fig.querySelector('[data-kn-out-chip="answer"]');
+
+    const escState = fig.querySelector('[data-kn-out-state="escalate"]');
+    const escBody = fig.querySelector('[data-kn-out-body="escalate"]');
+    const escChip = fig.querySelector('[data-kn-out-chip="escalate"]');
 
     const trIn = [...fig.querySelectorAll('[data-wg="in-track"]')];
     const ptIn = [...fig.querySelectorAll('[data-wg="in-port"]')];
@@ -141,15 +177,29 @@
 
     function setActiveTab(stepIdx) {
       tabs.forEach((t, i) => t.setAttribute('aria-selected', String(i === stepIdx)));
-      inputViews.forEach((v, i) => { v.hidden = i !== stepIdx; });
+      inputViews.forEach((v, i) => {
+        v.dataset.active = String(i === stepIdx);
+        v.setAttribute('aria-hidden', String(i !== stepIdx));
+      });
+      if (cardReconcile) cardReconcile.dataset.mobActive = String(stepIdx === 0);
+      if (cardAnswer) cardAnswer.dataset.mobActive = String(stepIdx === 1);
+      if (cardEscalate) cardEscalate.dataset.mobActive = String(stepIdx === 2);
     }
 
     function setClasses(list, cls, on) {
       list.forEach(node => node.classList.toggle(cls, on));
     }
 
+    function setOutcomeText(elNode, text) {
+      if (elNode && elNode.textContent !== text) elNode.textContent = text;
+    }
+
     function renderAt(tNorm, isStaticRest) {
       const p = clamp01(tNorm);
+
+      if (progressFill) {
+        progressFill.style.transform = `scaleX(${(isStaticRest ? 0.67 : p).toFixed(4)})`;
+      }
 
       if (isStaticRest) {
         setActiveTab(1);
@@ -164,8 +214,18 @@
         chamber.className = 'kn-chamber lit-ice';
         statusText.textContent = '19 approved sections';
         statusTag.textContent = 'Section 4.2';
+
+        if (cardReconcile) cardReconcile.className = 'kn-out-card kn-out-reconcile dim';
         cardAnswer.className = 'kn-out-card active-answer';
         cardEscalate.className = 'kn-out-card dim';
+
+        setOutcomeText(ansState, 'Matched');
+        setOutcomeText(ansBody, 'Yes. Staff can waive the inspection fee within 30 days of the visit.');
+        setOutcomeText(ansChip, 'Service Policy · Section 4.2');
+        setOutcomeText(escState, 'Standby');
+        setOutcomeText(escBody, 'Uncovered questions route to a named manager instead of guessing.');
+        setOutcomeText(escChip, 'Sent to service manager');
+
         setClasses(trIn, 'active-ice', true);
         setClasses(trIn, 'active-esc', false);
         setClasses(ptIn, 'active-ice', true);
@@ -187,11 +247,10 @@
         setActiveTab(0);
         inputPanel.className = 'kn-panel lit';
         chamber.className = 'kn-chamber';
-        cardAnswer.className = 'kn-out-card dim';
-        cardEscalate.className = 'kn-out-card dim';
 
         const gather = easeInOut(seg(u, 0.08, 0.56));
         const toMark = easeOut(seg(u, 0.68, 0.94));
+        const settled = toMark > 0.65;
 
         cells.forEach(c => {
           const lag = (c.dist / 2.6) * 0.14;
@@ -207,8 +266,28 @@
         });
 
         hitRing.classList.remove('on');
-        statusText.textContent = toMark > 0.7 ? 'All 3 sources reconciled' : 'Comparing 3 sources...';
-        statusTag.textContent = toMark > 0.7 ? '19 sections' : 'Step 1 of 3';
+        statusText.textContent = settled ? 'All 3 sources reconciled' : 'Comparing 3 sources...';
+        statusTag.textContent = settled ? '19 sections' : 'Step 1 of 3';
+
+        if (cardReconcile) {
+          cardReconcile.className = settled
+            ? 'kn-out-card kn-out-reconcile active-answer'
+            : 'kn-out-card kn-out-reconcile dim';
+        }
+        setOutcomeText(recState, settled ? 'Settled' : 'Auditing');
+        setOutcomeText(recBody, settled
+          ? 'Three conflicting documents settle into one written rule: 30 days.'
+          : 'Comparing price sheet, Slack note, and old email to settle one rule.');
+        setOutcomeText(recChip, settled ? 'Service Policy · Section 4.2' : '3 conflicting sources');
+
+        cardAnswer.className = 'kn-out-card dim';
+        cardEscalate.className = 'kn-out-card dim';
+        setOutcomeText(ansState, 'Standby');
+        setOutcomeText(ansBody, 'Covered questions return a direct reply with its exact source section.');
+        setOutcomeText(ansChip, 'Service Policy · Section 4.2');
+        setOutcomeText(escState, 'Standby');
+        setOutcomeText(escBody, 'Uncovered questions route to a named manager instead of guessing.');
+        setOutcomeText(escChip, 'Sent to service manager');
 
         setClasses(trIn, 'active-ice', gather > 0.1);
         setClasses(trIn, 'active-esc', false);
@@ -263,8 +342,16 @@
           : 'Checking approved policy...';
         statusTag.textContent = matched ? 'Section 4.2' : '19 sections';
 
+        if (cardReconcile) cardReconcile.className = 'kn-out-card kn-out-reconcile dim';
         cardAnswer.className = answerLit ? 'kn-out-card active-answer' : 'kn-out-card dim';
         cardEscalate.className = 'kn-out-card dim';
+
+        setOutcomeText(ansState, answerLit ? 'Matched' : 'Checking');
+        setOutcomeText(ansBody, 'Yes. Staff can waive the inspection fee within 30 days of the visit.');
+        setOutcomeText(ansChip, 'Service Policy · Section 4.2');
+        setOutcomeText(escState, 'Not needed');
+        setOutcomeText(escBody, 'Rule is covered in writing, so no manager handoff is needed.');
+        setOutcomeText(escChip, 'Handled directly');
 
         setClasses(trIn, 'active-ice', true);
         setClasses(trIn, 'active-esc', false);
@@ -315,8 +402,16 @@
           : 'Checking approved policy...';
         statusTag.textContent = refused ? 'Route to manager' : '19 sections';
 
+        if (cardReconcile) cardReconcile.className = 'kn-out-card kn-out-reconcile dim';
         cardAnswer.className = 'kn-out-card dim';
         cardEscalate.className = escLit ? 'kn-out-card active-escalate' : 'kn-out-card dim';
+
+        setOutcomeText(ansState, 'No match');
+        setOutcomeText(ansBody, '45 days sits outside the 30-day rule. Assistant does not guess.');
+        setOutcomeText(ansChip, 'No matching rule');
+        setOutcomeText(escState, escLit ? 'Active' : 'Checking');
+        setOutcomeText(escBody, '45 days is past the 30-day rule. Routed to a manager instead of guessing.');
+        setOutcomeText(escChip, 'Sent to service manager');
 
         setClasses(trIn, 'active-ice', false);
         setClasses(trIn, 'active-esc', true);
@@ -339,11 +434,15 @@
     let lastTs = 0;
     let stopAt = 1;
     let seen = false;
+    let io = null;
+
+    function cancelAutoplay() {
+      seen = true;
+      if (io) { io.disconnect(); io = null; }
+    }
 
     function updatePlayBtn() {
-      if (!playBtn) return;
-      playBtn.textContent = playing ? 'Pause' : 'Play';
-      playBtn.setAttribute('aria-pressed', String(playing));
+      syncPlayButton(playBtn, playing);
     }
 
     function stop() {
@@ -382,11 +481,19 @@
       rafId = requestAnimationFrame(tick);
     }
 
-    renderAt(1, true);
+    // Initial rest SVG state; HTML already ships in matching rest state -> 0ms reflow/TBT
+    cells.forEach(c => {
+      c.at.style.opacity = c === hitCell ? '1' : '0.86';
+      if (c === hitCell) c.m.style.opacity = '0';
+    });
+    hitPink.style.opacity = '1';
+    hitRing.classList.add('on');
+    if (progressFill) progressFill.style.transform = 'scaleX(0.67)';
     updatePlayBtn();
 
     tabs.forEach((tab, idx) => {
       tab.addEventListener('click', () => {
+        cancelAutoplay();
         const ranges = [[0.0, 0.33], [0.34, 0.67], [0.68, 0.99]];
         const [a, b] = ranges[idx] || [0, 1];
         if (RM.matches) {
@@ -401,6 +508,7 @@
 
     if (playBtn) {
       playBtn.addEventListener('click', () => {
+        cancelAutoplay();
         if (playing) {
           stop();
         } else if (progress >= 0.99 || progress >= stopAt - 0.01) {
@@ -414,14 +522,16 @@
       });
     }
     if (replayBtn) {
-      replayBtn.addEventListener('click', () => playFrom(0, 1));
+      replayBtn.addEventListener('click', () => {
+        cancelAutoplay();
+        playFrom(0, 1);
+      });
     }
 
     if ('IntersectionObserver' in window && !RM.matches) {
-      const io = new IntersectionObserver(entries => {
+      io = new IntersectionObserver(entries => {
         if (!seen && entries.some(e => e.isIntersecting)) {
-          seen = true;
-          io.disconnect();
+          cancelAutoplay();
           playFrom(0, 1);
         }
       }, { threshold: 0.35 });
@@ -434,6 +544,7 @@
 
     controllers.knowledge = {
       seek(t) {
+        cancelAutoplay();
         stop();
         if (t === 'rest') { renderAt(1, true); return; }
         renderAt(Number(t), false);
@@ -460,14 +571,14 @@
     const progressFill = fig.querySelector('[data-eng-progress]');
     if (!svgBox || stepItems.length < 3) return;
 
-    const W = 560, H = 356;
-    const CX = 204, CY = 186, K = 0.62;
-    const VR = 124;
+    const W = 500, H = 296;
+    const CX = 184, CY = 164, K = 0.61;
+    const VR = 118;
+    const AUDIT_SHIFT = 64; // Centers Phase 1 cluster cleanly at x=248 before gliding left into vault
     const ax = lat(K);
 
     const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, 'aria-hidden': 'true', focusable: 'false' });
     SF.defs(svg);
-    svgBox.replaceChildren(svg);
 
     // Subtle hexagonal vault perimeter split into permanent 4-side wall (indices 2..5..0)
     // and revocable-access right portal (indices 0..1..2) so Snowfield exits with 0px stroke collision.
@@ -491,19 +602,21 @@
     // Subtle open-gate terminal posts at top and bottom-right vertices (visible while revocable access is open)
     const gatePosts = el('g', { class: 'sf-gate-posts' });
     gatePosts.append(
-      el('circle', { cx: V[0][0].toFixed(1), cy: V[0][1].toFixed(1), r: '3.2' }),
-      el('circle', { cx: V[2][0].toFixed(1), cy: V[2][1].toFixed(1), r: '3.2' })
+      el('circle', { cx: V[0][0].toFixed(1), cy: V[0][1].toFixed(1), r: '3.0' }),
+      el('circle', { cx: V[2][0].toFixed(1), cy: V[2][1].toFixed(1), r: '3.0' })
     );
     svg.append(gatePosts);
 
-    // Crisp label centered cleanly above top vertex (204, 62) with 25px open clearance
-    const vaultLabel = el('text', { x: CX, y: 34, class: 'sf-vault-label', 'text-anchor': 'middle' });
+    // Crisp label centered cleanly above top vertex (184, 46) with 19px open clearance
+    const vaultLabel = el('text', { x: CX, y: 24, class: 'sf-vault-label', 'text-anchor': 'middle' });
     vaultLabel.textContent = 'YOUR ACCOUNTS';
     svg.append(vaultLabel);
 
-    // Single persistent 7-cell cluster
+    // Single persistent 7-cell cluster (shifts smoothly from center audit -> left vault)
+    const clusterGroup = el('g', { class: 'sf-cluster-group' });
+    svg.append(clusterGroup);
     const cellLayer = el('g');
-    svg.append(cellLayer);
+    clusterGroup.append(cellLayer);
     const gapKey = '1,-1';
     const confKeys = ['-1,0', '0,1'];
 
@@ -511,7 +624,6 @@
       const [x, y] = ax(q, r, CX, CY);
       const s = createSlot(cellLayer, x, y, tone(r), K);
       const key = `${q},${r}`;
-      // Gentle outward scatter in Phase 1 audit (<5.5px so cell-to-cell clearance stays strictly > 0px)
       const dx = (x - CX) * 0.08;
       const dy = (y - CY) * 0.08;
       return Object.assign(s, { q, r, key, dx, dy, dist: cellDist({ q, r }) });
@@ -530,13 +642,13 @@
           points: hexPts(s.x, s.y, 56 * K),
           class: 'sf-audit-ring'
         });
-        svg.append(ring);
+        clusterGroup.append(ring);
         return ring;
       });
 
     // Strictly ONE pink Snowfield R1301 cell for the entire 0% -> 100% animation
-    const pinkRest = [446, CY];
-    const pinkMid = [322, 102]; // Clear high arc right through the open V0->V1->V2 portal (0px collision!)
+    const pinkRest = [400, CY];
+    const pinkMid = [302, 88]; // Clear high arc right through the open V0->V1->V2 portal (0px collision!)
     const pinkMover = el('g', { class: 'sf-pink-mover' });
     const pinkCell = SF.cell(pinkMover, 0, 0, K, 'p', 'mark');
     const pinkCube = pinkCell.querySelector('.cube');
@@ -549,12 +661,12 @@
     });
     pinkMover.append(pinkGutterRing);
 
-    // Labels seated cleanly beneath pinkRest (446, 186): cell bottom is y=220.7, labels sit at y=246 & y=266
-    const pinkLabel = el('text', { x: pinkRest[0], y: 246, class: 'sf-pink-label', 'text-anchor': 'middle' });
+    // Labels seated cleanly beneath pinkRest (400, 164): cell bottom is y=199.4, labels sit at y=224 & y=244
+    const pinkLabel = el('text', { x: pinkRest[0], y: 224, class: 'sf-pink-label', 'text-anchor': 'middle' });
     pinkLabel.textContent = 'Snowfield';
     svg.append(pinkLabel);
 
-    const pinkSub = el('text', { x: pinkRest[0], y: 266, class: 'sf-pink-sub', 'text-anchor': 'middle' });
+    const pinkSub = el('text', { x: pinkRest[0], y: 244, class: 'sf-pink-sub', 'text-anchor': 'middle' });
     pinkSub.textContent = 'Stepped back';
     svg.append(pinkSub);
 
@@ -580,6 +692,10 @@
       pinkMover.setAttribute('transform', `translate(${x.toFixed(2)} ${y.toFixed(2)})`);
     }
 
+    function setClusterShift(dx) {
+      clusterGroup.setAttribute('transform', dx > 0.05 ? `translate(${dx.toFixed(2)} 0)` : '');
+    }
+
     function renderAt(tNorm, isStaticRest) {
       const p = clamp01(tNorm);
 
@@ -589,6 +705,7 @@
 
       if (isStaticRest) {
         setActiveStep(2);
+        setClusterShift(0);
         if (chamber) chamber.className = 'eng-unified-chamber lit-ice';
         if (stageLabel) stageLabel.textContent = 'Your accounts';
         if (stageBadge) stageBadge.textContent = 'Phase 3 of 3';
@@ -618,12 +735,13 @@
         return;
       }
 
-      // Phase 1 [0.00 .. 0.34]: Audit — outline cluster settles into alignment, Snowfield seated in open slot
+      // Phase 1 [0.00 .. 0.34]: Audit — outline cluster centered cleanly in chamber, Snowfield seated in open slot
       if (p < 0.34) {
         buildCubeTurned = false;
         handoffCubesTurned = false;
         const u = seg(p, 0.0, 0.34);
         setActiveStep(0);
+        setClusterShift(AUDIT_SHIFT);
         if (chamber) chamber.className = 'eng-unified-chamber';
         if (stageLabel) stageLabel.textContent = 'Current operation';
         if (stageBadge) stageBadge.textContent = 'Phase 1 of 3';
@@ -653,7 +771,6 @@
           }
         });
 
-        // Two disagreeing rules highlight cleanly during audit, then fade out as rules align
         const ringEnv = Math.sin(Math.PI * seg(u, 0.14, 0.86));
         conflictRings.forEach((r, ri) => {
           const offset = ri === 0 ? 0 : 0.10;
@@ -661,8 +778,7 @@
           r.style.opacity = (0.85 * Math.max(0, v)).toFixed(3);
         });
 
-        // Single pink Snowfield cell seats flush inside openSlot (1,-1) — 0px overlap
-        setPinkPos(openSlot.x, openSlot.y);
+        setPinkPos(openSlot.x + AUDIT_SHIFT, openSlot.y);
         pinkMover.style.opacity = '1';
         pinkGutterRing.classList.add('on');
         pinkLabel.style.opacity = '0';
@@ -671,13 +787,13 @@
         if (statusText) {
           statusText.textContent = u >= 0.72
             ? 'Conflicting rules aligned'
-            : (ringEnv > 0.3 ? 'Checking rule conflicts...' : 'Mapping playbooks...');
+            : (ringEnv > 0.3 ? 'Checking conflicts...' : 'Mapping playbooks...');
         }
         if (statusTag) {
           statusTag.textContent = u >= 0.72 ? 'Rules aligned' : 'Audit';
         }
       } else if (p < 0.67) {
-        // Phase 2 [0.34 .. 0.67]: Build — SAME 7-cell cluster gains YOUR ACCOUNTS boundary (open access gate)
+        // Phase 2 [0.34 .. 0.67]: Build — cluster glides left into YOUR ACCOUNTS boundary (open gate)
         // and solidifies from outlines into ice-blue tiles while Snowfield works seated in (1,-1)
         handoffCubesTurned = false;
         const u = seg(p, 0.34, 0.67);
@@ -686,15 +802,17 @@
         if (stageLabel) stageLabel.textContent = 'Your accounts';
         if (stageBadge) stageBadge.textContent = 'Phase 2 of 3';
 
-        const drawWall = easeOut(seg(u, 0.0, 0.42));
+        const shiftX = AUDIT_SHIFT * (1 - easeInOut(seg(u, 0.0, 0.24)));
+        setClusterShift(shiftX);
+
+        const drawWall = easeOut(seg(u, 0.18, 0.56));
         vaultGlow.style.opacity = (0.65 * drawWall).toFixed(3);
         vaultMain.style.opacity = drawWall > 0.02 ? '1' : '0';
         vaultMain.style.strokeDashoffset = (mainLen * (1 - drawWall)).toFixed(1);
-        // Right portal stays OPEN while Snowfield builds inside client accounts
         vaultGate.style.opacity = '0';
         vaultGate.style.strokeDashoffset = `${gateLen.toFixed(1)}`;
-        gatePosts.style.opacity = easeOut(seg(u, 0.30, 0.55)).toFixed(3);
-        vaultLabel.style.opacity = easeOut(seg(u, 0.12, 0.44)).toFixed(3);
+        gatePosts.style.opacity = easeOut(seg(u, 0.42, 0.66)).toFixed(3);
+        vaultLabel.style.opacity = easeOut(seg(u, 0.24, 0.54)).toFixed(3);
 
         cells.forEach(s => {
           s.inner.setAttribute('transform', 'translate(0 0)');
@@ -704,19 +822,19 @@
             return;
           }
           const lag = (s.dist / 1.6) * 0.22;
-          const m = easeOut(seg(u, 0.12 + lag, 0.68 + lag));
+          const m = easeOut(seg(u, 0.18 + lag, 0.72 + lag));
           setFormBlend(s, 1 - m, m, 0);
           s.at.style.opacity = (0.62 + 0.38 * m).toFixed(3);
         });
         conflictRings.forEach(r => { r.style.opacity = '0'; });
 
-        setPinkPos(openSlot.x, openSlot.y);
+        setPinkPos(openSlot.x + shiftX, openSlot.y);
         pinkMover.style.opacity = '1';
         pinkGutterRing.classList.add('on');
         pinkLabel.style.opacity = '0';
         pinkSub.style.opacity = '0';
 
-        if (u >= 0.26 && !buildCubeTurned && pinkCube && !RM.matches) {
+        if (u >= 0.28 && !buildCubeTurned && pinkCube && !RM.matches) {
           buildCubeTurned = true;
           pinkCube.classList.remove('turn');
           void pinkCube.getBoundingClientRect();
@@ -726,24 +844,22 @@
         if (statusText) {
           statusText.textContent = u >= 0.72
             ? 'Built in your accounts'
-            : 'Building in your accounts...';
+            : 'Building in your accounts';
         }
         if (statusTag) {
           statusTag.textContent = u >= 0.72 ? 'Verified' : 'Revocable access';
         }
       } else {
-        // Phase 3 [0.67 .. 1.00]: Onboard — SAME cluster upgrades to full live R1301 marks;
-        // single pink Snowfield cell glides cleanly out through the OPEN portal (0px stroke/cell collision);
-        // 7th client cell fills the vacated slot; portal seals closed behind Snowfield.
+        // Phase 3 [0.67 .. 1.00]: Onboard — cluster upgrades to full live R1301 marks;
+        // single pink Snowfield cell glides out through open portal (0px collision);
+        // 7th client cell fills vacated slot; portal seals closed behind Snowfield.
         const u = seg(p, 0.67, 1.0);
         setActiveStep(2);
+        setClusterShift(0);
         if (chamber) chamber.className = 'eng-unified-chamber lit-ice';
         if (stageLabel) stageLabel.textContent = 'Your accounts';
         if (stageBadge) stageBadge.textContent = 'Phase 3 of 3';
 
-        // Two-leg exit trajectory through open upper-right portal:
-        // Leg 1 (u: 0.08..0.38): (235.14, 132.06) -> (322, 102) [strictly increasing distance from (1,0)]
-        // Leg 2 (u: 0.38..0.66): (322, 102) -> (446, 186) [cleanly outside VR=124]
         let px = openSlot.x, py = openSlot.y;
         const leg1 = easeInOut(seg(u, 0.08, 0.38));
         const leg2 = easeInOut(seg(u, 0.38, 0.66));
@@ -755,7 +871,6 @@
           py = pinkMid[1] + (pinkRest[1] - pinkMid[1]) * leg2;
         }
 
-        // Vault main stays solid; revocable-access gate seals shut ONLY AFTER pinkMover clears x > 378 (u >= 0.56)
         const closeGate = easeOut(seg(u, 0.56, 0.84));
         vaultGlow.style.opacity = (0.65 + 0.35 * closeGate).toFixed(3);
         vaultMain.style.opacity = '1';
@@ -771,7 +886,6 @@
           const m = easeOut(seg(u, 0.06 + lag, 0.44 + lag));
           setFormBlend(s, 0, 1 - m, m);
           if (s === openSlot) {
-            // Reveal 7th client cell ONLY after pinkMover is well clear (>110px away at u >= 0.42)
             s.at.style.opacity = u >= 0.42 ? easeOut(seg(u, 0.42, 0.70)).toFixed(3) : '0';
           } else {
             s.at.style.opacity = '1';
@@ -815,11 +929,15 @@
     let lastTs = 0;
     let stopAt = 1;
     let seen = false;
+    let io = null;
+
+    function cancelAutoplay() {
+      seen = true;
+      if (io) { io.disconnect(); io = null; }
+    }
 
     function updatePlayBtn() {
-      if (!playBtn) return;
-      playBtn.textContent = playing ? 'Pause' : 'Play';
-      playBtn.setAttribute('aria-pressed', String(playing));
+      syncPlayButton(playBtn, playing);
     }
 
     function stop() {
@@ -858,10 +976,25 @@
       rafId = requestAnimationFrame(tick);
     }
 
-    renderAt(1, true);
+    // Initial rest SVG state built off-DOM; HTML already ships in matching rest state -> 0ms reflow/TBT
+    vaultGlow.style.opacity = '1';
+    vaultMain.style.opacity = '1';
+    vaultMain.style.strokeDashoffset = '0';
+    vaultGate.style.opacity = '1';
+    vaultGate.style.strokeDashoffset = '0';
+    gatePosts.style.opacity = '0';
+    vaultLabel.style.opacity = '1';
+    conflictRings.forEach(r => { r.style.opacity = '0'; });
+    setPinkPos(pinkRest[0], pinkRest[1]);
+    pinkMover.style.opacity = '1';
+    pinkGutterRing.classList.add('on');
+    pinkLabel.style.opacity = '1';
+    pinkSub.style.opacity = '1';
+    svgBox.replaceChildren(svg);
     updatePlayBtn();
 
     const triggerStep = idx => {
+      cancelAutoplay();
       const ranges = [[0.0, 0.33], [0.34, 0.66], [0.67, 0.99]];
       const [a, b] = ranges[idx] || [0, 1];
       if (RM.matches) {
@@ -886,6 +1019,7 @@
 
     if (playBtn) {
       playBtn.addEventListener('click', () => {
+        cancelAutoplay();
         if (playing) {
           stop();
         } else if (progress >= 0.99 || progress >= stopAt - 0.01) {
@@ -899,14 +1033,16 @@
       });
     }
     if (replayBtn) {
-      replayBtn.addEventListener('click', () => playFrom(0, 1));
+      replayBtn.addEventListener('click', () => {
+        cancelAutoplay();
+        playFrom(0, 1);
+      });
     }
 
     if ('IntersectionObserver' in window && !RM.matches) {
-      const io = new IntersectionObserver(entries => {
+      io = new IntersectionObserver(entries => {
         if (!seen && entries.some(e => e.isIntersecting)) {
-          seen = true;
-          io.disconnect();
+          cancelAutoplay();
           playFrom(0, 1);
         }
       }, { threshold: 0.35 });
@@ -919,6 +1055,7 @@
 
     controllers.engagement = {
       seek(t) {
+        cancelAutoplay();
         stop();
         if (t === 'rest') { renderAt(1, true); return; }
         renderAt(Number(t), false);
@@ -928,8 +1065,27 @@
 
   let pendingJobs = [];
   let flushTimer = 0;
+  let queued = false;
+  let started = false;
+  let mountIo = null;
+  const figs = [...D.querySelectorAll('figure.explain')];
+
+  function ensureQueued() {
+    if (queued) return;
+    queued = true;
+    figs.forEach(fig => {
+      if (fig.dataset.scene === 'knowledge') {
+        queueKnowledge(fig, fn => pendingJobs.push(fn));
+      }
+      if (fig.dataset.scene === 'engagement') {
+        pendingJobs.push(() => initEngagement(fig));
+      }
+    });
+  }
 
   function flushAllNow() {
+    ensureQueued();
+    if (mountIo) { mountIo.disconnect(); mountIo = null; }
     if (flushTimer) { clearTimeout(flushTimer); flushTimer = 0; }
     while (pendingJobs.length) {
       const fn = pendingJobs.shift();
@@ -947,18 +1103,32 @@
     }, 16);
   }
 
-  D.querySelectorAll('figure.explain').forEach(fig => {
-    if (fig.dataset.scene === 'knowledge') {
-      pendingJobs.push(() => initKnowledge(fig));
-    }
-    if (fig.dataset.scene === 'engagement') {
-      pendingJobs.push(() => initEngagement(fig));
-    }
+  function startHydration() {
+    if (started) return;
+    started = true;
+    if (mountIo) { mountIo.disconnect(); mountIo = null; }
+    ensureQueued();
+    scheduleDrain();
+  }
+
+  figs.forEach(fig => {
+    fig.addEventListener('pointerdown', flushAllNow, { capture: true, once: true });
+    fig.addEventListener('click', flushAllNow, { capture: true, once: true });
   });
 
-  // Yield briefly after first paint so mobile hero LCP & TBT stay fast, while populating
-  // both below-the-fold rest frames immediately in separate short turns (<50ms each).
-  setTimeout(scheduleDrain, 40);
+  if (RM.matches || !('IntersectionObserver' in window)) {
+    setTimeout(startHydration, 20);
+  } else {
+    mountIo = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) startHydration();
+    }, { rootMargin: '300px 0px', threshold: 0.05 });
+    figs.forEach(f => mountIo.observe(f));
+    window.addEventListener('scroll', startHydration, { passive: true, once: true });
+    window.addEventListener('keydown', startHydration, { passive: true, once: true });
+    window.addEventListener('beforeprint', flushAllNow);
+    // Yield briefly after first paint so mobile hero LCP & TBT stay fast while populating both rest frames
+    setTimeout(startHydration, 30);
+  }
 
   window.__sfExplainSeek = (scene, t) => {
     flushAllNow();

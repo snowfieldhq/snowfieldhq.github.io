@@ -1,4 +1,4 @@
-// Snowfield cell kit for the Row402 maps. Geometry is the shipped R1301 cell
+// Snowfield cell kit. Geometry is the shipped R1301 cell
 // (brand/masters/pattern/assets/R1301-cell.json, sha256 415b1eca...) on the shipped
 // lattice (pattern.tokens.json: pitch 100.4643, row step 87, mark height 112).
 // Plate and cube colours are the ice ramp of the selected hero exports

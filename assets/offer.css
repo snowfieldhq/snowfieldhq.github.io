@@ -1,4 +1,4 @@
-/* Offer pages (Row180). Layout only: every colour, size and space is a token from snowfield.css. */
+/* Offer pages. Layout only: every colour, size and space is a token from snowfield.css. */
 .bar { padding-block: var(--space-2); }
 .nav a { padding-inline: var(--space-1); }
 .nav a[aria-current] { text-decoration: underline; text-underline-offset: 0.3em; }

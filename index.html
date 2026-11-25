@@ -24,7 +24,7 @@
 <script>(function(d,q,s){try{s=localStorage.getItem('sf-theme')}catch(e){}q=new URLSearchParams(location.search).get('theme');q=q=='light'||q=='dark'?q:s=='light'||s=='dark'?s:matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.dataset.theme=q;s=document.createElement('link');s.rel='preload';s.as='image';s.fetchPriority='high';s.href='art/hero-'+(matchMedia('(min-width:600px)').matches?'w':'p')+'-'+q+'.svg';document.head.append(s);if(location.protocol!='file:')['serif','sans','mono'].forEach(function(n){var f=document.createElement('link');f.rel='preload';f.as='font';f.type='font/woff2';f.crossOrigin='';f.href='kit/type/fonts/snowfield-'+n+'-latin.woff2';document.head.append(f)});})(document.documentElement)</script>
 <link rel="stylesheet" href="kit/type/typography.css">
 <link rel="stylesheet" href="kit/seeds/tokens.css">
-<link rel="stylesheet" href="css/cue.css">
+<style>.cue{position:absolute;left:var(--fx);top:var(--fy);width:calc(var(--R)*1.794);height:calc(var(--R)*2.0714);transform:translate(-50%,-50%);pointer-events:none;overflow:visible}.cue polygon{fill:none;stroke:var(--text);stroke-width:var(--rule-rule);vector-effect:non-scaling-stroke;stroke-linejoin:round}.turned .cue{visibility:hidden}</style>
 <link rel="stylesheet" href="css/art.css">
 <link rel="stylesheet" href="css/site.css">
 <link rel="stylesheet" href="css/sections.css">
@@ -234,36 +234,50 @@
         <div class="arch-stage">
           <div class="ex-bar">
             <div class="ex-tabs" role="tablist" aria-label="Assistant stages">
-              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="0"><span class="ex-tab-idx">01</span>Documents</button>
-              <button type="button" class="ex-tab" role="tab" aria-selected="true" data-step="1"><span class="ex-tab-idx">02</span>Cited answer</button>
-              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="2"><span class="ex-tab-idx">03</span>Handoff</button>
+              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="0"><span class="ex-tab-idx">01</span><span>Sources</span></button>
+              <button type="button" class="ex-tab" role="tab" aria-selected="true" data-step="1"><span class="ex-tab-idx">02</span><span>Answer</span></button>
+              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="2"><span class="ex-tab-idx">03</span><span>Handoff</span></button>
             </div>
             <div class="ex-controls">
-              <button type="button" class="ex-ctrl-btn" data-action="toggle" aria-pressed="false">Play</button>
-              <button type="button" class="ex-ctrl-btn" data-action="replay">Replay</button>
+              <button type="button" class="ex-ctrl-btn" data-action="toggle" aria-pressed="false" aria-label="Play animation" title="Play">
+                <span class="ex-ctrl-face">
+                  <svg class="ico-play" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.5 3.2L12.8 8 4.5 12.8z"/></svg>
+                  <svg class="ico-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><rect x="4" y="3.2" width="2.8" height="9.6" rx="0.5"/><rect x="9.2" y="3.2" width="2.8" height="9.6" rx="0.5"/></svg>
+                  <span class="ex-ctrl-lbl">Play</span>
+                </span>
+              </button>
+              <button type="button" class="ex-ctrl-btn ex-ctrl-icon" data-action="replay" aria-label="Replay animation" title="Replay">
+                <span class="ex-ctrl-face">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.2 8a4.8 4.8 0 1 0 1.4-3.4L3 6.2"/><path d="M3 3.2v3h3"/></svg>
+                  <span class="ex-ctrl-lbl">Replay</span>
+                </span>
+              </button>
+            </div>
+            <div class="ex-progress-track" aria-hidden="true">
+              <span class="ex-progress-fill" data-kn-progress></span>
             </div>
           </div>
 
           <div class="kn-grid">
-            <!-- Stage A: Input / Incoming Query -->
+            <!-- Stage A: Input / Incoming Query (grid-stacked for 0px height jump across steps) -->
             <div class="kn-panel lit" data-kn-input>
-              <div class="kn-input-view" hidden>
-                <div class="kn-kicker"><span>Your documents</span><span>Disagree</span></div>
-                <p class="kn-panel-title">How long can staff waive the inspection fee?</p>
+              <div class="kn-input-view" data-active="false">
+                <div class="kn-kicker"><span>Your documents</span><span>3 conflict</span></div>
+                <p class="kn-panel-title">Inspection fee waiver?</p>
                 <ul class="kn-source-list">
-                  <li><span>Price sheet (PDF)</span><span>30 days</span></li>
-                  <li><span>Manager&rsquo;s Slack note</span><span>45 days</span></li>
-                  <li><span>Old team email</span><span>60 days</span></li>
+                  <li><span>Price sheet<span class="kn-src-extra"> (PDF)</span></span><span>30 days</span></li>
+                  <li><span><span class="kn-src-extra">Manager&rsquo;s </span>Slack note</span><span>45 days</span></li>
+                  <li><span>Old<span class="kn-src-extra"> team</span> email</span><span>60 days</span></li>
                 </ul>
               </div>
 
-              <div class="kn-input-view">
+              <div class="kn-input-view" data-active="true">
                 <div class="kn-kicker"><span>Staff question</span><span>Covered</span></div>
                 <p class="kn-panel-title">Within the 30-day rule</p>
                 <p class="kn-query-text">Can I waive the inspection fee 20 days after the visit?</p>
               </div>
 
-              <div class="kn-input-view" hidden>
+              <div class="kn-input-view" data-active="false">
                 <div class="kn-kicker"><span>Staff question</span><span>Not covered</span></div>
                 <p class="kn-panel-title">Past the 30-day rule</p>
                 <p class="kn-query-text">Can I waive the inspection fee 45 days after the visit?</p>
@@ -278,11 +292,11 @@
                 <circle class="wg-port active-ice" data-wg="in-port" cx="4" cy="110" r="3.5"/>
                 <circle class="wg-port active-ice" data-wg="in-port" cx="48" cy="110" r="3.5"/>
               </svg>
-              <svg class="kn-corridor-v" viewBox="0 0 240 38" focusable="false">
-                <path class="wg-track active-ice" data-wg="in-track" d="M 120 4 L 120 34"/>
-                <path class="wg-pulse ice" data-wg="in-pulse" d="M 120 4 L 120 34"/>
-                <circle class="wg-port active-ice" data-wg="in-port" cx="120" cy="4" r="3.5"/>
-                <circle class="wg-port active-ice" data-wg="in-port" cx="120" cy="34" r="3.5"/>
+              <svg class="kn-corridor-v" viewBox="0 0 240 18" focusable="false">
+                <path class="wg-track active-ice" data-wg="in-track" d="M 120 3 L 120 15"/>
+                <path class="wg-pulse ice" data-wg="in-pulse" d="M 120 3 L 120 15"/>
+                <circle class="wg-port active-ice" data-wg="in-port" cx="120" cy="3" r="2.8"/>
+                <circle class="wg-port active-ice" data-wg="in-port" cx="120" cy="15" r="2.8"/>
               </svg>
             </div>
 
@@ -310,49 +324,58 @@
                 <circle class="wg-port active-ice" data-wg="ans-port" cx="60" cy="58" r="3.5"/>
                 <circle class="wg-port" data-wg="esc-port" cx="60" cy="182" r="3.5"/>
               </svg>
-              <svg class="kn-corridor-v split-tab" viewBox="0 0 240 48" focusable="false">
-                <path class="wg-track active-ice" data-wg="ans-track" d="M 120 4 C 120 26, 62 22, 62 44"/>
-                <path class="wg-pulse ice" data-wg="ans-pulse" d="M 120 4 C 120 26, 62 22, 62 44"/>
-                <path class="wg-track" data-wg="esc-track" d="M 120 4 C 120 26, 178 22, 178 44"/>
-                <path class="wg-pulse esc" data-wg="esc-pulse" d="M 120 4 C 120 26, 178 22, 178 44"/>
-                <circle class="wg-port active-ice" data-wg="ans-port" cx="120" cy="4" r="3.5"/>
-                <circle class="wg-port active-ice" data-wg="ans-port" cx="62" cy="44" r="3.5"/>
-                <circle class="wg-port" data-wg="esc-port" cx="178" cy="44" r="3.5"/>
+              <svg class="kn-corridor-v split-tab" viewBox="0 0 240 36" focusable="false">
+                <path class="wg-track active-ice" data-wg="ans-track" d="M 120 3 C 120 20, 62 17, 62 33"/>
+                <path class="wg-pulse ice" data-wg="ans-pulse" d="M 120 3 C 120 20, 62 17, 62 33"/>
+                <path class="wg-track" data-wg="esc-track" d="M 120 3 C 120 20, 178 17, 178 33"/>
+                <path class="wg-pulse esc" data-wg="esc-pulse" d="M 120 3 C 120 20, 178 17, 178 33"/>
+                <circle class="wg-port active-ice" data-wg="ans-port" cx="120" cy="3" r="3.2"/>
+                <circle class="wg-port active-ice" data-wg="ans-port" cx="62" cy="33" r="3.2"/>
+                <circle class="wg-port" data-wg="esc-port" cx="178" cy="33" r="3.2"/>
               </svg>
-              <svg class="kn-corridor-v stack-mob" viewBox="0 0 240 38" focusable="false">
-                <path class="wg-track active-ice" data-wg="ans-track" d="M 120 4 L 120 34"/>
-                <path class="wg-pulse ice" data-wg="ans-pulse" d="M 120 4 L 120 34"/>
-                <path class="wg-track" data-wg="esc-track" d="M 120 4 L 120 34"/>
-                <path class="wg-pulse esc" data-wg="esc-pulse" d="M 120 4 L 120 34"/>
-                <circle class="wg-port active-ice" data-wg="ans-port" cx="120" cy="4" r="3.5"/>
-                <circle class="wg-port active-ice" data-wg="ans-port" cx="120" cy="34" r="3.5"/>
+              <svg class="kn-corridor-v stack-mob" viewBox="0 0 240 18" focusable="false">
+                <path class="wg-track active-ice" data-wg="ans-track" d="M 120 3 L 120 15"/>
+                <path class="wg-pulse ice" data-wg="ans-pulse" d="M 120 3 L 120 15"/>
+                <path class="wg-track" data-wg="esc-track" d="M 120 3 L 120 15"/>
+                <path class="wg-pulse esc" data-wg="esc-pulse" d="M 120 3 L 120 15"/>
+                <circle class="wg-port active-ice" data-wg="ans-port" cx="120" cy="3" r="2.8"/>
+                <circle class="wg-port active-ice" data-wg="ans-port" cx="120" cy="15" r="2.8"/>
               </svg>
             </div>
 
-            <!-- Stage C: Twin Outcomes -->
+            <!-- Stage C: Active Outcome (single-card slot on phones; twin clear routes on desktop) -->
             <div class="kn-outcomes">
-              <div class="kn-out-card active-answer" data-kn-out="answer">
+              <div class="kn-out-card kn-out-reconcile" data-kn-out="reconcile" data-mob-active="false">
                 <div class="kn-out-head">
-                  <span class="kn-out-glyph filled" aria-hidden="true"></span>
-                  <span>Cited answer</span>
+                  <span class="kn-out-head-main"><span class="kn-out-glyph filled" aria-hidden="true"></span><span>One approved policy</span></span>
+                  <span class="kn-out-state" data-kn-out-state="reconcile">Settled</span>
                 </div>
-                <p class="kn-out-body">Yes. Staff can waive the inspection fee within 30 days of the visit.</p>
-                <span class="kn-out-chip">Service Policy &middot; Section 4.2</span>
+                <p class="kn-out-body" data-kn-out-body="reconcile">Three conflicting documents settle into one written rule: 30 days.</p>
+                <span class="kn-out-chip" data-kn-out-chip="reconcile">Service Policy &middot; Section 4.2</span>
               </div>
 
-              <div class="kn-out-card dim" data-kn-out="escalate">
+              <div class="kn-out-card active-answer" data-kn-out="answer" data-mob-active="true">
                 <div class="kn-out-head">
-                  <span class="kn-out-glyph hollow" aria-hidden="true"></span>
-                  <span>Passed to a person</span>
+                  <span class="kn-out-head-main"><span class="kn-out-glyph filled" aria-hidden="true"></span><span>Cited answer</span></span>
+                  <span class="kn-out-state" data-kn-out-state="answer">Matched</span>
                 </div>
-                <p class="kn-out-body">When a question falls outside the written policy, it routes to a manager instead of guessing.</p>
-                <span class="kn-out-chip">Sent to service manager</span>
+                <p class="kn-out-body" data-kn-out-body="answer">Yes. Staff can waive the inspection fee within 30 days of the visit.</p>
+                <span class="kn-out-chip" data-kn-out-chip="answer">Service Policy &middot; Section 4.2</span>
+              </div>
+
+              <div class="kn-out-card dim" data-kn-out="escalate" data-mob-active="false">
+                <div class="kn-out-head">
+                  <span class="kn-out-head-main"><span class="kn-out-glyph hollow" aria-hidden="true"></span><span>Passed to a person</span></span>
+                  <span class="kn-out-state" data-kn-out-state="escalate">Standby</span>
+                </div>
+                <p class="kn-out-body" data-kn-out-body="escalate">Uncovered questions route to a named manager instead of guessing.</p>
+                <span class="kn-out-chip" data-kn-out-chip="escalate">Sent to service manager</span>
               </div>
             </div>
           </div>
 
           <div class="ex-foot">
-            <figcaption>Conflicting documents settle into one approved policy. Questions it covers get a cited answer; edge cases go straight to the right person.</figcaption>
+            <figcaption>Conflicting documents settle into one approved policy. Covered questions get a cited answer; edge cases go to a person.</figcaption>
           </div>
         </div>
       </figure>
@@ -478,13 +501,24 @@
         <div class="arch-stage">
           <div class="ex-bar">
             <div class="ex-tabs" role="tablist" aria-label="Engagement phases">
-              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="0"><span class="ex-tab-idx">01</span>Audit</button>
-              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="1"><span class="ex-tab-idx">02</span>Build</button>
-              <button type="button" class="ex-tab" role="tab" aria-selected="true" data-step="2"><span class="ex-tab-idx">03</span>Onboard</button>
+              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="0"><span class="ex-tab-idx">01</span><span>Audit</span></button>
+              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="1"><span class="ex-tab-idx">02</span><span>Build</span></button>
+              <button type="button" class="ex-tab" role="tab" aria-selected="true" data-step="2"><span class="ex-tab-idx">03</span><span>Onboard</span></button>
             </div>
             <div class="ex-controls">
-              <button type="button" class="ex-ctrl-btn" data-action="toggle" aria-pressed="false">Play</button>
-              <button type="button" class="ex-ctrl-btn" data-action="replay">Replay</button>
+              <button type="button" class="ex-ctrl-btn" data-action="toggle" aria-pressed="false" aria-label="Play animation" title="Play">
+                <span class="ex-ctrl-face">
+                  <svg class="ico-play" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.5 3.2L12.8 8 4.5 12.8z"/></svg>
+                  <svg class="ico-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><rect x="4" y="3.2" width="2.8" height="9.6" rx="0.5"/><rect x="9.2" y="3.2" width="2.8" height="9.6" rx="0.5"/></svg>
+                  <span class="ex-ctrl-lbl">Play</span>
+                </span>
+              </button>
+              <button type="button" class="ex-ctrl-btn ex-ctrl-icon" data-action="replay" aria-label="Replay animation" title="Replay">
+                <span class="ex-ctrl-face">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.2 8a4.8 4.8 0 1 0 1.4-3.4L3 6.2"/><path d="M3 3.2v3h3"/></svg>
+                  <span class="ex-ctrl-lbl">Replay</span>
+                </span>
+              </button>
             </div>
             <div class="ex-progress-track" aria-hidden="true">
               <span class="ex-progress-fill" data-eng-progress></span>
@@ -505,7 +539,7 @@
               </div>
             </div>
 
-            <!-- Synchronized 3-Phase Narrative Rail -->
+            <!-- Synchronized Active-Phase Summary (single locked slot on mobile; 3-step rail on desktop) -->
             <div class="eng-rail" role="group" aria-label="Three engagement phases">
               <div class="eng-step done" role="button" tabindex="0" aria-current="false" data-phase="0">
                 <div class="eng-step-head">
@@ -569,7 +603,7 @@
             <span class="card-meta">High-volume B2B sales</span>
             <h3>Sales discovery &amp; objection assistant</h3>
             <p>Built a multi-model sales assistant across specialized contractor segments on a high-volume B2B sales team, paired with a repeatable live-transfer closing workflow adopted at the director level.</p>
-            <div class="card-foot">Multi-model workflow &middot; Director-adopted process</div>
+            <div class="card-foot">Multi-model workflow &middot; <span class="nb">Director-adopted</span> process</div>
           </article>
         </div>
 
@@ -578,7 +612,7 @@
             <span class="card-meta">Enterprise support</span>
             <h3>Structured dispatch &amp; knowledge architecture</h3>
             <p>Led a 24/7 enterprise restaurant point-of-sale support team of 50+ agents serving 1,000+ restaurant brands. Audited over half the knowledge base into standard playbooks and built a Dynamics 365 and Jira dispatch workflow to speed first replies and cut repeat callbacks.</p>
-            <div class="card-foot">Dynamics 365 &middot; Jira &middot; Knowledge-Centered Service</div>
+            <div class="card-foot">Dynamics 365 &middot; Jira &middot; <span class="nb">Knowledge-Centered</span> Service</div>
           </article>
         </div>
       </div>

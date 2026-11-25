@@ -15,12 +15,14 @@
       try { localStorage.setItem('sf-theme', next); } catch (_) {}
     }
     qsa('.theme-seg button[data-t]').forEach(btn => {
-      btn.setAttribute('aria-pressed', String(btn.dataset.t === next));
+      const v = String(btn.dataset.t === next);
+      if (btn.getAttribute('aria-pressed') !== v) btn.setAttribute('aria-pressed', v);
     });
     qsa('.theme-compact').forEach(btn => {
       const target = next === 'dark' ? 'light' : 'dark';
-      btn.setAttribute('aria-label', `Switch to ${target} theme`);
-      btn.setAttribute('title', `Switch to ${target} theme`);
+      const lbl = `Switch to ${target} theme`;
+      if (btn.getAttribute('aria-label') !== lbl) btn.setAttribute('aria-label', lbl);
+      if (btn.getAttribute('title') !== lbl) btn.setAttribute('title', lbl);
     });
   }
 
