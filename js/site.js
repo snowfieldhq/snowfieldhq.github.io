@@ -59,5 +59,14 @@
     }).catch(() => {});
   }
   const idle = window.requestIdleCallback || (f => setTimeout(f, 300));
-  if (document.readyState === 'complete') idle(start, { timeout: 1200 }); else addEventListener('load', () => idle(start, { timeout: 1200 }));
+  // The one-call explainer's still is in the page; its animation script loads only as the figure nears the screen.
+  function explainer() {
+    const fig = $('#intake'); if (!fig) return;
+    const go = () => load('js/intake.js').catch(() => {});
+    if (!('IntersectionObserver' in window)) return go();
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); go(); } }, { rootMargin: '300px 0px' });
+    io.observe(fig);
+  }
+  const after = () => { idle(start, { timeout: 1200 }); explainer(); };
+  if (document.readyState === 'complete') after(); else addEventListener('load', after);
 })();

@@ -24,10 +24,8 @@
 <svg id="comb" aria-hidden="true"></svg>
 <header class="bar">
   <a class="brand" href="./" aria-label="Snowfield home">
-    <img class="lk lk-wide on-dark" src="art/lockup-mo-47-optical-color-dark.svg" width="192" height="35" alt="Snowfield">
-    <img class="lk lk-wide on-light" src="art/lockup-mo-47-optical-color-light.svg" width="192" height="35" alt="Snowfield">
-    <img class="lk lk-small on-dark" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="Snowfield">
-    <img class="lk lk-small on-light" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="Snowfield">
+    <picture class="lk on-dark"><source media="(min-width:720px)" srcset="art/lockup-mo-47-optical-color-dark.svg" width="192" height="35"><img src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="Snowfield"></picture>
+    <picture class="lk on-light"><source media="(min-width:720px)" srcset="art/lockup-mo-47-optical-color-light.svg" width="192" height="35"><img src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="Snowfield"></picture>
   </a>
   <div class="ctl">
     <button type="button" id="surface" class="pill" aria-label="Page surface: Obsidian"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 2.4v11.2a5.6 5.6 0 0 0 0-11.2z" fill="currentColor"/></svg><span class="lbl">Obsidian</span></button>
@@ -50,6 +48,24 @@
       <li><p class="was">Estimate requests arrive missing half the details.</p><p>Each one reaches you as a short job sheet with the address, the problem and photos.</p></li>
       <li><p class="was">Big sewer and water heater quotes go quiet.</p><p>Polite follow-ups, sent only with the homeowner's consent, keep them talking to you instead of the next shop.</p></li>
     </ol>
+  <figure class="ix" id="intake" aria-describedby="ix-steps">
+    <div class="ix-bar">
+      <span class="ix-title">One call, start to finish</span>
+      <span class="ix-ctl">
+        <button type="button" class="ix-btn" data-act="toggle" aria-pressed="false" aria-label="Play animation"><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 3.2L12.8 8 4.5 12.8z" fill="currentColor"/></svg><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="3.2" width="2.8" height="9.6" rx=".5" fill="currentColor"/><rect x="9.2" y="3.2" width="2.8" height="9.6" rx=".5" fill="currentColor"/></svg></button>
+        <button type="button" class="ix-btn" data-act="replay" aria-label="Replay animation"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 8a4.8 4.8 0 1 0 1.4-3.4L3 6.2"/><path d="M3 3.2v3h3"/></svg></button>
+      </span>
+      <span class="ix-prog" aria-hidden="true"><span id="ix-fill"></span></span>
+    </div>
+    <svg class="ix-svg" viewBox="0 0 320 252" role="img" aria-labelledby="ix-cap"><defs><path id="xb-t" transform="matrix(1.7320508 0 0 -1 0 0)" d="M-1 55L-1 45L-3 47L-4 44L-1 41L-1 27L-13 15L-20 22L-20 28L-22 28L-22 24L-27 29ZM27 29L22 24L22 28L20 28L20 22L13 15L1 27L1 41L4 44L3 47L1 45L1 55Z"/><path id="xb-l" transform="matrix(1.7320508 0 0 -1 0 0)" d="M-28 26L-23 21L-25 19L-24 16L-21 19L-14 12L-14 -12L-21 -19L-24 -16L-25 -19L-23 -21L-28 -26ZM-27 -29L-22 -24L-22 -28L-20 -28L-20 -22L-13 -15L-1 -27L-1 -41L-4 -44L-3 -47L-1 -45L-1 -55Z"/><path id="xb-r" transform="matrix(1.7320508 0 0 -1 0 0)" d="M1 -55L1 -45L3 -47L4 -44L1 -41L1 -27L13 -15L20 -22L20 -28L22 -28L22 -24L27 -29ZM28 -26L23 -21L25 -19L24 -16L21 -19L14 -12L14 12L21 19L24 16L25 19L23 21L28 26Z"/><g id="xb-c" transform="matrix(1.7320508 0 0 -1 0 0)"><path class="c1" d="M0 24L11 13L0 2L-11 13Z"/><path class="c2" d="M-12 -12L-12 10L-1 -1L-1 -23Z"/><path class="c3" d="M12 -12L1 -23L1 -1L12 10Z"/></g><polygon id="xb-h" points="0,-56 48.5,-28 48.5,28 0,56 -48.5,28 -48.5,-28"/></defs><polygon id="ix-vglow" class="ix-vglow" points="214,36 304.1,88 304.1,192 214,244 123.9,192 123.9,88"/><path id="ix-vwall" class="ix-vf" d="M 123.9 192 L 214 244 L 304.1 192 L 304.1 88 L 214 36"/><path id="ix-vgate" class="ix-vf ix-gate" d="M 214 36 L 123.9 88 L 123.9 192"/><g id="ix-posts" class="ix-posts" style="opacity:0"><circle cx="214" cy="36" r="3"/><circle cx="123.9" cy="192" r="3"/></g><text class="ix-lbl" x="214" y="20" text-anchor="middle">YOUR ACCOUNTS</text><line class="ix-wg" x1="86" y1="140" x2="117.9" y2="140"/><line id="ix-pulse" class="ix-pulse" x1="86" y1="140" x2="117.9" y2="140" style="opacity:0"/><g id="ix-next" class="ix-next" transform="translate(56 140)"><use href="#xb-h" class="ho t4" transform="scale(0.4825)"/></g><text class="ix-lbl" x="56" y="192" text-anchor="middle">CALL OR FORM</text><text class="ix-sub" x="56" y="211" text-anchor="middle">after hours</text><g class="ix-c ix-job" data-k="0,-1" transform="translate(188.9 96.5)"><g class="cell t3 m" transform="scale(0.5)"><use href="#xb-t" class="bt"/><use href="#xb-l" class="bl"/><use href="#xb-r" class="br"/><g class="cube"><use href="#xb-c"/></g></g></g><g class="ix-c" data-k="1,-1" transform="translate(239.1 96.5)"><g class="cell t3 m" transform="scale(0.5)"><use href="#xb-t" class="bt"/><use href="#xb-l" class="bl"/><use href="#xb-r" class="br"/><g class="cube"><use href="#xb-c"/></g></g></g><g class="ix-c ix-pink" data-k="-1,0" transform="translate(163.8 140)"><g class="cell tp m" transform="scale(0.5)"><use href="#xb-t" class="bt"/><use href="#xb-l" class="bl"/><use href="#xb-r" class="br"/><g class="cube"><use href="#xb-c"/></g></g><polygon class="ix-gring" points="0,-28 24.2,-14 24.2,14 0,28 -24.2,14 -24.2,-14"/></g><g class="ix-c" data-k="0,0" transform="translate(214 140)"><g class="cell t4 m" transform="scale(0.5)"><use href="#xb-t" class="bt"/><use href="#xb-l" class="bl"/><use href="#xb-r" class="br"/><g class="cube"><use href="#xb-c"/></g></g></g><g class="ix-c" data-k="1,0" transform="translate(264.2 140)"><g class="cell t4 m" transform="scale(0.5)"><use href="#xb-t" class="bt"/><use href="#xb-l" class="bl"/><use href="#xb-r" class="br"/><g class="cube"><use href="#xb-c"/></g></g></g><g class="ix-c" data-k="-1,1" transform="translate(188.9 183.5)"><g class="cell t5 m" transform="scale(0.5)"><use href="#xb-t" class="bt"/><use href="#xb-l" class="bl"/><use href="#xb-r" class="br"/><g class="cube"><use href="#xb-c"/></g></g></g><g class="ix-c" data-k="0,1" transform="translate(239.1 183.5)"><g class="cell t5 m" transform="scale(0.5)"><use href="#xb-t" class="bt"/><use href="#xb-l" class="bl"/><use href="#xb-r" class="br"/><g class="cube"><use href="#xb-c"/></g></g></g><polygon id="ix-ring" class="ix-ring" points="188.9,68.5 213.1,82.5 213.1,110.5 188.9,124.5 164.6,110.5 164.6,82.5"/></svg>
+    <p class="ix-status" id="ix-status" aria-live="polite">Job sheet in your accounts; urgent calls alert you.</p>
+    <ol class="ix-steps" id="ix-steps">
+      <li data-step="0"><span class="n">01</span> <b>Answer.</b> Calls get your intake questions instead of voicemail; your web form asks the same ones.</li>
+      <li data-step="1"><span class="n">02</span> <b>Write up.</b> Address, problem and any photos arrive as one short job sheet.</li>
+      <li data-step="2" class="on"><span class="n">03</span> <b>Alert.</b> Urgent calls go to your on-call alert path; estimate requests are waiting for you in the morning.</li>
+    </ol>
+    <figcaption id="ix-cap">An after-hours call becomes a job sheet inside accounts you own. The pink cell is the intake Snowfield sets up.</figcaption>
+  </figure>
   </section>
 
   <section aria-labelledby="h-get">
@@ -75,7 +91,7 @@
 
   <section aria-labelledby="h-pay">
     <h2 id="h-pay">Will it pay for itself?</h2>
-    <p class="first">The setup fee depends on how your phone and form are set up today, so we quote it on the call and work this out with your numbers, not ours.</p>
+    <p class="first">The setup fee is one flat, one-time amount. We share it on the call and work this out with your numbers, not ours.</p>
     <p class="formula">Jobs to break even = first-year cost ÷ what you keep on one job</p>
     <p>First-year cost is the one-time setup fee, plus monthly care if you choose it, plus your own phone and software usage. What you keep on one job is the price after materials, labor and job costs. If your shop loses fewer jobs a year than it takes to break even, it is not worth it, and we will tell you.</p>
   </section>
