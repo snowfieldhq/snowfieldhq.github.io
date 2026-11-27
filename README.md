@@ -1,5 +1,3 @@
-# Snowfield
+# snowfieldhq.github.io
 
-Repository for the [Snowfield website](https://snowfieldhq.github.io/).
-
-Visit the website for current work and project inquiries.
+Public site for Snowfield LLC. Static files only: `index.html`, `404.html`, `css/`, `js/`, `fonts/`, `art/`.

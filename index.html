@@ -1,659 +1,116 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Snowfield | Applied AI Workflows</title>
-<meta name="description" content="Applied AI implementation, custom multi-model workflows, and live team onboarding built inside accounts you own.">
-<meta name="color-scheme" content="light dark">
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Snowfield | Job intake for plumbing and sewer shops</title>
+<meta name="description" content="Snowfield builds after-hours call intake and estimate follow-up for owner-run plumbing and sewer shops, inside the phone and website accounts you already own.">
+<meta name="theme-color" content="#0D0B12">
 <link rel="canonical" href="https://snowfieldhq.github.io/">
-<link rel="alternate" type="text/plain" href="/llms.txt" title="Snowfield and Jordan Masopust summary for LLMs">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Snowfield">
-<meta property="og:title" content="Snowfield | Applied AI Workflows">
-<meta property="og:description" content="Applied AI implementation, custom multi-model workflows, and live team onboarding built inside accounts you own.">
+<meta property="og:title" content="Snowfield | Job intake for plumbing and sewer shops">
+<meta property="og:description" content="After-hours plumbing intake and quote follow-up, inside accounts you own.">
 <meta property="og:url" content="https://snowfieldhq.github.io/">
-<meta property="og:image" content="https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261124">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="627">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="Snowfield: applied AI workflows and live team onboarding built inside accounts you own.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Snowfield | Applied AI Workflows">
-<meta name="twitter:description" content="Applied AI implementation, custom multi-model workflows, and live team onboarding built inside accounts you own.">
-<meta name="twitter:image" content="https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261124">
-<link rel="icon" href="kit/slot/mark-32-light.svg" type="image/svg+xml">
-<script>(function(d,q,s){try{s=localStorage.getItem('sf-theme')}catch(e){}q=new URLSearchParams(location.search).get('theme');q=q=='light'||q=='dark'?q:s=='light'||s=='dark'?s:matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.dataset.theme=q;s=document.createElement('link');s.rel='preload';s.as='image';s.fetchPriority='high';s.href='art/hero-'+(matchMedia('(min-width:600px)').matches?'w':'p')+'-'+q+'.svg';document.head.append(s);if(location.protocol!='file:')['serif','sans','mono'].forEach(function(n){var f=document.createElement('link');f.rel='preload';f.as='font';f.type='font/woff2';f.crossOrigin='';f.href='kit/type/fonts/snowfield-'+n+'-latin.woff2';document.head.append(f)});})(document.documentElement)</script>
-<link rel="stylesheet" href="kit/type/typography.css">
-<link rel="stylesheet" href="kit/seeds/tokens.css">
-<style>.cue{position:absolute;left:var(--fx);top:var(--fy);width:calc(var(--R)*1.794);height:calc(var(--R)*2.0714);transform:translate(-50%,-50%);pointer-events:none;overflow:visible}.cue polygon{fill:none;stroke:var(--text);stroke-width:var(--rule-rule);vector-effect:non-scaling-stroke;stroke-linejoin:round}.turned .cue{visibility:hidden}</style>
-<link rel="stylesheet" href="css/art.css">
+<meta property="og:type" content="website">
+<link rel="icon" href="art/mark-32.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/sf-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/sf-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('sf-surface');if(t==='paper'||t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="css/site.css">
-<link rel="stylesheet" href="css/sections.css">
-<link rel="stylesheet" href="css/explain.css">
-<script src="js/site.js" defer></script>
-<script src="js/sf-cells.js" defer></script>
-<script src="js/explain.js" defer></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://snowfieldhq.github.io/#website",
-      "url": "https://snowfieldhq.github.io/",
-      "name": "Snowfield",
-      "description": "Applied AI implementation, custom multi-model workflows, and live team onboarding built inside accounts you own.",
-      "image": "https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261124",
-      "publisher": { "@id": "https://snowfieldhq.github.io/#organization" }
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://snowfieldhq.github.io/#organization",
-      "name": "Snowfield",
-      "alternateName": "Snowfield Studio",
-      "url": "https://snowfieldhq.github.io/",
-      "description": "Remote, nationwide applied AI implementation studio founded by Jordan Masopust. Custom multi-model workflows, structured operational knowledge systems, role-based onboarding web apps, and independent cross-model verification built directly inside client-owned accounts.",
-      "image": "https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261124",
-      "logo": "https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261124",
-      "email": "mailto:jordan.masopust@gmail.com",
-      "founder": { "@id": "https://snowfieldhq.github.io/jordan-masopust.html#person" },
-      "areaServed": {
-        "@type": "Country",
-        "name": "United States"
-      },
-      "sameAs": [
-        "https://github.com/snowfieldhq",
-        "https://www.linkedin.com/company/snowfieldhq/"
-      ],
-      "knowsAbout": [
-        "AI Implementation",
-        "Custom AI Workflows",
-        "Multi-Model Systems",
-        "Knowledge Architecture",
-        "Technical Onboarding",
-        "Workflow Automation",
-        "Live Team Onboarding",
-        "Claude",
-        "Google Gemini",
-        "OpenAI",
-        "Python",
-        "React"
-      ]
-    },
-    {
-      "@type": "Service",
-      "@id": "https://snowfieldhq.github.io/#service",
-      "name": "Applied AI Implementation & Custom Multi-Model Workflows",
-      "serviceType": "Applied AI implementation, knowledge architecture, and live team onboarding",
-      "description": "Custom multi-model workflows across Claude, Gemini, and OpenAI with Python and React tools, structured knowledge systems, role-based onboarding web apps, and independent cross-model verification built inside client-owned accounts.",
-      "image": "https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261124",
-      "provider": { "@id": "https://snowfieldhq.github.io/#organization" },
-      "areaServed": {
-        "@type": "Country",
-        "name": "United States"
-      },
-      "url": "https://snowfieldhq.github.io/"
-    },
-    {
-      "@type": "Person",
-      "@id": "https://snowfieldhq.github.io/jordan-masopust.html#person",
-      "name": "Jordan Masopust",
-      "givenName": "Jordan",
-      "familyName": "Masopust",
-      "url": "https://snowfieldhq.github.io/jordan-masopust.html",
-      "mainEntityOfPage": "https://snowfieldhq.github.io/jordan-masopust.html",
-      "image": "https://snowfieldhq.github.io/assets/snowfield-og-1200x627.png?v=20261124",
-      "email": "mailto:jordan.masopust@gmail.com",
-      "jobTitle": "Founder, Snowfield",
-      "description": "Founder of Snowfield (remote, nationwide). Builds custom multi-model AI workflows, structured operational knowledge systems, role-based onboarding web apps, and independent cross-model verification across Claude, Gemini, and OpenAI.",
-      "worksFor": { "@id": "https://snowfieldhq.github.io/#organization" },
-      "knowsAbout": [
-        "AI Implementation",
-        "Custom AI Workflows",
-        "Multi-Model Systems",
-        "Knowledge Architecture",
-        "Technical Onboarding",
-        "Workflow Automation",
-        "Live Team Onboarding",
-        "Claude",
-        "Google Gemini",
-        "OpenAI",
-        "Python & React Web Apps",
-        "Dynamics 365",
-        "Jira",
-        "Knowledge-Centered Service (KCS)"
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/in/jordan-masopust/",
-        "https://github.com/snowfieldhq",
-        "https://snowfieldhq.github.io/jordan-masopust.html"
-      ]
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Snowfield LLC","url":"https://snowfieldhq.github.io/","description":"After-hours call intake and estimate follow-up built for owner-run plumbing and sewer shops, inside accounts the shop owns.","areaServed":"United States","founder":{"@type":"Person","name":"Jordan Masopust"},"email":"jordan.masopust@gmail.com","sameAs":["https://www.linkedin.com/company/snowfieldhq/"]}</script>
 </head>
-<body id="top">
+<body>
 <a class="skip" href="#main">Skip to content</a>
-
-<header class="site-header">
-  <div class="wrap bar">
-    <a class="brand" href="index.html" aria-label="Snowfield home">
-      <img class="snow m-only" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="">
-      <img class="ink m-only" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="">
-      <img class="snow d-only" src="art/lockup-mo-47-optical-color-light.svg" width="192" height="35" alt="">
-      <img class="ink d-only" src="art/lockup-mo-47-optical-color-dark.svg" width="192" height="35" alt="">
-    </a>
-
-    <nav class="nav" aria-label="Primary">
-      <a href="#work">What we build</a>
-      <a href="#process">How it works</a>
-      <a href="#proof">Track record</a>
-      <a href="jordan-masopust.html">Founder</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <div class="header-actions">
-      <div class="theme-seg" role="group" aria-label="Color theme">
-        <button type="button" data-t="light" aria-pressed="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-          <span>Light</span>
-        </button>
-        <button type="button" data-t="dark" aria-pressed="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-          <span>Dark</span>
-        </button>
-      </div>
-
-      <button type="button" class="theme-compact" aria-label="Switch color theme">
-        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-      </button>
-
-      <button type="button" class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
-        <svg class="ico-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 17h16"/></svg>
-        <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </div>
-  </div>
-
-  <div class="mobile-nav" id="mobile-nav" hidden>
-    <nav class="wrap mobile-nav-inner" aria-label="Mobile navigation">
-      <a href="#work">What we build</a>
-      <a href="#process">How it works</a>
-      <a href="#proof">Track record</a>
-      <a href="jordan-masopust.html">Founder</a>
-      <a href="ai-evaluation.html">How assistants answer</a>
-      <a href="scope.html">Engagement terms</a>
-      <a class="button primary large mobile-cta" href="#contact">Start a conversation</a>
-    </nav>
+<canvas id="sky" aria-hidden="true"></canvas>
+<svg id="comb" aria-hidden="true"></svg>
+<header class="bar">
+  <a class="brand" href="./" aria-label="Snowfield home">
+    <img class="lk lk-wide on-dark" src="art/lockup-mo-47-optical-color-dark.svg" width="192" height="35" alt="Snowfield">
+    <img class="lk lk-wide on-light" src="art/lockup-mo-47-optical-color-light.svg" width="192" height="35" alt="Snowfield">
+    <img class="lk lk-small on-dark" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="Snowfield">
+    <img class="lk lk-small on-light" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="Snowfield">
+  </a>
+  <div class="ctl">
+    <button type="button" id="surface" class="pill" aria-label="Page surface: Obsidian"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 2.4v11.2a5.6 5.6 0 0 0 0-11.2z" fill="currentColor"/></svg><span class="lbl">Obsidian</span></button>
+    <button type="button" id="snow" class="pill" aria-pressed="true" aria-label="Snow"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.6l5.5 3.2v6.4L8 14.4 2.5 11.2V4.8z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 5.2l2.4 1.4v2.8L8 10.8 5.6 9.4V6.6z" fill="currentColor" class="sn-core"/></svg><span class="lbl">Snow</span></button>
+    <a class="pill cta-s" href="#talk">Talk it through</a>
   </div>
 </header>
 
-<main id="main">
-  <div class="hero-shell">
-    <section class="wrap hero cols" aria-labelledby="h1">
-      <div class="copy">
-        <p class="studio-tag"><span class="hex-pip" aria-hidden="true"></span>Remote, nationwide</p>
-        <h1 class="display" id="h1">Applied AI workflows built inside accounts you own.</h1>
-        <p class="lede">Custom AI assistants that answer from your own documents and cite their sources, plus live onboarding so your team keeps using them.</p>
-        <div class="actions">
-          <a class="button primary large" href="#contact">Start a conversation</a>
-          <a class="button large" href="jordan-masopust.html">Founder profile</a>
-        </div>
-        <ul class="hero-pillars" aria-label="Core studio principles">
-          <li>Claude, Gemini, OpenAI</li>
-          <li>Second-model review</li>
-          <li>No agency lock-in</li>
-        </ul>
-      </div>
-
-      <div class="stage">
-        <div class="hero-art-wrap">
-          <div class="frame hero-art">
-            <div class="viz still">
-              <div class="pic" aria-hidden="true"></div>
-            </div>
-            <svg class="cue" aria-hidden="true" focusable="false" viewBox="-50.232 -58 100.464 116">
-              <polygon points="0,-58 50.232,-29 50.232,29 0,58 -50.232,29 -50.232,-29"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- SECTION 1: Source-of-Truth Architecture + Interactive Visual 1 + Staff Assistant + 4 Capabilities -->
-  <section class="section" id="work">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="h2">Start with one source of truth.</h2>
-        <p class="lead-in">A price sheet says 30 days, and a manager&rsquo;s message says 45. An assistant built on both will guess. First, we settle which source is right. Then we build assistants that cite it and pass uncovered questions to a person.</p>
-      </div>
-
-      <figure class="explain arch-stage-wrap" data-scene="knowledge">
-        <div class="arch-stage">
-          <div class="ex-bar">
-            <div class="ex-tabs" role="tablist" aria-label="Assistant stages">
-              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="0"><span class="ex-tab-idx">01</span><span>Sources</span></button>
-              <button type="button" class="ex-tab" role="tab" aria-selected="true" data-step="1"><span class="ex-tab-idx">02</span><span>Answer</span></button>
-              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="2"><span class="ex-tab-idx">03</span><span>Handoff</span></button>
-            </div>
-            <div class="ex-controls">
-              <button type="button" class="ex-ctrl-btn" data-action="toggle" aria-pressed="false" aria-label="Play animation" title="Play">
-                <span class="ex-ctrl-face">
-                  <svg class="ico-play" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.5 3.2L12.8 8 4.5 12.8z"/></svg>
-                  <svg class="ico-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><rect x="4" y="3.2" width="2.8" height="9.6" rx="0.5"/><rect x="9.2" y="3.2" width="2.8" height="9.6" rx="0.5"/></svg>
-                  <span class="ex-ctrl-lbl">Play</span>
-                </span>
-              </button>
-              <button type="button" class="ex-ctrl-btn ex-ctrl-icon" data-action="replay" aria-label="Replay animation" title="Replay">
-                <span class="ex-ctrl-face">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.2 8a4.8 4.8 0 1 0 1.4-3.4L3 6.2"/><path d="M3 3.2v3h3"/></svg>
-                  <span class="ex-ctrl-lbl">Replay</span>
-                </span>
-              </button>
-            </div>
-            <div class="ex-progress-track" aria-hidden="true">
-              <span class="ex-progress-fill" data-kn-progress></span>
-            </div>
-          </div>
-
-          <div class="kn-grid">
-            <!-- Stage A: Input / Incoming Query (grid-stacked for 0px height jump across steps) -->
-            <div class="kn-panel lit" data-kn-input>
-              <div class="kn-input-view" data-active="false">
-                <div class="kn-kicker"><span>Your documents</span><span>3 conflict</span></div>
-                <p class="kn-panel-title">Inspection fee waiver?</p>
-                <ul class="kn-source-list">
-                  <li><span>Price sheet<span class="kn-src-extra"> (PDF)</span></span><span>30 days</span></li>
-                  <li><span><span class="kn-src-extra">Manager&rsquo;s </span>Slack note</span><span>45 days</span></li>
-                  <li><span>Old<span class="kn-src-extra"> team</span> email</span><span>60 days</span></li>
-                </ul>
-              </div>
-
-              <div class="kn-input-view" data-active="true">
-                <div class="kn-kicker"><span>Staff question</span><span>Covered</span></div>
-                <p class="kn-panel-title">Within the 30-day rule</p>
-                <p class="kn-query-text">Can I waive the inspection fee 20 days after the visit?</p>
-              </div>
-
-              <div class="kn-input-view" data-active="false">
-                <div class="kn-kicker"><span>Staff question</span><span>Not covered</span></div>
-                <p class="kn-panel-title">Past the 30-day rule</p>
-                <p class="kn-query-text">Can I waive the inspection fee 45 days after the visit?</p>
-              </div>
-            </div>
-
-            <!-- Dedicated Corridor A -> B -->
-            <div class="kn-corridor" aria-hidden="true">
-              <svg class="kn-corridor-h" viewBox="0 0 52 220" preserveAspectRatio="none" focusable="false">
-                <path class="wg-track active-ice" data-wg="in-track" d="M 4 110 L 48 110"/>
-                <path class="wg-pulse ice" data-wg="in-pulse" d="M 4 110 L 48 110"/>
-                <circle class="wg-port active-ice" data-wg="in-port" cx="4" cy="110" r="3.5"/>
-                <circle class="wg-port active-ice" data-wg="in-port" cx="48" cy="110" r="3.5"/>
-              </svg>
-              <svg class="kn-corridor-v" viewBox="0 0 240 18" focusable="false">
-                <path class="wg-track active-ice" data-wg="in-track" d="M 120 3 L 120 15"/>
-                <path class="wg-pulse ice" data-wg="in-pulse" d="M 120 3 L 120 15"/>
-                <circle class="wg-port active-ice" data-wg="in-port" cx="120" cy="3" r="2.8"/>
-                <circle class="wg-port active-ice" data-wg="in-port" cx="120" cy="15" r="2.8"/>
-              </svg>
-            </div>
-
-            <!-- Stage B: Shipped R1301 crystal lattice (approved policy) -->
-            <div class="kn-chamber lit-ice">
-              <div class="kn-chamber-head">
-                <span>Approved policy</span>
-                <span class="kn-chamber-meta">Policy check</span>
-              </div>
-              <div class="kn-svg-box" role="img" aria-label="A crystal lattice of approved policy sections that each staff question is checked against."></div>
-              <div class="kn-status-bar">
-                <span data-kn-status>19 approved sections</span>
-                <span class="kn-state-tag" data-kn-tag>Section 4.2</span>
-              </div>
-            </div>
-
-            <!-- Dedicated Corridor B -> C -->
-            <div class="kn-corridor" aria-hidden="true">
-              <svg class="kn-corridor-h" viewBox="0 0 64 240" preserveAspectRatio="none" focusable="false">
-                <path class="wg-track active-ice" data-wg="ans-track" d="M 4 120 C 30 120, 32 58, 60 58"/>
-                <path class="wg-pulse ice" data-wg="ans-pulse" d="M 4 120 C 30 120, 32 58, 60 58"/>
-                <path class="wg-track" data-wg="esc-track" d="M 4 120 C 30 120, 32 182, 60 182"/>
-                <path class="wg-pulse esc" data-wg="esc-pulse" d="M 4 120 C 30 120, 32 182, 60 182"/>
-                <circle class="wg-port active-ice" data-wg="ans-port" cx="4" cy="120" r="3.5"/>
-                <circle class="wg-port active-ice" data-wg="ans-port" cx="60" cy="58" r="3.5"/>
-                <circle class="wg-port" data-wg="esc-port" cx="60" cy="182" r="3.5"/>
-              </svg>
-              <svg class="kn-corridor-v split-tab" viewBox="0 0 240 36" focusable="false">
-                <path class="wg-track active-ice" data-wg="ans-track" d="M 120 3 C 120 20, 62 17, 62 33"/>
-                <path class="wg-pulse ice" data-wg="ans-pulse" d="M 120 3 C 120 20, 62 17, 62 33"/>
-                <path class="wg-track" data-wg="esc-track" d="M 120 3 C 120 20, 178 17, 178 33"/>
-                <path class="wg-pulse esc" data-wg="esc-pulse" d="M 120 3 C 120 20, 178 17, 178 33"/>
-                <circle class="wg-port active-ice" data-wg="ans-port" cx="120" cy="3" r="3.2"/>
-                <circle class="wg-port active-ice" data-wg="ans-port" cx="62" cy="33" r="3.2"/>
-                <circle class="wg-port" data-wg="esc-port" cx="178" cy="33" r="3.2"/>
-              </svg>
-              <svg class="kn-corridor-v stack-mob" viewBox="0 0 240 18" focusable="false">
-                <path class="wg-track active-ice" data-wg="ans-track" d="M 120 3 L 120 15"/>
-                <path class="wg-pulse ice" data-wg="ans-pulse" d="M 120 3 L 120 15"/>
-                <path class="wg-track" data-wg="esc-track" d="M 120 3 L 120 15"/>
-                <path class="wg-pulse esc" data-wg="esc-pulse" d="M 120 3 L 120 15"/>
-                <circle class="wg-port active-ice" data-wg="ans-port" cx="120" cy="3" r="2.8"/>
-                <circle class="wg-port active-ice" data-wg="ans-port" cx="120" cy="15" r="2.8"/>
-              </svg>
-            </div>
-
-            <!-- Stage C: Active Outcome (single-card slot on phones; twin clear routes on desktop) -->
-            <div class="kn-outcomes">
-              <div class="kn-out-card kn-out-reconcile" data-kn-out="reconcile" data-mob-active="false">
-                <div class="kn-out-head">
-                  <span class="kn-out-head-main"><span class="kn-out-glyph filled" aria-hidden="true"></span><span>One approved policy</span></span>
-                  <span class="kn-out-state" data-kn-out-state="reconcile">Settled</span>
-                </div>
-                <p class="kn-out-body" data-kn-out-body="reconcile">Three conflicting documents settle into one written rule: 30 days.</p>
-                <span class="kn-out-chip" data-kn-out-chip="reconcile">Service Policy &middot; Section 4.2</span>
-              </div>
-
-              <div class="kn-out-card active-answer" data-kn-out="answer" data-mob-active="true">
-                <div class="kn-out-head">
-                  <span class="kn-out-head-main"><span class="kn-out-glyph filled" aria-hidden="true"></span><span>Cited answer</span></span>
-                  <span class="kn-out-state" data-kn-out-state="answer">Matched</span>
-                </div>
-                <p class="kn-out-body" data-kn-out-body="answer">Yes. Staff can waive the inspection fee within 30 days of the visit.</p>
-                <span class="kn-out-chip" data-kn-out-chip="answer">Service Policy &middot; Section 4.2</span>
-              </div>
-
-              <div class="kn-out-card dim" data-kn-out="escalate" data-mob-active="false">
-                <div class="kn-out-head">
-                  <span class="kn-out-head-main"><span class="kn-out-glyph hollow" aria-hidden="true"></span><span>Passed to a person</span></span>
-                  <span class="kn-out-state" data-kn-out-state="escalate">Standby</span>
-                </div>
-                <p class="kn-out-body" data-kn-out-body="escalate">Uncovered questions route to a named manager instead of guessing.</p>
-                <span class="kn-out-chip" data-kn-out-chip="escalate">Sent to service manager</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="ex-foot">
-            <figcaption>Conflicting documents settle into one approved policy. Covered questions get a cited answer; edge cases go to a person.</figcaption>
-          </div>
-        </div>
-      </figure>
-
-      <!-- Feature Story + Interactive 2-State Staff Assistant -->
-      <article class="feature-story">
-        <div class="feature-copy">
-          <h3>Built on what your documents actually say.</h3>
-          <p>Before building anything, we find where your documents disagree: old price sheets, chat messages, and rules that live in one person&rsquo;s head. Then we build assistants on Claude, Gemini, and OpenAI. A second model from a different company reviews every change, and any question the documents do not cover goes to a person instead of a guess.</p>
-          <a class="text-link" href="ai-evaluation.html">
-            <span>See how the assistants answer</span>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-          </a>
-        </div>
-
-        <figure class="ui" data-assistant-widget>
-          <div class="assistant-shell">
-            <div class="ui-card">
-              <div class="ui-head">
-                <span class="ui-title"><span class="ui-hex" aria-hidden="true"></span>Staff assistant</span>
-                <div class="ui-mode-tabs" role="tablist" aria-label="Assistant answers">
-                  <button type="button" role="tab" id="tab-home-exc" aria-controls="panel-home-exc" aria-selected="true">Not covered</button>
-                  <button type="button" role="tab" id="tab-home-cov" aria-controls="panel-home-cov" aria-selected="false" tabindex="-1">Covered</button>
-                </div>
-              </div>
-
-              <div class="ui-panel" role="tabpanel" id="panel-home-exc" aria-labelledby="tab-home-exc">
-                <div class="ui-query-box">
-                  <span class="ui-field-label">Staff question</span>
-                  <p class="ask">Can I replace this unit under warranty 14 months after install?</p>
-                </div>
-                <div class="ui-response-box" data-outcome="escalate" style="margin-top:12px;">
-                  <p class="answer">Not on your own. The standard warranty runs 12 months from install, so a service manager needs to approve this one.</p>
-                  <div class="ui-meta-row">
-                    <span class="chip">Warranty Policy &middot; Section 2</span>
-                  </div>
-                </div>
-                <div class="rule" style="margin-top:12px;">
-                  <span>Outside the written policy</span>
-                  <strong>Passed to the service manager</strong>
-                </div>
-              </div>
-
-              <div class="ui-panel" role="tabpanel" id="panel-home-cov" aria-labelledby="tab-home-cov" hidden>
-                <div class="ui-query-box">
-                  <span class="ui-field-label">Staff question</span>
-                  <p class="ask">How long is the standard warranty?</p>
-                </div>
-                <div class="ui-response-box" style="margin-top:12px;">
-                  <p class="answer">12 months from the install date, as long as the install record is on file.</p>
-                  <div class="ui-meta-row">
-                    <span class="chip">Warranty Policy &middot; Section 2</span>
-                  </div>
-                </div>
-                <div class="rule" style="margin-top:12px;">
-                  <span>Inside the written policy</span>
-                  <strong>Answered with its source</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </figure>
-      </article>
-
-      <!-- 2x2 Chamfered Capabilities Grid -->
-      <div class="cap-grid">
-        <div class="sf-card-wrap">
-          <article class="sf-card">
-            <span class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><polygon points="12,8 16,10.3 16,14.7 12,17 8,14.7 8,10.3"/></svg>
-            </span>
-            <h3>Custom assistants for your team</h3>
-            <p>We build assistants that answer from your own documents, pair Claude, Gemini, or OpenAI to each task, and flag missing guidance instead of guessing.</p>
-            <div class="card-foot">Claude &middot; Gemini &middot; OpenAI</div>
-          </article>
-        </div>
-
-        <div class="sf-card-wrap">
-          <article class="sf-card">
-            <span class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12,2 19,6 19,14 12,18 5,14 5,6"/><path d="M5 17.5L12 21.5L19 17.5"/></svg>
-            </span>
-            <h3>Clean source documents</h3>
-            <p>We audit your playbooks, price sheets, and wikis, settle where they conflict, and organize what remains using Knowledge-Centered Service (KCS) practices.</p>
-            <div class="card-foot">One current source of truth</div>
-          </article>
-        </div>
-
-        <div class="sf-card-wrap">
-          <article class="sf-card">
-            <span class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M8 21h8M12 18v3M7 9h4M7 13h10"/></svg>
-            </span>
-            <h3>Role-based onboarding web apps</h3>
-            <p>We build onboarding and training apps in React and Python so non-technical staff can find the right answer in the middle of a live call.</p>
-            <div class="card-foot">Live-call tools</div>
-          </article>
-        </div>
-
-        <div class="sf-card-wrap">
-          <article class="sf-card">
-            <span class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><path d="M8.5 12.2l2.4 2.4 4.8-5"/></svg>
-            </span>
-            <h3>Cross-model verification</h3>
-            <p>A second AI model from a different company reviews every change and logs an audit trail before it reaches your staff.</p>
-            <div class="card-foot">Independent review</div>
-          </article>
-        </div>
-      </div>
-    </div>
+<main id="main" class="col">
+  <section class="hero">
+    <h1>After-hours plumbing intake and quote follow-up, inside accounts you own.</h1>
+    <p class="lede">Snowfield builds after-hours intake and estimate follow-up for owner-run plumbing and sewer shops, set up in the phone and website accounts you already have.</p>
+    <p class="acts"><a class="btn" href="mailto:jordan.masopust@gmail.com?subject=15-minute%20intake%20review">Request a 15-minute intake review</a> <a class="quiet" href="#how">How it works</a></p>
   </section>
 
-  <!-- SECTION 2: Process & Interactive Visual 2 (Single-Panel Unified 3-Phase Ownership Stage) -->
-  <section class="section" id="process">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="h2">From audit to team ownership.</h2>
-        <p class="lead-in">Every prompt, code repository, and guide lives in accounts you already own. Once we hand off the system, your team runs it with no agency lock-in.</p>
-      </div>
-
-      <figure class="explain arch-stage-wrap" data-scene="engagement">
-        <div class="arch-stage">
-          <div class="ex-bar">
-            <div class="ex-tabs" role="tablist" aria-label="Engagement phases">
-              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="0"><span class="ex-tab-idx">01</span><span>Audit</span></button>
-              <button type="button" class="ex-tab" role="tab" aria-selected="false" data-step="1"><span class="ex-tab-idx">02</span><span>Build</span></button>
-              <button type="button" class="ex-tab" role="tab" aria-selected="true" data-step="2"><span class="ex-tab-idx">03</span><span>Onboard</span></button>
-            </div>
-            <div class="ex-controls">
-              <button type="button" class="ex-ctrl-btn" data-action="toggle" aria-pressed="false" aria-label="Play animation" title="Play">
-                <span class="ex-ctrl-face">
-                  <svg class="ico-play" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M4.5 3.2L12.8 8 4.5 12.8z"/></svg>
-                  <svg class="ico-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><rect x="4" y="3.2" width="2.8" height="9.6" rx="0.5"/><rect x="9.2" y="3.2" width="2.8" height="9.6" rx="0.5"/></svg>
-                  <span class="ex-ctrl-lbl">Play</span>
-                </span>
-              </button>
-              <button type="button" class="ex-ctrl-btn ex-ctrl-icon" data-action="replay" aria-label="Replay animation" title="Replay">
-                <span class="ex-ctrl-face">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.2 8a4.8 4.8 0 1 0 1.4-3.4L3 6.2"/><path d="M3 3.2v3h3"/></svg>
-                  <span class="ex-ctrl-lbl">Replay</span>
-                </span>
-              </button>
-            </div>
-            <div class="ex-progress-track" aria-hidden="true">
-              <span class="ex-progress-fill" data-eng-progress></span>
-            </div>
-          </div>
-
-          <div class="eng-unified">
-            <!-- Single Persistent Animated Crystal Chamber (all 3 phases inside one frame) -->
-            <div class="eng-unified-chamber lit-ice">
-              <div class="kn-chamber-head">
-                <span data-eng-label>Your accounts</span>
-                <span class="kn-chamber-meta" data-eng-badge>Phase 3 of 3</span>
-              </div>
-              <div class="eng-svg-box" role="img" aria-label="Single crystal stage evolving from audited outlines through your accounts to a full team-owned system as Snowfield steps back."></div>
-              <div class="kn-status-bar">
-                <span data-eng-status>Running in your accounts</span>
-                <span class="kn-state-tag" data-eng-tag>Team-owned</span>
-              </div>
-            </div>
-
-            <!-- Synchronized Active-Phase Summary (single locked slot on mobile; 3-step rail on desktop) -->
-            <div class="eng-rail" role="group" aria-label="Three engagement phases">
-              <div class="eng-step done" role="button" tabindex="0" aria-current="false" data-phase="0">
-                <div class="eng-step-head">
-                  <span class="eng-step-num">Phase 01</span>
-                  <span class="eng-step-state">Settle rules</span>
-                </div>
-                <h3>Audit the operation</h3>
-                <p>We find where your playbooks, price sheets, and support threads disagree, and settle one current set of rules before writing a prompt.</p>
-              </div>
-
-              <div class="eng-step done" role="button" tabindex="0" aria-current="false" data-phase="1">
-                <div class="eng-step-head">
-                  <span class="eng-step-num">Phase 02</span>
-                  <span class="eng-step-state">Client accounts</span>
-                </div>
-                <h3>Build in your accounts</h3>
-                <p>We deploy prompts, GitHub repositories, review checks, and Python or React tools directly inside accounts you already own.</p>
-              </div>
-
-              <div class="eng-step active" role="button" tabindex="0" aria-current="step" data-phase="2">
-                <div class="eng-step-head">
-                  <span class="eng-step-num">Phase 03</span>
-                  <span class="eng-step-state">Team ownership</span>
-                </div>
-                <h3>Onboard your team</h3>
-                <p>We pair every handoff with live team onboarding and plain guides so your staff can update rules without calling an agency.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="ex-foot">
-            <figcaption>Snowfield audits your rules, builds directly inside your accounts, onboards your team, and steps back.</figcaption>
-          </div>
-        </div>
-      </figure>
-
-      <p class="section-foot-note">Review our <a href="scope.html">ownership-first engagement terms</a> or read the <a href="print.html">one-page studio summary</a>.</p>
-    </div>
+  <section aria-labelledby="h-change">
+    <h2 id="h-change">Where jobs slip away, and the fix</h2>
+    <ol class="pairs">
+      <li><p class="was">After-hours calls go to voicemail.</p><p>We set up your intake questions and send urgent calls to one on-call alert path you choose.</p></li>
+      <li><p class="was">Estimate requests arrive missing half the details.</p><p>Each one reaches you as a short job sheet with the address, the problem and photos.</p></li>
+      <li><p class="was">Big sewer and water heater quotes go quiet.</p><p>Polite follow-ups, sent only with the homeowner's consent, keep them talking to you instead of the next shop.</p></li>
+    </ol>
   </section>
 
-  <!-- SECTION 3: Balanced 3-Column Operational Track Record -->
-  <section class="section" id="proof">
-    <div class="wrap">
-      <div class="section-head">
-        <h2 class="h2">Operational track record.</h2>
-        <p class="lead-in">Firsthand builds from live operations, backed by hands-on work with language models since GPT-3 in July 2020. The aim is always tools that non-technical staff reach for when a live call gets difficult.</p>
-      </div>
-
-      <div class="track-grid three-col">
-        <div class="sf-card-wrap">
-          <article class="sf-card">
-            <span class="card-meta">Regulated lending</span>
-            <h3>Loan-officer workflow assistant</h3>
-            <p>Built a multi-model workflow assistant across Claude and Gemini with strict rules that flag missing guidance instead of guessing, paired with a setup guide and executive rollout proposal adapted company-wide by corporate IT.</p>
-            <div class="card-foot">Claude &middot; Gemini &middot; Adapted by corporate IT</div>
-          </article>
-        </div>
-
-        <div class="sf-card-wrap">
-          <article class="sf-card">
-            <span class="card-meta">High-volume B2B sales</span>
-            <h3>Sales discovery &amp; objection assistant</h3>
-            <p>Built a multi-model sales assistant across specialized contractor segments on a high-volume B2B sales team, paired with a repeatable live-transfer closing workflow adopted at the director level.</p>
-            <div class="card-foot">Multi-model workflow &middot; <span class="nb">Director-adopted</span> process</div>
-          </article>
-        </div>
-
-        <div class="sf-card-wrap">
-          <article class="sf-card">
-            <span class="card-meta">Enterprise support</span>
-            <h3>Structured dispatch &amp; knowledge architecture</h3>
-            <p>Led a 24/7 enterprise restaurant point-of-sale support team of 50+ agents serving 1,000+ restaurant brands. Audited over half the knowledge base into standard playbooks and built a Dynamics 365 and Jira dispatch workflow to speed first replies and cut repeat callbacks.</p>
-            <div class="card-foot">Dynamics 365 &middot; Jira &middot; <span class="nb">Knowledge-Centered</span> Service</div>
-          </article>
-        </div>
-      </div>
-
-      <p class="section-foot-note">Read the full background on the <a href="jordan-masopust.html">founder profile</a>.</p>
-    </div>
+  <section aria-labelledby="h-get">
+    <h2 id="h-get">What we build</h2>
+    <p class="first">One build, set up in your own phone and website accounts. You keep the accounts, the number and the records.</p>
+    <h3>After-hours and overflow intake</h3>
+    <p>An AI answering line on your existing number (or the answering tool you already pay for), plus your website form, asks the questions you would ask: is it leaking or backed up right now, what is the address, do they own or rent, can they send a photo. Urgent calls go to the one on-call alert path you choose. Estimate requests for sewer lines, water heaters and repipes come to you written up. You approve the questions before anything goes live.</p>
+    <h3>Follow-up on big quotes</h3>
+    <p>After a camera inspection or a water heater quote, up to four polite follow-ups over 14 days, only when the homeowner has agreed in writing to hear from you. They stop the moment the homeowner replies or opts out. At kickoff we agree how a quote gets added, such as forwarding the quote email, since we do not touch your dispatch software.</p>
+    <h3>A one-page sewer conversation guide</h3>
+    <p>For the sewer replacement talk at the kitchen table: what the camera showed, the options, and the financing questions to ask. Written from your own words, and gone over with your crew in a 30-minute session.</p>
   </section>
 
-  <!-- SECTION 4: Closing Conversion Band -->
-  <section class="section" id="contact">
-    <div class="wrap">
-      <div class="contact-band">
-        <div class="contact-short">
-          <div>
-            <h2 class="h2">Build tools your team owns.</h2>
-            <p>We work remotely with established U.S. businesses and operations teams nationwide. Tell us what breaks in your operation, and we will reply directly.</p>
-          </div>
-          <a class="button primary large" href="mailto:jordan.masopust@gmail.com?subject=Snowfield%20Applied%20AI%20Inquiry">Start a conversation</a>
-        </div>
-      </div>
-    </div>
+  <section id="how" aria-labelledby="h-how">
+    <h2 id="h-how">How it works</h2>
+    <ol class="steps">
+      <li><strong>A 15-minute intake review.</strong> You tell us how calls come in today and where jobs slip away. If you already have intake and quote follow-up that works for you, you do not need this, and we will say so on the call.</li>
+      <li><strong>Kickoff.</strong> We confirm your phone, form and software costs inside your accounts before anything is built.</li>
+      <li><strong>The build.</strong> The go-live date is agreed in writing once access, content and any texting registration are ready.</li>
+      <li><strong>Walkthrough and go-live.</strong> A live 30-minute session with your crew. It goes live when you approve it in writing.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="h-pay">
+    <h2 id="h-pay">Will it pay for itself?</h2>
+    <p class="first">The setup fee depends on how your phone and form are set up today, so we quote it on the call and work this out with your numbers, not ours.</p>
+    <p class="formula">Jobs to break even = first-year cost ÷ what you keep on one job</p>
+    <p>First-year cost is the one-time setup fee, plus monthly care if you choose it, plus your own phone and software usage. What you keep on one job is the price after materials, labor and job costs. If your shop loses fewer jobs a year than it takes to break even, it is not worth it, and we will tell you.</p>
+  </section>
+
+  <section aria-labelledby="h-terms">
+    <h2 id="h-terms">The plain terms</h2>
+    <ul class="terms">
+      <li>One-time setup fee. Optional monthly care, which starts only after you approve the go-live in writing.</li>
+      <li>One phone route, one website form, one owner alert path, and the calendar or booking link you already use. We do not write into your dispatch software.</li>
+      <li>No texts to a homeowner without their written consent.</li>
+      <li>Monthly care includes one 30-minute copy or question edit; larger changes are quoted first.</li>
+      <li>Your phone, software and usage costs stay in your name and are confirmed before the build.</li>
+      <li>We promise the build, not a number of calls, jobs or dollars.</li>
+    </ul>
+  </section>
+
+  <section id="talk" class="talk" aria-labelledby="h-talk">
+    <h2 id="h-talk">Talk it through</h2>
+    <p>Fifteen minutes on the phone. Bring how your calls come in today; leave knowing whether this is worth it for your shop.</p>
+    <p class="acts"><a class="btn" href="mailto:jordan.masopust@gmail.com?subject=15-minute%20intake%20review">Request a 15-minute intake review</a></p>
+    <p class="mail">The button opens an email; you get a reply with times to talk. No mail app on this device? Write to <span class="addr">jordan.masopust@gmail.com</span>.</p>
+  </section>
+
+  <section aria-labelledby="h-about" class="about">
+    <h2 id="h-about">About Snowfield</h2>
+    <p>Snowfield sets up AI tools for small businesses inside the accounts they already own: call intake, quote follow-up, and the short guides crews actually use. The setup stays yours and keeps working after we leave. Plumbing and sewer shops are the first trade we build for. Our founder spent close to two years on the phone with home-service owners, plumbing and drain shops among them, and knows how much of this business is won or lost on the first call.</p>
+    <p>Based in Indianapolis. <a href="https://www.linkedin.com/company/snowfieldhq/">Snowfield on LinkedIn</a></p>
   </section>
 </main>
 
-<footer class="foot">
-  <div class="wrap">
-    <a class="foot-brand" href="index.html" aria-label="Snowfield home">
-      <img class="snow" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="">
-      <img class="ink" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="">
-    </a>
-    <p class="foot-meta">Jordan Masopust &middot; Remote, nationwide<br class="foot-break"><span class="foot-separator"> &middot; </span><a href="mailto:jordan.masopust@gmail.com">jordan.masopust@gmail.com</a></p>
-    <nav class="foot-nav" aria-label="Footer">
-      <a href="jordan-masopust.html">Founder</a>
-      <a href="social.html">Links</a>
-      <a href="scope.html">Terms</a>
-      <a href="#top">Back to top</a>
-    </nav>
-    <div class="foot-social">
-      <nav aria-label="Personal profiles"><span>Personal</span><a href="https://www.linkedin.com/in/jordan-masopust/">LinkedIn</a></nav>
-      <nav aria-label="Snowfield profiles"><span>Snowfield</span><a href="https://www.linkedin.com/company/snowfieldhq/">LinkedIn</a><a href="https://github.com/snowfieldhq">GitHub</a><a href="llms.txt">llms.txt</a></nav>
-    </div>
-  </div>
+<footer class="foot col">
+  <img class="on-dark" src="art/lockup-mo-31-color-dark.svg" width="130" height="23" alt="Snowfield" loading="lazy">
+  <img class="on-light" src="art/lockup-mo-31-color-light.svg" width="130" height="23" alt="Snowfield" loading="lazy">
+  <p>Snowfield LLC · Founded by <a href="https://www.linkedin.com/in/jordan-masopust/">Jordan Masopust</a> · Indianapolis, Indiana</p>
 </footer>
-</body></html>
+<script src="js/site.js" defer></script>
+</body>
+</html>
